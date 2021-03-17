@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    "semi": "error",
+    "linebreak-style": 0,
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "comma-dangle": ["error", "never"],
+    "object-curly-newline": ["error", { "multiline": true }],
+    "react/jsx-one-expression-per-line": [1, { "allow": "single-child" }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-props-no-spreading": "off",
+    "import/no-extraneous-dependencies": "off"
+  }
+}
