@@ -27,6 +27,10 @@
     font-family: 'Abhaya Libre', serif;
     font-size: 24px;
     text-decoration: none;
+    
+    &--disabled {
+      text-shadow: 5px 5px 4px rgba(13, 244, 106, 0.51);
+    }
 };
 
 .copyright {
