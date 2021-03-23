@@ -2,9 +2,10 @@
   "extends": [
     "react-app",
     "react-app/jest",
-    "eslint:recommended",
-    "plugin:react/recommended"
+    "airbnb",
+    "plugin:jsx-a11y/recommended"
   ],
+  "plugins": ["jsx-a11y"],
   "rules": {
     "semi": "error",
     "linebreak-style": 0,
