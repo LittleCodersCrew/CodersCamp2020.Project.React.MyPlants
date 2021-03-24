@@ -51,7 +51,7 @@ function LoggedIn() {
         <img src={Chat} alt="chat" height="40px" width="40px" />
       </li>
       <li className={styles.li}>
-        <a className={window.location.pathname === '/myprofile' ? `${styles.link} ${styles.clicked}` : `${styles.link}`} href="/myprofile">login</a>
+        <a className={window.location.pathname === '/myprofile' ? `${styles.link} ${styles.clicked}` : `${styles.link}`} href="/myprofile">Login</a>
         <img src={Profile} alt="profile" height="40px" width="40px" />
       </li>
     </ul>

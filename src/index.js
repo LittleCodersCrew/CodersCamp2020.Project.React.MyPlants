@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <Navbar isLoggedIn />
+    <Navbar isLoggedIn={false} />
   </React.StrictMode>,
   document.getElementById('root')
 );
