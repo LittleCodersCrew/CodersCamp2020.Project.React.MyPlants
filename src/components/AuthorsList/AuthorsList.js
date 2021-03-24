@@ -1,4 +1,4 @@
-import styles from './AuthorsList.scss';
+import styles from './AuthorsList.module.scss';
 
 function AuthorsList() {
   return (
@@ -9,7 +9,7 @@ function AuthorsList() {
       <a className={styles.link} href="https://github.com/kami3la" target="_blank" rel="noreferrer">Kamila Grusza</a>
       <a className={styles.link} href="https://github.com/KonradMierzejewski" target="_blank" rel="noreferrer">Konrad Mierzejewski</a>
       <a className={styles.link} href="https://github.com/brzeczkowskaw" target="_blank" rel="noreferrer">Weronika Brzęczkowska-Kuzianik</a>
-      <a className={(styles.link, styles.link--mentor)} href="https://github.com/ruljin" target="_blank" rel="noreferrer">Filip Kuca - mentor</a>
+      <a className={`${styles.link} ${styles.mentor}`} href="https://github.com/ruljin" target="_blank" rel="noreferrer">Filip Kuca - mentor</a>
     </div>
   );
 }
