@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import Footer from './Footer';
 
 test('rendering Footer component', () => {
-  const names = ['Authors'];
+  const authors = 'Authors';
+  const copyright = '©2021 Copyright';
   render(<Footer />);
-  names.forEach((name) => {
-    expect(screen.getByText(name)).toBeInTheDocument();
-  });
+  expect(screen.getByText(authors)).toBeInTheDocument();
+  expect(screen.getByText(copyright)).toBeInTheDocument();
 });
