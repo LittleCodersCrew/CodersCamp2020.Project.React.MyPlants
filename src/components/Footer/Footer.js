@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.scss';
 
-
 import Heart from '../../assets/icons/Heart.png';
 
 function Footer() {
