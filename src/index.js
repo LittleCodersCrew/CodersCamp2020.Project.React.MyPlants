@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
-import AuthorsList from './components/AuthorsList/AuthorsList';
+import LandingPlant from './components/LandingPlant/LandingPlant';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <AuthorsList />
+    <LandingPlant />
   </React.StrictMode>,
   document.getElementById('root')
 );
