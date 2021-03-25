@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Navbar.module.scss';
 
 import Search from '../../assets/icons/Search.png';
@@ -27,7 +28,7 @@ function LoggedOut() {
   );
 }
 
-function LoggedIn() {
+function LoggedIn({ name }) {
   return (
     <ul className={styles.navbar}>
       <li className={styles.li}>
@@ -51,20 +52,23 @@ function LoggedIn() {
         <img src={Chat} alt="chat" height="40px" width="40px" />
       </li>
       <li className={styles.li}>
-        <a className={window.location.pathname === '/myprofile' ? `${styles.link} ${styles.clicked}` : `${styles.link}`} href="/myprofile">Login</a>
+        <a className={window.location.pathname === '/myprofile' ? `${styles.link} ${styles.clicked}` : `${styles.link}`} href="/myprofile">{name}</a>
         <img src={Profile} alt="profile" height="40px" width="40px" />
       </li>
     </ul>
   );
 }
 
+LoggedIn.propTypes = PropTypes.string;
+
 function Navbar(props) {
-  // eslint-disable-next-line react/prop-types
   const { isLoggedIn } = props;
   if (isLoggedIn) {
     return <LoggedIn />;
   }
   return <LoggedOut />;
 }
+
+Navbar.propTypes = PropTypes.bool;
 
 export default Navbar;
