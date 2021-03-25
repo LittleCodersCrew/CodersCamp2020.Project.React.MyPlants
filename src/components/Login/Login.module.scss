@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pompiere&display=swap');
+
+.login {
+  align-content: center;
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 1.6em;
+  height: 100vh;
+  justify-content: center;
+  line-height: 1.8em;
+  text-align: center;
+}
+
+.logo {
+  height: auto;
+  width: auto;
+  margin-bottom: 1em;
+}
+
+.input {
+  text-align: center;
+  width: 350px;
+  font-size: 1.6em;
+  font-family: 'Pompiere', 'serif';
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: 1px solid black;
+  margin-bottom: 1em;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.btn {
+  margin: 2px;
+  width: 4.2em;
+  align-content: center;
+  background-color: white;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 1.6em;
+  border: 1px solid black;
+  border-radius: 5px;
+}

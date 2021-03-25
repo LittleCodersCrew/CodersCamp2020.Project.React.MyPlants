@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
-import AuthorsList from './components/AuthorsList/AuthorsList';
+import Login from './components/Login/Login';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <AuthorsList />
+    <Login />
   </React.StrictMode>,
   document.getElementById('root')
 );
