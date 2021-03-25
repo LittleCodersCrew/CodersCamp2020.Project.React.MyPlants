@@ -17,13 +17,12 @@
 .logo {
   height: auto;
   width: auto;
-  margin-bottom: 1em;
 }
 
 .input {
   text-align: center;
   width: 350px;
-  font-size: 1.6em;
+  font-size: 1.2em;
   font-family: 'Pompiere', 'serif';
   border-top-style: hidden;
   border-right-style: hidden;
@@ -35,16 +34,16 @@
 .buttons {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .btn {
   margin: 2px;
-  width: 4.2em;
+  width: 5.5em;
   align-content: center;
   background-color: white;
   font-family: 'Abhaya Libre', serif;
-  font-size: 1.6em;
+  font-size: 1.2em;
   border: 1px solid black;
   border-radius: 5px;
 }
