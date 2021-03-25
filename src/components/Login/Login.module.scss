@@ -29,6 +29,9 @@
   border-left-style: hidden;
   border-bottom-style: 1px solid black;
   margin-bottom: 1em;
+  &:focus {
+    outline: none;
+  }
 }
 
 .buttons {
