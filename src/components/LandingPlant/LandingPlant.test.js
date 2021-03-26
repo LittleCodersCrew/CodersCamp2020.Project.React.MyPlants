@@ -1,27 +1,24 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import LandingPlant from './LandingPlant';
 
-describe('rendering LandingPlant', () => {
-  test('rendering LandingPlant component on pathname authors', () => {
-    Object.defineProperty(window, 'location', {
-      value: { pathname: '/authors' },
-      writable: true
-    });
-
-    render(<LandingPlant />);
+describe('LandingPlant component render', () => {
+  test('should render with correct image on /authors', () => {
+    render(
+      <MemoryRouter initialEntries={['/authors']}>
+        <LandingPlant />
+      </MemoryRouter>
+    );
     const cactusImg = screen.getByAltText('cactus');
     expect(cactusImg).toBeInTheDocument();
   });
 
-  test('rendering LandingPlant component on other paths', () => {
-    Object.defineProperty(window, 'location', {
-      value: {
-        value: { pathname: '/' },
-        writable: true
-      }
-    });
-
-    render(<LandingPlant />);
+  test('should render with correct image on other paths', () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <LandingPlant />
+      </MemoryRouter>
+    );
     const plantImg = screen.getByAltText('plant');
     expect(plantImg).toBeInTheDocument();
   });
