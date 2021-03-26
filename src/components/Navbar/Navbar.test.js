@@ -1,18 +1,33 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import Navbar from './Navbar';
 
-test('render navbar for logged out user', () => {
-  const menu = ['Plants', 'Chat', 'Login'];
-  render(<Navbar isLoggedIn={false} />);
-  menu.forEach((word) => {
-    expect(screen.getByText(word)).toBeInTheDocument();
-  });
-});
+describe('Navbar component render', () => {
+  it('should render for logged out user', () => {
+    const menu = ['Plants', 'Chat', 'Login'];
 
-test('render navbar for logged in user', () => {
-  const menu = ['My garden', 'Users', 'Events', 'Plants', 'Chat'];
-  render(<Navbar isLoggedIn />);
-  menu.forEach((word) => {
-    expect(screen.getByText(word)).toBeInTheDocument();
+    render(
+      <MemoryRouter>
+        <Navbar location="/" name="" />
+      </MemoryRouter>
+    );
+
+    menu.forEach((word) => {
+      expect(screen.getByText(word)).toBeInTheDocument();
+    });
+  });
+
+  it('should render for logged in user', () => {
+    const menu = ['My garden', 'Users', 'Events', 'Plants', 'Chat'];
+
+    render(
+      <MemoryRouter>
+        <Navbar location="/" name="Test" />
+      </MemoryRouter>
+    );
+
+    menu.forEach((word) => {
+      expect(screen.getByText(word)).toBeInTheDocument();
+    });
   });
 });
