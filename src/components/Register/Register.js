@@ -6,7 +6,7 @@ import Logo from '../../assets/logo.png';
 function Register() {
   const { register, errors, handleSubmit, watch } = useForm();
   const password = useRef();
-  password.current = watch('password', '';)
+  password.current = watch('password', '');
   const onSubmit = (e) => e.preventDefault();
 
   return (
@@ -21,16 +21,16 @@ function Register() {
             className={styles.input}
             placeholder="Name"
             ref={register({
-              required: "Name is required", 
+              required: 'Name is required',
               minLength: {
                 value: 3,
-                message: "Name must have at least 3 characters"
+                message: 'Name must have at least 3 characters'
               },
               maxLength: {
                 value: 15,
                 message: "Name can't be longer than 15 characters"
               },
-              pattern: /^[A-Za-z]+$/i 
+              pattern: /^[A-Za-z]+$/i
             })}
           />
           {errors.name && <p>{errors.name.message}</p>}
@@ -41,10 +41,10 @@ function Register() {
             className={styles.input}
             placeholder="Surname"
             ref={register({
-              required: "Surname is required",
+              required: 'Surname is required',
               minLength: {
                 value: 3,
-                message: "Surame must have at least 3 characters"
+                message: 'Surame must have at least 3 characters'
               },
               maxLength: {
                 value: 25,
@@ -61,15 +61,15 @@ function Register() {
             className={styles.input}
             placeholder="Login"
             ref={register({
-              required: "Login is required", 
+              required: 'Login is required',
               minLength: {
                 value: 3,
-                message: "Login must have at least 3 characters"
+                message: 'Login must have at least 3 characters'
               },
               maxLength: {
                 value: 10,
-                message: "Login can't be longer than 10 characters"
-              } 
+                message: 'Login can not be longer than 10 characters'
+              }
             })}
           />
           {errors.login && <p>{errors.login.message}</p>}
@@ -81,10 +81,10 @@ function Register() {
             type="email"
             placeholder="E-mail"
             ref={register({
-              required: "e-mail is required",
+              required: 'e-mail is required',
               minLength: {
                 value: 4,
-                message: "Invalid e-mail"
+                message: 'Invalid e-mail'
               }
             })}
           />
@@ -97,10 +97,10 @@ function Register() {
             type="password"
             placeholder="Password"
             ref={register({
-              required: "You must specify password",
+              required: 'You must specify password',
               minLength: {
                 value: 5,
-                message: "Password must have at least 5 characters"
+                message: 'Password must have at least 5 characters'
               }
             })}
           />
@@ -112,10 +112,7 @@ function Register() {
             className={styles.input}
             type="password"
             placeholder="Repeat password"
-            ref={register({
-               validate: value => 
-                value === password.current || "Passwords do not match"
-            })}
+            ref={register({ validate: (value) => value === password.current || 'Passwords do not match' })}
           />
           {errors.pass_repeat && <p>{errors.pass_repeat.message}</p>}
         </div>
