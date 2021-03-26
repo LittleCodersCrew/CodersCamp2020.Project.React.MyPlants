@@ -28,7 +28,7 @@ function Register() {
               },
               maxLength: {
                 value: 15,
-                message: "Name can't be longer than 15 characters"
+                message: 'Name can not be longer than 15 characters'
               },
               pattern: /^[A-Za-z]+$/i
             })}
@@ -48,7 +48,7 @@ function Register() {
               },
               maxLength: {
                 value: 25,
-                message: "Surname can't be longer than 25 characters"
+                message: 'Surname can not be longer than 25 characters'
               },
               pattern: /^[A-Za-z]+$/i
             })}
