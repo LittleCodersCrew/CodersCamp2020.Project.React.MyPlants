@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { link, clicked, footer, container, copyright } from './Footer.module.scss';
 import Heart from '../../assets/icons/Heart.png';
 
-function Footer() {
+const Footer = () => {
   const location = useLocation().pathname;
   const classes = [link, location === '/authors' ? clicked : ''];
 
@@ -16,6 +16,6 @@ function Footer() {
       <p className={copyright}>©2021 Copyright</p>
     </footer>
   );
-}
+};
 
 export default Footer;
