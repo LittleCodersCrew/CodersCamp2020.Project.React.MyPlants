@@ -7,8 +7,8 @@ describe('Navbar component render', () => {
     const menu = ['Plants', 'Chat', 'Login'];
 
     render(
-      <MemoryRouter>
-        <Navbar location="/" name="" />
+      <MemoryRouter initialEntries={['/']}>
+        <Navbar name="" />
       </MemoryRouter>
     );
 
@@ -21,8 +21,8 @@ describe('Navbar component render', () => {
     const menu = ['My garden', 'Users', 'Events', 'Plants', 'Chat'];
 
     render(
-      <MemoryRouter>
-        <Navbar location="/" name="Test" />
+      <MemoryRouter initialEntries={['/']}>
+        <Navbar name="Test" />
       </MemoryRouter>
     );
 

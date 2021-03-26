@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { navbar, link, li, clicked } from './Navbar.module.scss';
 import Search from '../../assets/icons/Search.png';
 import Chat from '../../assets/icons/Chat.png';
@@ -13,7 +13,7 @@ const createItem = (path, location, linkName, src, alt) => {
   const classes = [link, location === path ? clicked : ''];
 
   return (
-    <li className={li}>
+    <li key={path} className={li}>
       <Link className={classes.join(' ')} to={path}>
         <p>{linkName}</p>
         <img src={src} alt={alt} height="40px" width="40px" />
@@ -22,44 +22,32 @@ const createItem = (path, location, linkName, src, alt) => {
   );
 };
 
-const LoggedOut = ({ location }) => (
-  <nav>
-    <ul className={navbar}>
-      {createItem('/plant', location, 'Plants', Search, 'search')}
-      {createItem('/chat', location, 'Chat', Chat, 'chat')}
-      {createItem('/login', location, 'Login', Profile, 'profile')}
-    </ul>
-  </nav>
-);
+const Navbar = ({ name }) => {
+  const location = useLocation().pathname;
 
-const LoggedIn = ({ location, name }) => (
-  <nav>
-    <ul className={navbar}>
-      {createItem('/garden', location, 'My garden', Leaf, 'leaf')}
-      {createItem('/users', location, 'Users', Users, 'users')}
-      {createItem('/events', location, 'Events', Calendar, 'calendar')}
-      {createItem('/plant', location, 'Plants', Search, 'search')}
-      {createItem('/chat', location, 'Chat', Chat, 'chat')}
-      {createItem('/myprofile', location, name, Profile, 'profile')}
-    </ul>
-  </nav>
-);
+  const items = name === '' ? [
+    ['/plant', location, 'Plants', Search, 'search'],
+    ['/chat', location, 'Chat', Chat, 'chat'],
+    ['/login', location, 'Login', Profile, 'profile']
+  ] : [
+    ['/garden', location, 'My garden', Leaf, 'leaf'],
+    ['/users', location, 'Users', Users, 'users'],
+    ['/events', location, 'Events', Calendar, 'calendar'],
+    ['/plant', location, 'Plants', Search, 'search'],
+    ['/chat', location, 'Chat', Chat, 'chat'],
+    ['/myprofile', location, name, Profile, 'profile']
+  ];
 
-const Navbar = ({ name, location }) => (
-  name === '' ? <LoggedOut location={location} /> : <LoggedIn location={location} name={name} />
-);
-
-LoggedOut.propTypes = { location: PropTypes.string.isRequired };
-
-LoggedIn.propTypes = {
-  location: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  return (
+    <nav>
+      <ul className={navbar}>
+        {items.map((item) => createItem(...item))}
+      </ul>
+    </nav>
+  );
 };
 
-Navbar.propTypes = {
-  name: PropTypes.string,
-  location: PropTypes.string.isRequired
-};
+Navbar.propTypes = { name: PropTypes.string };
 
 Navbar.defaultProps = { name: '' };
 

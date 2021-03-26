@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
+import AuthorsList from './components/AuthorsList';
+import Footer from './components/Footer';
 
 function Home() {
   return <h2>About</h2>;
@@ -37,12 +39,11 @@ function Profile() {
 }
 
 const App = () => {
-  const location = useLocation().pathname;
   const [userName, setUserName] = useState('Test');
 
   return (
     <>
-      <Navbar name={userName} location={location} />
+      <Navbar name={userName} />
       <Switch>
         <Route path="/" exact>
           <Home />
@@ -68,7 +69,11 @@ const App = () => {
         <Route path="/myprofile" exact>
           <Profile />
         </Route>
+        <Route path="/authors" exact>
+          <AuthorsList />
+        </Route>
       </Switch>
+      <Footer />
     </>
   );
 };
