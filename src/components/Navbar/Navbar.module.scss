@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap');
+
+.navbar {
+  height: 70px;
+  padding: 0 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: 'Abhaya Libre', serif;
+};
+
+.li {
+  font-size: 24px;
+  list-style-type: none;
+};
+
+.link {
+  display: grid;
+  grid-template-columns: 105px 50px;
+  justify-items: end;
+  align-items: center;
+  color: rgb(14, 52, 22);
+  text-decoration: none;
+
+  &.clicked {
+    text-shadow: 5px 5px 4px rgba(13, 244, 106, 0.51);
+    pointer-events: none;
+  }
+};
