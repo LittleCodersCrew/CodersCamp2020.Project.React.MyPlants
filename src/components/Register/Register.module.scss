@@ -43,11 +43,22 @@
 
 .btn {
   margin: 2px;
-  width: 4.2em;
+  width: 5.5em;
+  height: 1.5em;
   align-content: center;
   background-color: white;
   font-family: 'Abhaya Libre', serif;
   font-size: 1.2em;
   border: 1px solid black;
   border-radius: 5px;
+  &:hover {
+    background-color: #e5ffe5;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    outline: none;
+    box-shadow: 0 0 1em #9f9;
+  }
 }

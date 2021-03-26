@@ -1,51 +1,66 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import styles from './Register.module.scss';
 import Logo from '../../assets/logo.png';
 
 function Register() {
-  const [value, setValue] = useState({
-    name: '',
-    surname: '',
-    login: '',
-    email: '',
-    password: '',
-    repeatPassword: ''
-  });
+  const { register, handleSubmit } = useForm();
 
-  const inputHandler = (e) => {
-    setValue({ [e.target.name]: e.target.value });
-  };
-
-  const submit = (e) => {
-    e.preventDefault();
-  };
+  const onSubmit = (e) => e.preventDefault();
 
   return (
     <div className={styles.login}>
-      <form onChange={submit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.logo}>
           <img src={Logo} alt="myplants logo" />
         </div>
         <div className={styles.formInput}>
-          <input className={styles.input} placeholder="Name" onChange={inputHandler} value={value.name} />
+          <input
+            className={styles.input}
+            placeholder="Name"
+            ref={register({ required: true, maxLength: 15, pattern: /^[A-Za-z]+$/i })}
+          />
         </div>
         <div className={styles.formInput}>
-          <input className={styles.input} placeholder="Surname" onChange={inputHandler} value={value.surname} />
+          <input
+            className={styles.input}
+            placeholder="Surname"
+            ref={register({ required: true, maxLength: 15, pattern: /^[A-Za-z]+$/i })}
+          />
         </div>
         <div className={styles.formInput}>
-          <input className={styles.input} placeholder="Login" onChange={inputHandler} value={value.login} />
+          <input
+            className={styles.input}
+            placeholder="Login"
+            ref={register({ required: true, maxLength: 10 })}
+          />
         </div>
         <div className={styles.formInput}>
-          <input className={styles.input} type="email" placeholder="E-mail" onChange={inputHandler} value={value.email} />
+          <input
+            className={styles.input}
+            type="email"
+            placeholder="E-mail"
+            ref={register({ required: true, maxLength: 10 })}
+          />
         </div>
         <div className={styles.formInput}>
-          <input className={styles.input} type="password" placeholder="Password" onChange={inputHandler} value={value.password} />
+          <input
+            className={styles.input}
+            type="password"
+            placeholder="Password"
+            ref={register({ required: true, maxLength: 10 })}
+          />
         </div>
         <div className={styles.formInput}>
-          <input className={styles.input} type="password" placeholder="Repeat password" onChange={inputHandler} value={value.repeatPassword} />
+          <input
+            className={styles.input}
+            type="password"
+            placeholder="Repeat password"
+            ref={register({ required: true, maxLength: 10 })}
+          />
         </div>
         <div className={styles.buttons}>
-          <input className={styles.btn} type="submit" value="Register" />
+          <button type="button" className={styles.btn}>Register</button>
         </div>
       </form>
     </div>
