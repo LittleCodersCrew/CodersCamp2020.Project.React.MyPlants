@@ -1,4 +1,5 @@
 import './App.scss';
+<<<<<<< HEAD
 import {
   BrowserRouter as Router,
   Switch,
@@ -46,6 +47,13 @@ function App() {
         </Route>
       </Switch>
     </Router>
+=======
+import Footer from './components/Footer/Footer';
+
+function App() {
+  return (
+    <Footer />
+>>>>>>> dev
   );
 }
 
