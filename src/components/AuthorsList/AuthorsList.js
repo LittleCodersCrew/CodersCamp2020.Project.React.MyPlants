@@ -1,17 +1,32 @@
-import styles from './AuthorsList.module.scss';
+import React from 'react';
+import { authors, link, mentor } from './AuthorsList.module.scss';
 
-function AuthorsList() {
+const createItem = (webpage, text, isMentor = false) => {
+  const classes = [link, isMentor ? mentor : ''];
+
   return (
-    <div className={styles.authors}>
-      <a className={styles.link} href="https://github.com/adax10" target="_blank" rel="noreferrer">Adrianna Krupa</a>
-      <a className={styles.link} href="https://github.com/Suegro24" target="_blank" rel="noreferrer">Dominik Puchała</a>
-      <a className={styles.link} href="https://github.com/Nilphym" target="_blank" rel="noreferrer">Jędrzej Ratajczak</a>
-      <a className={styles.link} href="https://github.com/kami3la" target="_blank" rel="noreferrer">Kamila Grusza</a>
-      <a className={styles.link} href="https://github.com/KonradMierzejewski" target="_blank" rel="noreferrer">Konrad Mierzejewski</a>
-      <a className={styles.link} href="https://github.com/brzeczkowskaw" target="_blank" rel="noreferrer">Weronika Brzęczkowska-Kuzianik</a>
-      <a className={`${styles.link} ${styles.mentor}`} href="https://github.com/ruljin" target="_blank" rel="noreferrer">Filip Kuca - mentor</a>
+    <a key={webpage} className={classes.join(' ')} href={webpage} target="_blank" rel="noreferrer">
+      {text}
+    </a>
+  );
+};
+
+const AuthorsList = () => {
+  const items = [
+    ['https://github.com/adax10', 'Adrianna Krupa', false],
+    ['https://github.com/Suegro24', 'Dominik Puchała', false],
+    ['https://github.com/Nilphym', 'Jędrzej Ratajczak', false],
+    ['https://github.com/kami3la', 'Kamila Grusza', false],
+    ['https://github.com/KonradMierzejewski', 'Konrad Mierzejewski', false],
+    ['https://github.com/brzeczkowskaw', 'Weronika Brzęczkowska-Kuzianik', false],
+    ['https://github.com/ruljin', 'Filip Kuca - mentor', true]
+  ];
+
+  return (
+    <div className={authors}>
+      {items.map((item) => createItem(...item))}
     </div>
   );
-}
+};
 
 export default AuthorsList;
