@@ -27,7 +27,8 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
-  border-bottom-style: 1px solid black;
+  border-bottom: 3px solid;
+  border-bottom-color: rgb(14, 52, 22);
   margin-bottom: 0.5em;
   &:focus {
     outline: none;
