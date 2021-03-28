@@ -7,7 +7,11 @@ function Register() {
   const { register, errors, handleSubmit, watch } = useForm();
   const password = useRef();
   password.current = watch('password', '');
-  const onSubmit = (e) => e.preventDefault();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // eslint-disable-next-line no-alert
+    alert('Your account has been succesfully created. Check your e-mail');
+  };
 
   return (
     <div className={styles.login}>
