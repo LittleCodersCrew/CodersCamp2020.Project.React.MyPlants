@@ -1,16 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import Select from './Select';
 
 test('Select component render', () => {
   const title = 'Watering';
   const values = ['aaa', 'vvv', 'ddd'];
 
-  render(
-    <MemoryRouter>
-      <Select title={title} values={values} />
-    </MemoryRouter>
-  );
+  render(<Select title={title} values={values} />);
 
   expect(screen.getByText(title)).toBeInTheDocument();
   expect(screen.getByText(values[0])).toBeInTheDocument();

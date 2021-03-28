@@ -2,13 +2,6 @@ import React from 'react';
 import PropTypes, { string } from 'prop-types';
 import { select, selectWrapper } from './Select.module.scss';
 
-const propTypes = {
-  title: PropTypes.string,
-  values: PropTypes.arrayOf(string)
-};
-
-const defaultProps = { title: '', values: [] };
-
 const Select = ({ title, values }) => (
   <div className={selectWrapper}>
     <select defaultValue="default" className={select} name={title} id={title}>
@@ -22,7 +15,10 @@ const Select = ({ title, values }) => (
   </div>
 );
 
-Select.defaultProps = defaultProps;
-Select.propTypes = propTypes;
+Select.defaultProps = { title: '', values: [] };
+Select.propTypes = {
+  title: PropTypes.string,
+  values: PropTypes.arrayOf(string)
+};
 
 export default Select;
