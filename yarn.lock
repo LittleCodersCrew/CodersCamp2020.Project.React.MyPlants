@@ -10391,6 +10391,7 @@ fsevents@^1.2.7:
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-testing-library: ^3.10.1
     node-sass: ^5.0.0
+    prop-types: ^15.7.2
     react: ^17.0.1
     react-dom: ^17.0.1
     react-router: ^5.2.0
