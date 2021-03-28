@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { divContainer, paragraph } from './Text.module.scss';
+import { paragraph } from './Text.module.scss';
 
-const Text = ({ text }) => (
-  <div className={divContainer}>
-    <p className={paragraph}>{text}</p>
-  </div>
+const Text = ({ text, fontsize }) => (
+  <p className={paragraph} style={{ fontSize: fontsize }}>{text}</p>
 );
 
-Text.propTypes = { text: PropTypes.string };
-Text.defaultProps = { text: 'Welcome to My Plants' };
+Text.propTypes = {
+  text: PropTypes.string,
+  fontsize: PropTypes.string
+};
+
+Text.defaultProps = {
+  text: 'Welcome to My Plants',
+  fontsize: '4.6vh'
+};
 
 export default Text;
