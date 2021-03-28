@@ -7,13 +7,8 @@ const Text = ({ text, fontsize }) => (
 );
 
 Text.propTypes = {
-  text: PropTypes.string,
-  fontsize: PropTypes.string
-};
-
-Text.defaultProps = {
-  text: 'Welcome to My Plants',
-  fontsize: '4.6vh'
+  text: PropTypes.string.isRequired,
+  fontsize: PropTypes.string.isRequired
 };
 
 export default Text;
