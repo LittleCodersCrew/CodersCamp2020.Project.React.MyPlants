@@ -1,0 +1,46 @@
+.selectWrapper {
+  position: relative;
+  display: inline;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translate(-50%, -50%);
+    background-image: url('../../assets/icons/Arrow - Down 8.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 23px;
+    height: 25px;
+    cursor: pointer;
+    pointer-events: none;
+  }
+}
+
+.select {
+  color: #0e3416;
+  border: 2px solid #0e3416;
+  box-sizing: border-box;
+  border-radius: 8px;
+  height: 40px;
+  min-width: 193px;
+  text-align: center;
+  text-align-last: center;
+  font-size: 1.125rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: 'Abhaya Libre', serif;
+  letter-spacing: 1.5px;
+  text-transform: capitalize;
+
+  &:focus {
+    outline: none;
+  }
+
+  option {
+    padding-left: 10px;
+  }
+}
