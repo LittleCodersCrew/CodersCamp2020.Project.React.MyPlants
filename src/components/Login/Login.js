@@ -12,15 +12,17 @@ function Login({ setToken }) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
-  }).then((data) => {
-    console.log(data);
-  });
+  }).then((data) => data.json());
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    const token = await loginUser(data.email, data.password);
-    console.log(token);
-    setToken(token);
+    const response = await loginUser(data.email, data.password);
+    const { token } = response;
+    if (!token) {
+      alert(response.error);
+    } else {
+      setToken(token);
+    }
   };
 
   return (

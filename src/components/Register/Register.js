@@ -9,17 +9,18 @@ function Register() {
   const password = useRef();
   password.current = watch('password', '');
 
-  const registerUser = async (user) => {
-    fetch(`${Database.URL}/user`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user)
-    }).then((data) => data);
-  };
+  const registerUser = async (user) => fetch(`${Database.URL}/user`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user)
+  }).then((data) => data.json());
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data, e) => {
     e.preventDefault();
-    registerUser(data);
+    const response = await registerUser(data);
+    if (response?.errors) {
+      alert(response.errors);
+    }
   };
 
   return (

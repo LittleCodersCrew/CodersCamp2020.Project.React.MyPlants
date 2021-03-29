@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
 import AuthorsList from './components/AuthorsList';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
+import useToken from './components/useToken/useToken';
 
 function Home() {
   return <h2>About</h2>;
@@ -38,10 +39,24 @@ function Profile() {
 
 const App = () => {
   const [userName, setUserName] = useState('Test');
-  const [token, setToken] = useState();
+  const { token, setToken } = useToken();
 
   if (!token) {
-    return <Login setToken={setToken} />;
+    return (
+      <>
+        <Switch>
+          <Route path="/login" exact>
+            <Login setToken={setToken} />
+          </Route>
+          <Route path="/register" exact>
+            <Register />
+          </Route>
+          <Route path="/">
+            <Redirect to="/login" />
+          </Route>
+        </Switch>
+      </>
+    );
   }
 
   return (
