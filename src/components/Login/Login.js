@@ -19,6 +19,7 @@ function Login({ setToken }) {
     const response = await loginUser(data.email, data.password);
     const { token } = response;
     if (!token) {
+      // eslint-disable-next-line no-alert
       alert(response.error);
     } else {
       setToken(token);

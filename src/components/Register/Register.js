@@ -19,6 +19,7 @@ function Register() {
     e.preventDefault();
     const response = await registerUser(data);
     if (response?.errors) {
+      // eslint-disable-next-line no-alert
       alert(response.errors);
     }
   };
