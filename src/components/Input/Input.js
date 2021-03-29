@@ -4,7 +4,7 @@ import { input } from './Input.module.scss';
 
 const Input = ({ text }) => (
   <input
-    name="plantName"
+    name="input"
     className={input}
     placeholder={text}
     type="text"
@@ -12,7 +12,7 @@ const Input = ({ text }) => (
   />
 );
 
-Input.defaultProps = { text: '' };
+Input.defaultProps = { text: 'text' };
 Input.propTypes = { text: PropTypes.string };
 
 export default Input;
