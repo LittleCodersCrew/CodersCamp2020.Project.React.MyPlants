@@ -5,6 +5,8 @@ import './App.scss';
 import Navbar from './components/Navbar';
 import AuthorsList from './components/AuthorsList';
 import Footer from './components/Footer';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function Home() {
   return <h2>About</h2>;
@@ -16,10 +18,6 @@ function Plants() {
 
 function Chat() {
   return <h2>Chat</h2>;
-}
-
-function Login() {
-  return <h2>Login</h2>;
 }
 
 function Garden() {
@@ -40,6 +38,11 @@ function Profile() {
 
 const App = () => {
   const [userName, setUserName] = useState('Test');
+  const [token, setToken] = useState();
+
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
 
   return (
     <>
@@ -54,14 +57,14 @@ const App = () => {
         <Route path="/chat" exact>
           <Chat />
         </Route>
-        <Route path="/login" exact>
-          <Login />
-        </Route>
         <Route path="/garden" exact>
           <Garden />
         </Route>
         <Route path="/users" exact>
           <Users />
+        </Route>
+        <Route path="/register" exact>
+          <Register />
         </Route>
         <Route path="/events" exact>
           <Calendar />

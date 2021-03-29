@@ -10391,8 +10391,10 @@ fsevents@^1.2.7:
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-testing-library: ^3.10.1
     node-sass: ^5.0.0
+    prop-types: ^15.7.2
     react: ^17.0.1
     react-dom: ^17.0.1
+    react-hook-form: ^6.15.5
     react-router: ^5.2.0
     react-router-dom: ^5.2.0
     react-scripts: 4.0.3
@@ -12753,6 +12755,15 @@ fsevents@^1.2.7:
   version: 6.0.9
   resolution: "react-error-overlay@npm:6.0.9"
   checksum: 5e971284cc76af684940d78a91c8eac639f16b3b9500a03423ae177392cdaf320788b9c9112f58a2dde4f5a80688acdbc89334827354e95493244968af94830f
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^6.15.5":
+  version: 6.15.5
+  resolution: "react-hook-form@npm:6.15.5"
+  peerDependencies:
+    react: ^16.8.0 || ^17
+  checksum: 296e5203bd11aae1f485def77027f316122cb6ca85590f00f94f021c53edc053096e770210f0ad904f9105df50e4e7741430f21026c21a8de57461ac36e8dc23
   languageName: node
   linkType: hard
 

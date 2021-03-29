@@ -1,12 +1,27 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 import styles from './Login.module.scss';
 import Logo from '../../assets/logo.png';
+import Database from '../../database';
 
-function Login() {
+function Login({ setToken }) {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (e) => e.preventDeafult();
+  const loginUser = async (email, password) => fetch(`${Database.URL}/user/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  }).then((data) => {
+    console.log(data);
+  });
+
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+    const token = await loginUser(data.email, data.password);
+    console.log(token);
+    setToken(token);
+  };
 
   return (
     <div className={styles.login}>
@@ -21,6 +36,7 @@ function Login() {
             id="email"
             placeholder="E-mail"
             ref={register({ required: true })}
+            name="email"
           />
         </div>
         <div className={styles.formInput}>
@@ -30,14 +46,18 @@ function Login() {
             id="password"
             placeholder="Password"
             ref={register({ required: true, maxLength: 15 })} // nie pamiętam jaki mielismy limit
+            name="password"
           />
         </div>
         <div className={styles.buttons}>
-          <button type="button" className={styles.btn}>Login</button>
+          <button type="submit" className={styles.btn}>Login</button>
           <button type="button" className={styles.btn}>Register</button>
         </div>
       </form>
     </div>
   );
 }
+
+Login.propTypes = { setToken: PropTypes.func.isRequired };
+
 export default Login;
