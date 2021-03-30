@@ -7,7 +7,7 @@ import AuthorsList from './components/AuthorsList';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
-import useToken from './components/useToken/useToken';
+import useToken from './hooks/useToken/useToken';
 
 function Home() {
   return <h2>About</h2>;
