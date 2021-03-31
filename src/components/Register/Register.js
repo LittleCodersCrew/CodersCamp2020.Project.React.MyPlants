@@ -2,15 +2,26 @@ import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './Register.module.scss';
 import Logo from '../../assets/logo.png';
+import Database from '../../database';
 
 function Register() {
   const { register, errors, handleSubmit, watch } = useForm();
   const password = useRef();
   password.current = watch('password', '');
-  const onSubmit = (e) => {
+
+  const registerUser = async (user) => fetch(`${Database.URL}/user`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user)
+  }).then((data) => data.json());
+
+  const onSubmit = async (data, e) => {
     e.preventDefault();
-    // eslint-disable-next-line no-alert
-    alert('Your account has been succesfully created. Check your e-mail');
+    const response = await registerUser(data);
+    if (response?.errors) {
+      // eslint-disable-next-line no-alert
+      alert(response.errors);
+    }
   };
 
   return (
@@ -112,7 +123,7 @@ function Register() {
         </div>
         <div className={styles.formInput}>
           <input
-            name="pass_repeat"
+            name="confirmPassword"
             className={styles.input}
             type="password"
             placeholder="Repeat password"
@@ -121,7 +132,7 @@ function Register() {
           {errors.pass_repeat && <p>{errors.pass_repeat.message}</p>}
         </div>
         <div className={styles.buttons}>
-          <button type="button" className={styles.btn}>Register</button>
+          <button type="submit" className={styles.btn}>Register</button>
         </div>
       </form>
     </div>

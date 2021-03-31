@@ -1,10 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
 import AuthorsList from './components/AuthorsList';
 import Footer from './components/Footer';
+import Login from './components/Login';
+import Register from './components/Register';
+import useToken from './hooks/useToken/useToken';
 
 function Home() {
   return <h2>About</h2>;
@@ -16,10 +19,6 @@ function Plants() {
 
 function Chat() {
   return <h2>Chat</h2>;
-}
-
-function Login() {
-  return <h2>Login</h2>;
 }
 
 function Garden() {
@@ -40,6 +39,25 @@ function Profile() {
 
 const App = () => {
   const [userName, setUserName] = useState('Test');
+  const { token, setToken } = useToken();
+
+  if (!token) {
+    return (
+      <>
+        <Switch>
+          <Route path="/login" exact>
+            <Login setToken={setToken} />
+          </Route>
+          <Route path="/register" exact>
+            <Register />
+          </Route>
+          <Route path="/">
+            <Redirect to="/login" />
+          </Route>
+        </Switch>
+      </>
+    );
+  }
 
   return (
     <>
@@ -54,14 +72,14 @@ const App = () => {
         <Route path="/chat" exact>
           <Chat />
         </Route>
-        <Route path="/login" exact>
-          <Login />
-        </Route>
         <Route path="/garden" exact>
           <Garden />
         </Route>
         <Route path="/users" exact>
           <Users />
+        </Route>
+        <Route path="/register" exact>
+          <Register />
         </Route>
         <Route path="/events" exact>
           <Calendar />
