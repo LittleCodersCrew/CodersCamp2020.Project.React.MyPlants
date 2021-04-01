@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import styles from './Login.module.scss';
+import styles, { error } from './Login.module.scss';
 import Logo from '../../assets/logo.png';
 import Database from '../../database';
 
 function Login({ setToken }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const loginUser = async (email, password) => fetch(`${Database.URL}/user/login`, {
     method: 'POST',
@@ -38,9 +38,16 @@ function Login({ setToken }) {
             type="email"
             id="email"
             placeholder="E-mail"
-            ref={register({ required: true })}
             name="email"
+            ref={register({
+              required: 'E-mail is required',
+              minLength: {
+                value: 4,
+                message: 'Invalid e-mail'
+              }
+            })}
           />
+          {errors.email && <p className={error}>{errors.email.message}</p>}
         </div>
         <div className={styles.formInput}>
           <input
@@ -48,13 +55,20 @@ function Login({ setToken }) {
             type="password"
             id="password"
             placeholder="Password"
-            ref={register({ required: true, maxLength: 15 })} // nie pamiętam jaki mielismy limit
             name="password"
+            ref={register({
+              required: 'You must specify password',
+              minLength: {
+                value: 5,
+                message: 'Password must have at least 5 characters'
+              }
+            })}
           />
+          {errors.password && <p className={error}>{errors.password.message}</p>}
         </div>
         <div className={styles.buttons}>
           <button type="submit" className={styles.btn}>Login</button>
-          <button type="button" className={styles.btn}>Register</button>
+          <button type="button" className={styles.btn}><a href="/register">Register</a></button>
         </div>
       </form>
     </div>

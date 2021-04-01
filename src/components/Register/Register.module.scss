@@ -5,14 +5,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   font-size: 1.6em;
-  height: 100vh;
   justify-content: center;
   text-align: center;
-}
-
-.logo {
-  height: auto;
-  width: auto;
 }
 
 .input {
@@ -24,8 +18,8 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
-  border-bottom: 3px solid;
-  border-bottom-color: rgb(14, 52, 22);
+  border-bottom-style: 3px solid;
+  border-bottom-color: #0e3416;
   margin-bottom: 0.8em;
   padding-bottom: 0.25em;
 
@@ -52,15 +46,18 @@
   letter-spacing: 0.08rem;
   border: 1px solid black;
   border-radius: 5px;
+  color: #0e3416;
 
   &:hover {
     cursor: pointer;
     outline: none;
     box-shadow: 0 0 1em #9f9;
   }
+
   &:focus {
     outline: none;
   }
+
   &:active {
     outline: none;
     box-shadow: 0 0 1em #9f9;
