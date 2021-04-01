@@ -11,7 +11,8 @@ function Login({ setToken }) {
   const loginUser = async (email, password) => fetch(`${Database.URL}/user/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ email, password }),
+    redirect: 'follow'
   }).then((data) => data.json());
 
   const onSubmit = async (data, e) => {
@@ -23,6 +24,8 @@ function Login({ setToken }) {
       alert(response.error);
     } else {
       setToken(token);
+      window.location.reload();
+      window.location.href = '/';
     }
   };
 
@@ -67,8 +70,12 @@ function Login({ setToken }) {
           {errors.password && <p className={error}>{errors.password.message}</p>}
         </div>
         <div className={styles.buttons}>
-          <button type="submit" className={styles.btn}>Login</button>
-          <button type="button" className={styles.btn}><a href="/register">Register</a></button>
+          <button type="submit" className={styles.btn}>
+            Login
+          </button>
+          <button type="button" className={styles.btn}>
+            <a href="/register">Register</a>
+          </button>
         </div>
       </form>
     </div>

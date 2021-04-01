@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
-import AuthorsList from './components/AuthorsList';
 import Footer from './components/Footer';
-import Login from './components/Login';
-import Register from './components/Register';
+import LoginPage from './containers/LoginPage';
+import RegisterPage from './containers/RegisterPage';
+import AuthorsPage from './containers/AuthorsPage';
 import useToken from './hooks/useToken/useToken';
+import Database from './database';
 
 function Home() {
   return <h2>About</h2>;
@@ -37,27 +38,24 @@ function Profile() {
   return <h2>Profile</h2>;
 }
 
+function Logout() {
+  localStorage.removeItem('token');
+  window.location.reload();
+  return <Redirect to="/" />;
+}
+
 const App = () => {
-  const [userName, setUserName] = useState('Test');
+  const [userName, setUserName] = useState('');
   const { token, setToken } = useToken();
 
-  if (!token) {
-    return (
-      <>
-        <Switch>
-          <Route path="/login" exact>
-            <Login setToken={setToken} />
-          </Route>
-          <Route path="/register" exact>
-            <Register />
-          </Route>
-          <Route path="/">
-            <Redirect to="/login" />
-          </Route>
-        </Switch>
-      </>
-    );
-  }
+  useEffect(() => {
+    if (token) {
+      const userId = JSON.parse(atob(token.split('.')[1])).id;
+      fetch(`${Database.URL}/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } }, {})
+        .then((data) => data.json())
+        .then((json) => setUserName(json.name));
+    }
+  });
 
   return (
     <>
@@ -79,7 +77,10 @@ const App = () => {
           <Users />
         </Route>
         <Route path="/register" exact>
-          <Register />
+          <RegisterPage />
+        </Route>
+        <Route path="/login" exact>
+          <LoginPage />
         </Route>
         <Route path="/events" exact>
           <Calendar />
@@ -87,8 +88,11 @@ const App = () => {
         <Route path="/myprofile" exact>
           <Profile />
         </Route>
+        <Route path="/logout" exact>
+          <Logout />
+        </Route>
         <Route path="/authors" exact>
-          <AuthorsList />
+          <AuthorsPage />
         </Route>
       </Switch>
       <Footer />
