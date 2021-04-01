@@ -16,3 +16,14 @@
 .signText {
   font-size: 0.7rem;
 };
+
+.sign {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 5rem;
+}
