@@ -1,13 +1,14 @@
 .mainContainer {
   display: grid;
   gap: 1px 1px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2.5fr 1fr 1fr;
   grid-template-rows: 0.5fr 1.3fr 1.2fr;
   grid-template-areas:
     "Header Header Header Header"
     "Journal Journal Garden Garden"
     "Journal Journal Friends Friends";
-  height: calc(100vh - 70px - 70px);
+  height: 80vh;
+  overflow: hidden;
 }
 
 .header {
@@ -19,6 +20,13 @@
 .journal {
   grid-area: Journal;
   text-align: center;
+}
+
+.notes {
+  height: 60vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .garden {
@@ -35,9 +43,24 @@
   align-items: space-around;
 }
 
-.items {
+.plants {
   display: grid;
   grid-template-columns: 8rem 8rem 8rem;
   grid-template-rows: 1fr 1fr;
+  height: 40vh;
   align-self: center;
+  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.users {
+  display: grid;
+  grid-template-columns: 8rem 8rem 8rem;
+  grid-template-rows: 1fr 1fr;
+  height: 20vh;
+  align-self: center;
+  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
