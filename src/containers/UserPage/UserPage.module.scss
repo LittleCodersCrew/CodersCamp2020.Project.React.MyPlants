@@ -6,7 +6,7 @@
   grid-template-areas:
     "Header Header Header Header"
     "Journal Journal Garden Garden"
-    "Journal Journal Users Users";
+    "Journal Journal Friends Friends";
   height: calc(100vh - 70px - 70px);
 }
 
@@ -23,8 +23,21 @@
 
 .garden {
   grid-area: Garden;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
 }
 
-.users {
-  grid-area: Users;
+.friends {
+  grid-area: Friends;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: 8rem 8rem 8rem;
+  grid-template-rows: 1fr 1fr;
+  align-self: center;
 }

@@ -9,7 +9,7 @@ import UserProfile from '../../components/UserProfile';
 import Star from '../../assets/icons/Star.png';
 import profileleaf from '../../assets/illustrations/plant-leaf.png';
 
-import { mainContainer, header, journal, garden, users } from './UserPage.module.scss';
+import { mainContainer, header, journal, garden, friends, items } from './UserPage.module.scss';
 
 const notetext = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
 const date = '01.04.2021.   20.09';
@@ -33,11 +33,22 @@ const UserPage = () => (
     </div>
     <div className={garden}>
       <Text text="Login's garden" fontsize="1.5em" />
-      <PlantProfile name="Name" image={profileleaf} />
+      <div className={items}>
+        <PlantProfile name="Name" image={profileleaf} />
+        <PlantProfile name="Name" image={profileleaf} />
+        <PlantProfile name="Name" image={profileleaf} />
+        <PlantProfile name="Name" image={profileleaf} />
+        <PlantProfile name="Name" image={profileleaf} />
+        <SmallButton text="+ 12 more" fontsize="1.5em" />
+      </div>
     </div>
-    <div className={users}>
+    <div className={friends}>
       <Text text="Login's favorite users" fontsize="1.5em" />
-      <UserProfile name="User" />
+      <div className={items}>
+        <UserProfile name="User" />
+        <UserProfile name="User" />
+        <SmallButton text="+ 17 more" fontsize="1.5em" />
+      </div>
     </div>
   </div>
 );
