@@ -1,0 +1,30 @@
+.mainContainer {
+  display: grid;
+  gap: 1px 1px;
+  grid-template-columns: 1fr 1.2fr 0.8fr 1fr;
+  grid-template-rows: 0.5fr 1.3fr 1.2fr;
+  grid-template-areas:
+    "Header Header Header Header"
+    "Journal Journal Garden Garden"
+    "Journal Journal Users Users";
+  height: calc(100vh - 70px - 70px);
+}
+
+.header {
+  grid-area: Header;
+  text-align: center;
+  display: grid;
+}
+
+.journal {
+  grid-area: Journal;
+  text-align: center;
+}
+
+.garden {
+  grid-area: Garden;
+}
+
+.users {
+  grid-area: Users;
+}

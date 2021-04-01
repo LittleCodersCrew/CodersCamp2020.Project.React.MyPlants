@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
 import useToken from './hooks/useToken/useToken';
+import UserPage from './containers/UserPage';
 
 function Home() {
   return <h2>About</h2>;
@@ -85,7 +86,7 @@ const App = () => {
           <Calendar />
         </Route>
         <Route path="/myprofile" exact>
-          <Profile />
+          <UserPage />
         </Route>
         <Route path="/authors" exact>
           <AuthorsList />
