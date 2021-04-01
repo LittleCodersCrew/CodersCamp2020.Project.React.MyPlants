@@ -1,0 +1,11 @@
+.plant {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 8rem;
+  height: 8rem;
+}
+
+.plantImage {
+  align-self: center;
+}

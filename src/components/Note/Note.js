@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noteContainer, mainText, signText, sign, buttons } from './Note.module.scss';
-import SmallButton from '../SmallButton/SmallButton';
+import SmallButton from '../SmallButton';
 
 const Note = ({ noteText, noteDate }) => (
   <div className={noteContainer}>

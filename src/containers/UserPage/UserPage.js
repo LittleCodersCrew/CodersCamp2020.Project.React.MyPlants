@@ -1,10 +1,12 @@
 import React from 'react';
-import SmallButton from '../../components/SmallButton';
 
+import SmallButton from '../../components/SmallButton';
 import Text from '../../components/Text';
 import Note from '../../components/Note';
+import PlantProfile from '../../components/PlantProfile';
 
 import Star from '../../assets/icons/Star.png';
+import profileleaf from '../../assets/illustrations/plant-leaf.png';
 
 import { mainContainer, header, journal, garden, users } from './UserPage.module.scss';
 
@@ -30,6 +32,7 @@ const UserPage = () => (
     </div>
     <div className={garden}>
       <Text text="Login's garden" fontsize="1.5em" />
+      <PlantProfile name="Name" image={profileleaf} />
     </div>
     <div className={users}>
       <Text text="Login's favorite users" fontsize="1.5em" />
