@@ -4,6 +4,7 @@ import SmallButton from '../../components/SmallButton';
 import Text from '../../components/Text';
 import Note from '../../components/Note';
 import PlantProfile from '../../components/PlantProfile';
+import UserProfile from '../../components/UserProfile';
 
 import Star from '../../assets/icons/Star.png';
 import profileleaf from '../../assets/illustrations/plant-leaf.png';
@@ -36,6 +37,7 @@ const UserPage = () => (
     </div>
     <div className={users}>
       <Text text="Login's favorite users" fontsize="1.5em" />
+      <UserProfile name="User" />
     </div>
   </div>
 );
