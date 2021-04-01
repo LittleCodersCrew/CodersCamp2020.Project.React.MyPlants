@@ -24,8 +24,7 @@ function Login({ setToken }) {
       alert(response.error);
     } else {
       setToken(token);
-      window.location.reload();
-      window.location.href = '/';
+      window.location.replace('/');
     }
   };
 

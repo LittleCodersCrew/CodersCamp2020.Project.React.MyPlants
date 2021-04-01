@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useCallback, useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -40,13 +39,12 @@ function Profile() {
 
 function Logout() {
   localStorage.removeItem('token');
-  window.location.reload();
-  return <Redirect to="/" />;
+  return window.location.replace('/');
 }
 
 const App = () => {
   const [userName, setUserName] = useState('');
-  const { token, setToken } = useToken();
+  const { token } = useToken();
 
   useEffect(() => {
     if (token) {
