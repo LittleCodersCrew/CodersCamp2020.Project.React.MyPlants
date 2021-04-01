@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pompiere&display=swap');
-
-.login {
+.register {
   align-content: center;
   color: rgb(0, 0, 0);
   display: flex;
@@ -10,7 +7,6 @@
   font-size: 1.6em;
   height: 100vh;
   justify-content: center;
-  line-height: 1.8em;
   text-align: center;
 }
 
@@ -24,12 +20,15 @@
   width: 350px;
   font-size: 1.2em;
   font-family: 'Pompiere', 'serif';
+  letter-spacing: 0.08em;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom: 3px solid;
   border-bottom-color: rgb(14, 52, 22);
-  margin-bottom: 0.5em;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.25em;
+
   &:focus {
     outline: none;
   }
@@ -50,10 +49,14 @@
   background-color: white;
   font-family: 'Abhaya Libre', serif;
   font-size: 1.2em;
+  letter-spacing: 0.08rem;
   border: 1px solid black;
   border-radius: 5px;
+
   &:hover {
-    background-color: #e5ffe5;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 1em #9f9;
   }
   &:focus {
     outline: none;
@@ -62,4 +65,12 @@
     outline: none;
     box-shadow: 0 0 1em #9f9;
   }
+}
+
+.error {
+  margin: -0.6em 0 0.7em;
+  color: red;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 0.8em;
+  letter-spacing: 0.08rem;
 }

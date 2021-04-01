@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './Register.module.scss';
+import styles, { error } from './Register.module.scss';
 import Logo from '../../assets/logo.png';
 import Database from '../../database';
 
@@ -25,7 +25,7 @@ function Register() {
   };
 
   return (
-    <div className={styles.login}>
+    <div className={styles.register}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.logo}>
           <img src={Logo} alt="myplants logo" />
@@ -48,7 +48,7 @@ function Register() {
               pattern: /^[A-Za-z]+$/i
             })}
           />
-          {errors.name && <p>{errors.name.message}</p>}
+          {errors.name && <p className={error}>{errors.name.message}</p>}
         </div>
         <div className={styles.formInput}>
           <input
@@ -68,7 +68,7 @@ function Register() {
               pattern: /^[A-Za-z]+$/i
             })}
           />
-          {errors.surname && <p>{errors.surname.message}</p>}
+          {errors.surname && <p className={error}>{errors.surname.message}</p>}
         </div>
         <div className={styles.formInput}>
           <input
@@ -87,7 +87,7 @@ function Register() {
               }
             })}
           />
-          {errors.login && <p>{errors.login.message}</p>}
+          {errors.login && <p className={error}>{errors.login.message}</p>}
         </div>
         <div className={styles.formInput}>
           <input
@@ -96,14 +96,14 @@ function Register() {
             type="email"
             placeholder="E-mail"
             ref={register({
-              required: 'e-mail is required',
+              required: 'E-mail is required',
               minLength: {
                 value: 4,
                 message: 'Invalid e-mail'
               }
             })}
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className={error}>{errors.email.message}</p>}
         </div>
         <div className={styles.formInput}>
           <input
@@ -119,7 +119,7 @@ function Register() {
               }
             })}
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && <p className={error}>{errors.password.message}</p>}
         </div>
         <div className={styles.formInput}>
           <input
@@ -129,10 +129,12 @@ function Register() {
             placeholder="Repeat password"
             ref={register({ validate: (value) => value === password.current || 'Passwords do not match' })}
           />
-          {errors.pass_repeat && <p>{errors.pass_repeat.message}</p>}
+          {errors.confirmPassword && <p className={error}>{errors.confirmPassword.message}</p>}
         </div>
         <div className={styles.buttons}>
-          <button type="submit" className={styles.btn}>Register</button>
+          <button type="submit" className={styles.btn}>
+            Register
+          </button>
         </div>
       </form>
     </div>
