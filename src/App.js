@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
 import useToken from './hooks/useToken/useToken';
+import AddPlant from './containers/AddPlant/AddPlant';
 
 function Home() {
   return <h2>About</h2>;
@@ -68,6 +69,7 @@ const App = () => {
         </Route>
         <Route path="/plant" exact>
           <Plants />
+          <AddPlant />
         </Route>
         <Route path="/chat" exact>
           <Chat />
