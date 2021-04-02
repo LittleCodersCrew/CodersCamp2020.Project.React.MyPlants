@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import styles, { error } from './Login.module.scss';
@@ -73,7 +74,7 @@ function Login({ setToken }) {
             Login
           </button>
           <button type="button" className={styles.btn}>
-            <a href="/register">Register</a>
+            <Link to="/register">Register</Link>
           </button>
         </div>
       </form>
