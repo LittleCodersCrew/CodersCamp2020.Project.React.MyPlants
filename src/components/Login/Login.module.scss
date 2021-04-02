@@ -13,7 +13,7 @@
   background-color: transparent;
   text-align: center;
   width: 350px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: 'Pompiere', 'serif';
   letter-spacing: 0.08em;
   border-top-style: hidden;
@@ -29,14 +29,8 @@
   }
 }
 
-.buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .btn {
-  margin-top: 0.8em;
+  margin-top: 0.5em;
   width: 5.5em;
   height: 1.5em;
   align-content: center;
@@ -70,9 +64,23 @@
 }
 
 .error {
-  margin: -0.6em 0 0.7em;
+  margin-top: -0.6em;
+  padding-bottom: 0.7em;
   color: red;
   font-family: 'Abhaya Libre', serif;
-  font-size: 0.8em;
+  font-size: 0.7em;
   letter-spacing: 0.08rem;
+}
+
+.link {
+  margin-top: 2em;
+  font-family: 'Abhaya Libre', serif;
+  letter-spacing: 0.08rem;
+  font-size: 0.9em;
+
+  > .reg {
+    text-decoration: none;
+    color: #6aa877;
+    font-weight: 700;
+  }
 }

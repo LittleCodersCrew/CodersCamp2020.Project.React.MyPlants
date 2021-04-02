@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import styles, { error } from './Register.module.scss';
 import Logo from '../../assets/logo.png';
@@ -52,7 +53,7 @@ function Register() {
               },
               maxLength: {
                 value: 15,
-                message: "Name can't be longer than 15 characters."
+                message: 'Name can\'t be longer than 15 characters.'
               },
               pattern: /^[A-Za-z]+$/i
             })}
@@ -72,7 +73,7 @@ function Register() {
               },
               maxLength: {
                 value: 25,
-                message: "Surname can't be longer than 25 characters."
+                message: 'Surname can\'t be longer than 25 characters.'
               },
               pattern: /^[A-Za-z]+$/i
             })}
@@ -92,7 +93,7 @@ function Register() {
               },
               maxLength: {
                 value: 10,
-                message: "Login can't be longer than 10 characters."
+                message: 'Login can\'t be longer than 10 characters.'
               }
             })}
           />
@@ -146,6 +147,14 @@ function Register() {
           <button type="submit" className={styles.btn}>
             Register
           </button>
+
+          <p className={styles.link}>
+            You have an account?
+            <Link to="/login" className={styles.reg}>
+              {' '}
+              Log in.
+            </Link>
+          </p>
         </div>
       </form>
     </div>

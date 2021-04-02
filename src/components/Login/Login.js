@@ -35,7 +35,7 @@ function Login({ setToken }) {
         <div className={styles.logo}>
           <img src={Logo} alt="myplants logo" />
         </div>
-        <div className={styles.formInput}>
+        <div>
           <input
             className={styles.input}
             type="email"
@@ -64,13 +64,18 @@ function Login({ setToken }) {
           {errors.password && <p className={error}>{errors.password.message}</p>}
           <p className={error}>{errorFromResponse}</p>
         </div>
-        <div className={styles.buttons}>
+        <div>
           <button type="submit" className={styles.btn}>
             Login
           </button>
-          <button type="button" className={styles.btn}>
-            <Link to="/register">Register</Link>
-          </button>
+
+          <p className={styles.link}>
+            New user?
+            <Link to="/register" className={styles.reg}>
+              {' '}
+              Create an account.
+            </Link>
+          </p>
         </div>
       </form>
     </div>
