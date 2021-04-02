@@ -8,7 +8,9 @@
     "Journal Journal Garden Garden"
     "Journal Journal Friends Friends";
   height: 80vh;
-  overflow: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .header {
