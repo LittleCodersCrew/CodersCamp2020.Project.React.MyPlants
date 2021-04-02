@@ -15,7 +15,12 @@ function Register() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user)
-  }).then((data) => data.json());
+  }).then((data) => {
+    if (data.status === 200) {
+      window.location.replace('/login');
+    }
+    return data.json();
+  });
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
@@ -47,7 +52,7 @@ function Register() {
               },
               maxLength: {
                 value: 15,
-                message: 'Name can\'t be longer than 15 characters.'
+                message: "Name can't be longer than 15 characters."
               },
               pattern: /^[A-Za-z]+$/i
             })}
@@ -67,7 +72,7 @@ function Register() {
               },
               maxLength: {
                 value: 25,
-                message: 'Surname can\'t be longer than 25 characters.'
+                message: "Surname can't be longer than 25 characters."
               },
               pattern: /^[A-Za-z]+$/i
             })}
@@ -87,7 +92,7 @@ function Register() {
               },
               maxLength: {
                 value: 10,
-                message: 'Login can\'t be longer than 10 characters.'
+                message: "Login can't be longer than 10 characters."
               }
             })}
           />
