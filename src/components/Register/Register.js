@@ -150,7 +150,7 @@ function Register() {
 
           <p className={styles.link}>
             You have an account?
-            <Link to="/login" className={styles.reg}>
+            <Link to="/login" className={styles.redirect}>
               {' '}
               Log in.
             </Link>

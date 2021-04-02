@@ -71,7 +71,7 @@ function Login({ setToken }) {
 
           <p className={styles.link}>
             New user?
-            <Link to="/register" className={styles.reg}>
+            <Link to="/register" className={styles.redirect}>
               {' '}
               Create an account.
             </Link>
