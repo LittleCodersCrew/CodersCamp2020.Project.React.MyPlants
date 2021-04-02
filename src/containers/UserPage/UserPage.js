@@ -5,8 +5,8 @@ import Text from '../../components/Text';
 import Note from '../../components/Note';
 import PlantProfile from '../../components/PlantProfile';
 import UserProfile from '../../components/UserProfile';
+import UserWall from '../UserWall';
 
-import Star from '../../assets/icons/Star.png';
 import profileleaf from '../../assets/illustrations/plant-leaf.png';
 
 import { mainContainer, header, journal, garden, friends, plants, users, notes } from './UserPage.module.scss';
@@ -17,12 +17,7 @@ const date = '01.04.2021.   20.09';
 const UserPage = () => (
   <div className={mainContainer}>
     <header className={header}>
-      <Text text="Login" fontsize="2em" />
-      <Text text="Name" fontsize="1.5em" />
-      <div>
-        <img src={Star} alt="star" width="20px" height="20px" />
-        <SmallButton text="Add to favourites" fontsize="1.5em" />
-      </div>
+      <UserWall isMyProfile isFavourite={false} />
     </header>
     <div className={journal}>
       <Text text="Login's journal" fontsize="1.5em" />

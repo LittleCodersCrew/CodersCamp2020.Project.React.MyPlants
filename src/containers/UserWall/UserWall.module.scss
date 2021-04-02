@@ -1,0 +1,9 @@
+.addNote {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  grid-template-rows: 2fr;
+  gap: 2rem;
+  margin: 2em 1em 2em 1em;
+  justify-items: center;
+  align-items: center;
+}
