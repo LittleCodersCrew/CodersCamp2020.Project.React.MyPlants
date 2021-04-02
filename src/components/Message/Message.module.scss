@@ -1,0 +1,31 @@
+.user {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-self: flex-start;
+  white-space: nowrap;
+}
+
+.dateTime {
+  font-size: 0.9rem;
+}
+
+.message {
+  padding: 1em;
+  margin-bottom: 1em;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2.5em;
+  background-color: #fff;
+  color: rgb(14, 52, 22);
+  font-family: 'Abhaya Libre', serif;
+  font-size: 1.2rem;
+}
