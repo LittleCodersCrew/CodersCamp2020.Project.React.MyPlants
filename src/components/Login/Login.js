@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
@@ -7,6 +7,7 @@ import Logo from '../../assets/logo.png';
 import Database from '../../database';
 
 function Login({ setToken }) {
+  const [errorFromResponse, setErrorsFromResponse] = useState('');
   const { register, handleSubmit, errors } = useForm();
 
   const loginUser = async (email, password) => fetch(`${Database.URL}/user/login`, {
@@ -21,8 +22,7 @@ function Login({ setToken }) {
     const response = await loginUser(data.email, data.password);
     const { token } = response;
     if (!token) {
-      // eslint-disable-next-line no-alert
-      alert(response.error);
+      setErrorsFromResponse(response.error);
     } else {
       setToken(token);
       window.location.replace('/');
@@ -68,6 +68,7 @@ function Login({ setToken }) {
             })}
           />
           {errors.password && <p className={error}>{errors.password.message}</p>}
+          <p className={error}>{errorFromResponse}</p>
         </div>
         <div className={styles.buttons}>
           <button type="submit" className={styles.btn}>
