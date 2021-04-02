@@ -6,8 +6,7 @@ import useToken from '../../hooks/useToken/useToken';
 import { wrapper } from './LoginPage.module.scss';
 
 const LoginPage = () => {
-  // eslint-disable-next-line no-unused-vars
-  const { token, setToken } = useToken();
+  const { setToken } = useToken();
 
   return (
     <>

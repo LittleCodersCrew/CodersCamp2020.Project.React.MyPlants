@@ -39,7 +39,8 @@ function Profile() {
 
 function Logout() {
   localStorage.removeItem('token');
-  return window.location.replace('/');
+  window.location.replace('/');
+  return null;
 }
 
 const App = () => {
