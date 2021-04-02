@@ -43,10 +43,10 @@ function Login({ setToken }) {
             placeholder="E-mail"
             name="email"
             ref={register({
-              required: 'E-mail is required',
+              required: 'E-mail is required.',
               minLength: {
                 value: 4,
-                message: 'Invalid e-mail'
+                message: 'Invalid e-mail.'
               }
             })}
           />
@@ -59,13 +59,7 @@ function Login({ setToken }) {
             id="password"
             placeholder="Password"
             name="password"
-            ref={register({
-              required: 'You must specify password',
-              minLength: {
-                value: 5,
-                message: 'Password must have at least 5 characters'
-              }
-            })}
+            ref={register({ required: 'You must specify the password.' })}
           />
           {errors.password && <p className={error}>{errors.password.message}</p>}
           <p className={error}>{errorFromResponse}</p>
