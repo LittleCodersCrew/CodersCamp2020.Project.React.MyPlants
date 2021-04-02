@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Database from '../../database';
-import useToken from '../../hooks/useToken/useToken';
 
 import SmallButton from '../../components/SmallButton';
 import Text from '../../components/Text';
@@ -13,23 +11,11 @@ import Star from '../../assets/icons/Star.png';
 import { addNote } from './UserWall.module.scss';
 
 const UserWall = ({ isMyProfile, isFavourite }) => {
-  const [userName, setUserName] = useState('');
-  const { token } = useToken();
-
-  useEffect = () => {
-    if (token) {
-      const userId = JSON.parse(atob(token.split('.')[1])).id;
-      fetch(`${Database.URL}/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } }, {})
-        .then((data) => data.json())
-        .then((json) => setUserName(json.name));
-    }
-  };
-
   if (isMyProfile) {
     return (
       <div>
         <Text text="Login" fontsize="2em" />
-        <Text text={userName} fontsize="1.5em" />
+        <Text text="Name" fontsize="1.5em" />
         <div>
           <SmallButton text="Edit profile" fontsize="1.5em" />
         </div>
