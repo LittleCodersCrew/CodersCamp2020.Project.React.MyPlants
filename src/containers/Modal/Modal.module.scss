@@ -1,0 +1,23 @@
+.modal {
+  height: 60%;
+  width: 90%;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 2px 3px lightgreen;
+  padding: 2em;
+}
+
+.summary {
+  text-align: center;
+}
+
+.userMessage {
+  margin-top: 1em;
+  text-align: center;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 100;
+}
+
+.message {
+  margin: 1em;
+}

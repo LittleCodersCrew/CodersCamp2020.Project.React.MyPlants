@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
-import { container, basicInfo, detailedInfo, input, select } from './AddPlant.module.scss';
+import { container, basicInfo, detailedInfo, input, select, title, button, submitButton, addPicture } from './AddPlant.module.scss';
 import PlantPic from '../../assets/illustrations/plant-leaf.png';
 import RemovePic from '../../assets/icons/Paper Fail.png';
 import Button from '../../components/Button/Button';
@@ -9,7 +9,7 @@ import Button from '../../components/Button/Button';
 const AddPlant = () => (
   <div className={container}>
     <div className={basicInfo}>
-      <h1>
+      <h1 className={title}>
         Help us grow!
         <br />
         If you did not find your plant in our base, you can add it below.
@@ -32,12 +32,18 @@ const AddPlant = () => (
       <Select className={select} title="Toxicity" />
       <Select className={select} title="Animals at home?" />
     </div>
-    <div className="addPicture">
-      <img src={PlantPic} alt="sample plant" style={{ height: '100px', width: '100px' }} />
-      <img src={RemovePic} alt="remove" />
-      <Button text="Add picture" />
+    <div className={addPicture}>
+      <div>
+        <img src={PlantPic} alt="sample plant" style={{ height: '100px', width: '100px' }} />
+      </div>
+      <div>
+        <img src={RemovePic} alt="remove" style={{ height: '25px', width: '25px' }} />
+      </div>
+      <Button className={button} text="Add picture" />
     </div>
-    <Button text="Add your plant" />
+    <div className={submitButton}>
+      <Button text="Add your plant" />
+    </div>
   </div>
 );
 
