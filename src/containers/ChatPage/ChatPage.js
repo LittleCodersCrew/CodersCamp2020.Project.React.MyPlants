@@ -1,19 +1,23 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import Database from '../../database';
-// import useToken from '../../hooks/useToken/useToken';
-import { wrapper, chat, header, unlogged } from './ChatPage.module.scss';
+import useToken from '../../hooks/useToken/useToken';
+import { wrapper, chat, canals, canal, unlogged, logged } from './ChatPage.module.scss';
 import Message from '../../components/Message';
 import Canals from '../../components/Canals';
-
-const createMessage = (message) => {
-  const data = [message.user, message.date.substring(0, 10), message.text];
-  return (<Message userName={data[0]} dateTime={data[1]} content={data[2]} />);
-};
+import TextArea from '../../components/TextArea';
+import Button from '../../components/Button';
 
 const ChatPage = () => {
+  const [openCanal, setOpenCanal] = useState('Main chat');
   const [messages, setMessages] = useState([]);
-  // const { token } = useToken();
+  const [message, setMessage] = useState({
+    chat: '',
+    text: '',
+    user: ''
+  });
+
+  const { token } = useToken();
 
   useEffect(() => {
     fetch(`${Database.URL}/message/`)
@@ -23,11 +27,85 @@ const ChatPage = () => {
       });
   });
 
+  const canalsId = {
+    'Main chat': '6068ba811d4f091f788ea648',
+    'Trade your plants': '6068ba941d4f091f788ea649'
+  };
+
+  const createMessage = (mess) => {
+    if (mess.chat === canalsId[openCanal]) {
+      return (
+        <Message userName={mess.user} dateTime={mess.date.substr(0, 10)} content={mess.text} />
+      );
+    }
+    return true;
+  };
+
+  const ifCanalOpen = (can) => {
+    if (can === openCanal) {
+      return true;
+    }
+    return false;
+  };
+
+  const changeCanal = () => {
+    if (openCanal === 'Main chat') {
+      return setOpenCanal('Trade your plants');
+    }
+    return setOpenCanal('Main chat');
+  };
+
+  const sendMessage = (mess) => fetch(`${Database.URL}/message/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(mess)
+  }).then((data) => data.json());
+
+  const onSubmit = async (e) => {
+    e.preVentDefault();
+    await sendMessage(message);
+  };
+
+  const updateMessage = (e) => {
+    setMessage({
+      ...message,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  if (token) {
+    return (
+      <div className={wrapper}>
+        <div className={chat}>
+          <div className={canals}>
+            <div className={canal}>
+              <Canals name="Main chat" ifOpen={ifCanalOpen('Main chat')} change={changeCanal} />
+            </div>
+            <div className={canal}>
+              <Canals name="Trade your plants" ifOpen={ifCanalOpen('Trade your plants')} change={changeCanal} />
+            </div>
+          </div>
+          {messages.map((mess) => createMessage(mess))}
+          <div className={logged}>
+            <form id="newMessage" method="POST" onSubmit={onSubmit}>
+              <TextArea text="Send your message..." name="text" id="newMessage" onChange={updateMessage} />
+              <Button text="Send" type="submit" />
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={wrapper}>
       <div className={chat}>
-        <div className={header}><Canals /></div>
-        {messages.map((message) => createMessage(message))}
+        <div className={canals}>
+          <Canals />
+        </div>
+        {messages.map((mess) => createMessage(mess))}
         <p className={unlogged}>Login to send a message</p>
       </div>
     </div>

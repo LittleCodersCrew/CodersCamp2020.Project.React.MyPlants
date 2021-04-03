@@ -10,13 +10,22 @@
   font-family: 'Abhaya Libre', serif;
 }
 
-.header {
+.canals {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   font-size: 1.3rem;
+  width: 100%;
 }
 
-.unlogged {
+.canal {
+  width: 100%;
+}
+
+.unlogged, .logged {
   background-color: #0df46a;
-  margin: 1.7em 0;
+  margin: 1em 0;
   text-align: center;
   font-size: 1.3rem;
 }

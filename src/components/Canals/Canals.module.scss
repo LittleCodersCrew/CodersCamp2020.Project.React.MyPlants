@@ -1,19 +1,19 @@
-.wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-}
-
 .canal {
   background-color: #fff;
   padding: 0.8em;
-  width: 49.9%;
+  width: 100%;
   text-align: left;
-  color: rgb(14, 52, 22);
   font-family: 'Abhaya Libre', serif;
   font-size: 1.2rem;
   font-weight: bold;
   border: 2px solid #000;
   cursor: pointer;
+}
+
+.open {
+  background-color: #0df46a;
+}
+
+.notOpen {
+  color: rgb(14, 52, 22);
 }
