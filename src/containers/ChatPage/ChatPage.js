@@ -32,7 +32,7 @@ const ChatPage = () => {
     'Trade your plants': '6068ba941d4f091f788ea649'
   };
 
-  const createMessage = (mess) => {
+  const showMessage = (mess) => {
     if (mess.chat === canalsId[openCanal]) {
       return (
         <Message userName={mess.user} dateTime={mess.date.substr(0, 10)} content={mess.text} />
@@ -57,22 +57,20 @@ const ChatPage = () => {
 
   const sendMessage = (mess) => fetch(`${Database.URL}/message/`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    },
+    headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify(mess)
   }).then((data) => data.json());
 
   const onSubmit = async (e) => {
-    e.preVentDefault();
+    e.preventDefault();
     await sendMessage(message);
   };
 
   const updateMessage = (e) => {
     setMessage({
       ...message,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      chat: canalsId[openCanal]
     });
   };
 
@@ -88,7 +86,7 @@ const ChatPage = () => {
               <Canals name="Trade your plants" ifOpen={ifCanalOpen('Trade your plants')} change={changeCanal} />
             </div>
           </div>
-          {messages.map((mess) => createMessage(mess))}
+          {messages.map((mess) => showMessage(mess))}
           <div className={logged}>
             <form id="newMessage" method="POST" onSubmit={onSubmit}>
               <TextArea text="Send your message..." name="text" id="newMessage" onChange={updateMessage} />
@@ -103,9 +101,14 @@ const ChatPage = () => {
     <div className={wrapper}>
       <div className={chat}>
         <div className={canals}>
-          <Canals />
+          <div className={canal}>
+            <Canals name="Main chat" ifOpen={ifCanalOpen('Main chat')} change={changeCanal} />
+          </div>
+          <div className={canal}>
+            <Canals name="Trade your plants" ifOpen={ifCanalOpen('Trade your plants')} change={changeCanal} />
+          </div>
         </div>
-        {messages.map((mess) => createMessage(mess))}
+        {messages.map((mess) => showMessage(mess))}
         <p className={unlogged}>Login to send a message</p>
       </div>
     </div>
