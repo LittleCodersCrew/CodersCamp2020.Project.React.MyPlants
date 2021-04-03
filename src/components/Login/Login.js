@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import styles from './Login.module.scss';
+import styles, { error } from './Login.module.scss';
 import Logo from '../../assets/logo.png';
 import Database from '../../database';
 
 function Login({ setToken }) {
-  const { register, handleSubmit } = useForm();
+  const [errorFromResponse, setErrorsFromResponse] = useState('');
+  const { register, handleSubmit, errors } = useForm();
 
   const loginUser = async (email, password) => fetch(`${Database.URL}/user/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ email, password }),
+    redirect: 'follow'
   }).then((data) => data.json());
 
   const onSubmit = async (data, e) => {
@@ -19,10 +22,10 @@ function Login({ setToken }) {
     const response = await loginUser(data.email, data.password);
     const { token } = response;
     if (!token) {
-      // eslint-disable-next-line no-alert
-      alert(response.error);
+      setErrorsFromResponse(response.error);
     } else {
       setToken(token);
+      window.location.replace('/');
     }
   };
 
@@ -32,15 +35,22 @@ function Login({ setToken }) {
         <div className={styles.logo}>
           <img src={Logo} alt="myplants logo" />
         </div>
-        <div className={styles.formInput}>
+        <div>
           <input
             className={styles.input}
             type="email"
             id="email"
             placeholder="E-mail"
-            ref={register({ required: true })}
             name="email"
+            ref={register({
+              required: 'E-mail is required.',
+              minLength: {
+                value: 4,
+                message: 'Invalid e-mail.'
+              }
+            })}
           />
+          {errors.email && <p className={error}>{errors.email.message}</p>}
         </div>
         <div className={styles.formInput}>
           <input
@@ -48,13 +58,24 @@ function Login({ setToken }) {
             type="password"
             id="password"
             placeholder="Password"
-            ref={register({ required: true, maxLength: 15 })} // nie pamiętam jaki mielismy limit
             name="password"
+            ref={register({ required: 'You must specify the password.' })}
           />
+          {errors.password && <p className={error}>{errors.password.message}</p>}
+          <p className={error}>{errorFromResponse}</p>
         </div>
-        <div className={styles.buttons}>
-          <button type="submit" className={styles.btn}>Login</button>
-          <button type="button" className={styles.btn}>Register</button>
+        <div>
+          <button type="submit" className={styles.btn}>
+            Login
+          </button>
+
+          <p className={styles.link}>
+            New user?
+            <Link to="/register" className={styles.redirect}>
+              {' '}
+              Create an account.
+            </Link>
+          </p>
         </div>
       </form>
     </div>
