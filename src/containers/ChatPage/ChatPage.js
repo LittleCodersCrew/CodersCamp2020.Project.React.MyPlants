@@ -1,16 +1,37 @@
-import React from 'react';
-import classes from './ChatPage.module.scss';
+/* eslint-disable no-console */
+import React, { useState, useEffect } from 'react';
+import Database from '../../database';
+// import useToken from '../../hooks/useToken/useToken';
+import { wrapper, chat, header, unlogged } from './ChatPage.module.scss';
 import Message from '../../components/Message';
+import Canals from '../../components/Canals';
 
-const ChatPage = () => (
-  <div className={classes.wrapper}>
-    <div className={classes.chat}>
-      <p className={classes.header}>Tu będą kanały</p>
-      <Message userName="Ania" dateTime="01.04.2021 16.37" content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum dolorem quod incidunt. Voluptatum eum placeat modi sed, temporibus neque? Reprehenderit vitae unde tempora nesciunt? Architecto, ex praesentium! Facilis, reprehenderit cum." />
-      <Message userName="Przemek" dateTime="01.04.2021 16.37" content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum dolorem quod incidunt. Voluptatum eum placeat modi sed, temporibus neque? Reprehenderit vitae unde tempora nesciunt? Architecto, ex praesentium! Facilis, reprehenderit cum." />
-      <p className={classes.unlogged}>Login to send a message</p>
+const createMessage = (message) => {
+  const data = [message.user, message.date.substring(0, 10), message.text];
+  return (<Message userName={data[0]} dateTime={data[1]} content={data[2]} />);
+};
+
+const ChatPage = () => {
+  const [messages, setMessages] = useState([]);
+  // const { token } = useToken();
+
+  useEffect(() => {
+    fetch(`${Database.URL}/message/`)
+      .then((res) => res.json())
+      .then((json) => {
+        setMessages(json);
+      });
+  });
+
+  return (
+    <div className={wrapper}>
+      <div className={chat}>
+        <div className={header}><Canals /></div>
+        {messages.map((message) => createMessage(message))}
+        <p className={unlogged}>Login to send a message</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ChatPage;
