@@ -2,9 +2,9 @@
   color: #0e3416;
   border: 2px solid #0e3416;
   border-radius: 4px;
-  height: 40px;
-  padding: 0.7em;
-  font-size: 1.125rem;
+  height: 5.5rem;
+  padding: 0.8rem;
+  font-size: 0.9em;
   cursor: text;
   appearance: none;
   -webkit-appearance: none;
@@ -13,7 +13,6 @@
   letter-spacing: 1.5px;
   width: 98%;
   resize: none;
-  min-height: 5em;
   overflow: auto;
 
   &:focus {

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
-import { wrapper, chat, canals, canal, unlogged, logged } from './ChatPage.module.scss';
+import { wrapper, chat, canals, canal, unlogged, logged, button } from './ChatPage.module.scss';
 import Message from '../../components/Message';
 import Canals from '../../components/Canals';
 import TextArea from '../../components/TextArea';
@@ -93,29 +93,6 @@ const ChatPage = () => {
   if (token) {
     return (
       <div className={wrapper}>
-        <div className={chat}>
-          <div className={canals}>
-            <div className={canal}>
-              <Canals name="Main chat" ifOpen={ifCanalOpen('Main chat')} change={changeCanal} />
-            </div>
-            <div className={canal}>
-              <Canals name="Trade your plants" ifOpen={ifCanalOpen('Trade your plants')} change={changeCanal} />
-            </div>
-          </div>
-          {messages.map((mess) => showMessage(mess))}
-          <div className={logged}>
-            <form id="newMessage" method="POST" onSubmit={onSubmit}>
-              <TextArea text="Send your message..." name="text" id="newMessage" onChange={updateMessage} />
-              <Button text="Send" type="submit" />
-            </form>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className={wrapper}>
-      <div className={chat}>
         <div className={canals}>
           <div className={canal}>
             <Canals name="Main chat" ifOpen={ifCanalOpen('Main chat')} change={changeCanal} />
@@ -124,6 +101,31 @@ const ChatPage = () => {
             <Canals name="Trade your plants" ifOpen={ifCanalOpen('Trade your plants')} change={changeCanal} />
           </div>
         </div>
+        <div className={chat}>
+          {messages.map((mess) => showMessage(mess))}
+          <div className={logged}>
+            <form id="newMessage" method="POST" onSubmit={onSubmit}>
+              <TextArea text="Send your message..." name="text" id="newMessage" onChange={updateMessage} />
+              <div className={button}>
+                <Button text="Send" type="submit" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className={wrapper}>
+      <div className={canals}>
+        <div className={canal}>
+          <Canals name="Main chat" ifOpen={ifCanalOpen('Main chat')} change={changeCanal} />
+        </div>
+        <div className={canal}>
+          <Canals name="Trade your plants" ifOpen={ifCanalOpen('Trade your plants')} change={changeCanal} />
+        </div>
+      </div>
+      <div className={chat}>
         {messages.map((mess) => showMessage(mess))}
         <p className={unlogged}>Login to send a message</p>
       </div>

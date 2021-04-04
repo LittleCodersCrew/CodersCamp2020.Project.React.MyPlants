@@ -1,7 +1,7 @@
 .wrapper {
   background-color: #7fd291;
-  padding: 2em;
-  margin: 1em 2.5em;
+  padding: 1rem 2rem;
+  margin: 0 2.5rem;
 }
 
 .chat {
@@ -11,7 +11,8 @@
   overflow-y: scroll;
   overflow-x: hidden;
   scroll-snap-type: y proximity;
-  height: 75vh;
+  height: 68vh;
+  padding: 0 1rem;
 }
 
 .canals {
@@ -23,18 +24,25 @@
   width: 100%;
   position: sticky;
   top: 0;
+  margin-bottom: 0.5rem;
 }
 
 .canal {
   width: 100%;
 }
 
-.unlogged, .logged {
+.unlogged,
+.logged {
   background-color: #0df46a;
   text-align: center;
   font-size: 1.3rem;
   position: sticky;
   bottom: 0;
-  padding: 0.5em 0;
+  padding: 0.6rem 0;
   scroll-snap-align: end;
+}
+
+.button {
+  text-align: right;
+  padding-right: 0.8rem;
 }
