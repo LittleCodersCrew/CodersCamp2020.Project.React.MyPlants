@@ -19,16 +19,24 @@ const Buttons = ({ myProfile }) => {
   );
 };
 
-const Note = ({ noteText, noteDate }) => {
+const Note = ({ noteText, noteDate, notePlant, notePicture }) => {
   const { id } = useParams();
   const { token } = useToken();
   const myId = JSON.parse(atob(token.split('.')[1])).id;
 
   const isMyProfile = (userId) => (userId === myId);
+  const ExistingPic = () => {
+    if (notePicture) {
+      return <img src={notePicture} alt={notePlant} height="100px" width="100px" />;
+    }
+    return <p />;
+  };
 
   return (
     <div className={noteContainer}>
       <p className={mainText}>{noteText}</p>
+      <p className={mainText}>{notePlant}</p>
+      <ExistingPic />
       <div className={sign}>
         <p className={signText}>{noteDate}</p>
         <Buttons myProfile={isMyProfile(id)} />
@@ -41,7 +49,11 @@ Buttons.propTypes = { myProfile: PropTypes.bool.isRequired };
 
 Note.propTypes = {
   noteText: PropTypes.string.isRequired,
-  noteDate: PropTypes.string.isRequired
+  noteDate: PropTypes.string.isRequired,
+  notePlant: PropTypes.string.isRequired,
+  notePicture: PropTypes.string
 };
+
+Note.defaultProps = { notePicture: '' };
 
 export default Note;

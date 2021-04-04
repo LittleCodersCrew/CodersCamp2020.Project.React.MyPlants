@@ -34,6 +34,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     title: '',
     text: '',
     plant: '',
+    image: '',
     private: false
   });
   const { id } = useParams();
@@ -61,7 +62,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     body: JSON.stringify(n)
   }).then((data) => {
     if (data.status === 200) {
-      // window.location.reload();
+      window.location.reload();
     }
     return data.json();
   });
@@ -108,19 +109,20 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
               />
             </div>
             <div className={tick}>
-              <input type="checkbox" id="private" name="private" value="true" onChange={handleChange} />
+              <input type="checkbox" id="private" name="private" value="true" onChange={(e) => setNote({ ...note, private: e.target.checked })} />
               <label htmlFor="private"> Private? </label>
             </div>
             <div className={additional}>
               <TextArea
                 className={adding}
                 text="Add link to photo..."
-                name="text"
+                name="image"
                 height="3em"
-                value={note.text}
+                value={note.image}
                 onChange={handleChange}
               />
               <TextArea
+                className={adding}
                 text="Which plant is it about?"
                 name="plant"
                 height="3em"
