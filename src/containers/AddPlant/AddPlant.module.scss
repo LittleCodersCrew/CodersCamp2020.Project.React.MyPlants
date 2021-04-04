@@ -1,3 +1,7 @@
+.container {
+  margin: auto;
+}
+
 .title {
   font-family: 'Abhaya Libre', serif;
   font-size: 2em;
@@ -27,6 +31,7 @@
 .addPicture {
   width: 90%;
   margin: auto;
+  height: 100px;
 }
 
 .input {
@@ -41,10 +46,34 @@
 
 .button {
   text-align: center;
+  margin: auto;
+  padding: 30px;
+}
+
+.plantPicture {
+  float: left;
+  margin: auto;
+}
+
+.removePicture {
+  float: left;
+  padding: 30px;
+  position: relative;
+}
+
+.addBtn {
+  margin: auto;
+  padding: 20px;
+}
+
+.submit {
+  width: 90%;
+  margin-top: 1em;
+  padding: 15px;
+  margin: auto;
+  text-align: center;
 }
 
 .submitButton {
-  padding-top: 1em;
-  margin: 1px auto;
-  text-align: center;
+  padding: 50% 0;
 }
