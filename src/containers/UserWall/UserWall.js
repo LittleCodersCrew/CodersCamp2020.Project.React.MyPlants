@@ -61,13 +61,14 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     body: JSON.stringify(n)
   }).then((data) => {
     if (data.status === 200) {
-      window.location.reload();
+      // window.location.reload();
     }
     return data.json();
   });
 
   const onSubmit = () => {
     sendNote(note);
+    console.log(note);
   };
 
   const handleChange = (e) => {
@@ -107,7 +108,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
               />
             </div>
             <div className={tick}>
-              <input type="checkbox" id="private" name="private" value="true" />
+              <input type="checkbox" id="private" name="private" value="true" onChange={handleChange} />
               <label htmlFor="private"> Private? </label>
             </div>
             <div className={additional}>
