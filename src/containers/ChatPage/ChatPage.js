@@ -16,6 +16,7 @@ const ChatPage = () => {
     text: '',
     user: ''
   });
+  // const [userLogin, setUserLogin] = useState('');
 
   const { token } = useToken();
 
@@ -32,7 +33,18 @@ const ChatPage = () => {
     'Trade your plants': '6068ba941d4f091f788ea649'
   };
 
+  // const findLogin = (mess) => fetch(`${Database.URL}/user/${mess.user}`, {
+  //   method: 'GET',
+  //   headers: { Authorization: `Bearer ${token}` }
+  // })
+  //   .then((res) => res.json())
+  //   .then((json) => {
+  //     setUserLogin(json.login);
+  //   });
+
   const showMessage = (mess) => {
+    // findLogin(mess);
+    // console.log(userLogin);
     if (mess.chat === canalsId[openCanal]) {
       return (
         <Message userName={mess.user} dateTime={mess.date.substr(0, 10)} content={mess.text} />
@@ -57,20 +69,26 @@ const ChatPage = () => {
 
   const sendMessage = (mess) => fetch(`${Database.URL}/message/`, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${token}` },
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(mess)
   }).then((data) => data.json());
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(message);
     await sendMessage(message);
   };
 
   const updateMessage = (e) => {
+    const userId = JSON.parse(atob(token.split('.')[1])).id;
     setMessage({
       ...message,
       [e.target.name]: e.target.value,
-      chat: canalsId[openCanal]
+      chat: canalsId[openCanal],
+      user: userId
     });
   };
 
