@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
 
@@ -13,7 +16,7 @@ import Button from '../../components/Button';
 import Star from '../../assets/icons/Star.png';
 import GreenStar from '../../assets/icons/GreenStar.png';
 
-import { addNote, title, note, tick, save, text } from './UserWall.module.scss';
+import { addNote, title, note, tick, save, text, additional, adding } from './UserWall.module.scss';
 
 const UserWall = ({ isMyProfile, isFavourite }) => {
   const [userName, setUserName] = useState('');
@@ -38,19 +41,24 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     }
   });
 
-  // const sendNote = (n) => fetch(`${Database.URL}/user/${id}/notes`, {
-  //   method: 'POST',
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify(n)
-  // }).then((data) => data.json());
+  const { register, handleSubmit, errors } = useForm();
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  //   await sendNote(note);
-  // };
+  const sendNote = (n) => fetch(`${Database.URL}/user/${id}/notes`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(n)
+  }).then((data) => data.json());
+
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    const response = sendNote(data);
+    if (response?.errors) {
+      alert(response.errors);
+    }
+  };
 
   if (isMyProfile) {
     return (
@@ -61,17 +69,21 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
           <SmallButton text="Edit profile" fontsize="1.5em" />
         </div>
         <div>
-          <form className={addNote} id="newNote" method="POST">
+          <form className={addNote} id="newNote" method="POST" onSubmit={handleSubmit(onSubmit)}>
             <Text className={text} text="Add new note" fontsize="1.5em" />
             <div className={title}>
-              <TextArea text="Add title.." name="text" height="3em" />
+              <TextArea text="Add title.." name="title" height="3em" ref={register({ required: 'Title is required' })} />
             </div>
             <div className={note}>
-              <TextArea text="Add note..." name="text" id="newNote" height="10em" />
+              <TextArea text="Add note..." name="text" id="newNote" height="10em" ref={register({ required: 'Text of note is required' })} />
             </div>
             <div className={tick}>
-              <input type="checkbox" id="private" name="private" value="private" />
+              <input type="checkbox" id="private" name="private" value="private" ref={register} />
               <label htmlFor="private"> Private? </label>
+            </div>
+            <div className={additional}>
+              <TextArea className={adding} text="Add link to photo..." name="text" height="3em" ref={register} />
+              <TextArea text="Which plant is it about?" name="plant" height="3em" ref={register({ required: 'Plant name is required' })} />
             </div>
             <div className={save}>
               <Button type="submit" text="Save" />

@@ -1,11 +1,12 @@
 .addNote {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-template-rows: 4em 4em 12em;
+  grid-template-rows: 4em 4em 12em 4em;
   grid-template-areas:
     "text text"
     "title tick"
-    "note save";
+    "note save"
+    "additional save";
   margin: 2em 1em 2em 1em;
   justify-items: center;
   align-items: center;
@@ -30,6 +31,18 @@
 .tick {
   grid-area: tick;
 }
+
 .save {
   grid-area: save;
+}
+
+.additional {
+  grid-area: additional;
+  display: grid;
+  grid-template-columns: 6.3fr 2.1fr;
+}
+
+.adding {
+  width: 35em;
+  margin-right: 1em;
 }
