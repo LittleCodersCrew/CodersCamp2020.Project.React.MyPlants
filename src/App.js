@@ -7,6 +7,8 @@ import AuthorsList from './components/AuthorsList';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
+import SearchPlants from './container/SearchPlants/SearchPlants';
+
 import useToken from './hooks/useToken/useToken';
 
 function Home() {
@@ -51,6 +53,11 @@ const App = () => {
           <Route path="/register" exact>
             <Register />
           </Route>
+          <Route path="/search-plant" exact>
+            <Navbar />
+            <SearchPlants />
+            <Footer />
+          </Route>
           <Route path="/">
             <Redirect to="/login" />
           </Route>
@@ -89,6 +96,9 @@ const App = () => {
         </Route>
         <Route path="/authors" exact>
           <AuthorsList />
+        </Route>
+        <Route path="/search-plant" exact>
+          <SearchPlants />
         </Route>
       </Switch>
       <Footer />
