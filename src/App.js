@@ -88,6 +88,9 @@ const App = () => {
         <Route path="/myprofile" exact>
           <UserPage />
         </Route>
+        <Route path="/user/:id" exact>
+          <UserPage />
+        </Route>
         <Route path="/authors" exact>
           <AuthorsList />
         </Route>

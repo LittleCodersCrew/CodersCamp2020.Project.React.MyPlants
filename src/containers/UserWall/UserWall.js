@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
 
@@ -15,12 +16,12 @@ import { addNote } from './UserWall.module.scss';
 const UserWall = ({ isMyProfile, isFavourite }) => {
   const [userName, setUserName] = useState('');
   const [userLogin, setUserLogin] = useState('');
+  const { id } = useParams();
   const { token } = useToken();
 
   useEffect(() => {
     if (token) {
-      const userId = JSON.parse(atob(token.split('.')[1])).id;
-      fetch(`${Database.URL}/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } }, {})
+      fetch(`${Database.URL}/user/${id}`, { headers: { Authorization: `Bearer ${token}` } }, {})
         .then((res) => res.json())
         .then((json) => {
           setUserName(json.name);
