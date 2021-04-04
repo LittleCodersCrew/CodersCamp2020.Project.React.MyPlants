@@ -7,6 +7,7 @@ import Message from '../../components/Message';
 import Canals from '../../components/Canals';
 import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
+import { input } from '../../components/TextArea/TextArea.module.scss';
 
 const ChatPage = () => {
   const [openCanal, setOpenCanal] = useState('Main chat');
@@ -75,6 +76,8 @@ const ChatPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await sendMessage(message);
+    document.getElementsByClassName(`${input}`)[0].value = '';
+    return (message.chat === canalsId['Main chat'] ? setOpenCanal('Main chat') : setOpenCanal('Trade your plants'));
   };
 
   const updateMessage = (e) => {

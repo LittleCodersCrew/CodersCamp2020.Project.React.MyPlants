@@ -13,6 +13,8 @@
 
 .open {
   background-color: #0df46a;
+  pointer-events: none;
+  cursor: default;
 }
 
 .notOpen {
