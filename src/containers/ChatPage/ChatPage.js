@@ -35,16 +35,17 @@ const ChatPage = () => {
 
   // const findLogin = (mess) => fetch(`${Database.URL}/user/${mess.user}`, {
   //   method: 'GET',
-  //   headers: { Authorization: `Bearer ${token}` }
-  // })
-  //   .then((res) => res.json())
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //     'Content-Type': 'application/json'
+  //   }
+  // }).then((res) => res.json())
   //   .then((json) => {
   //     setUserLogin(json.login);
   //   });
 
   const showMessage = (mess) => {
     // findLogin(mess);
-    // console.log(userLogin);
     if (mess.chat === canalsId[openCanal]) {
       return (
         <Message userName={mess.user} dateTime={mess.date.substr(0, 10)} content={mess.text} />
@@ -53,12 +54,7 @@ const ChatPage = () => {
     return true;
   };
 
-  const ifCanalOpen = (can) => {
-    if (can === openCanal) {
-      return true;
-    }
-    return false;
-  };
+  const ifCanalOpen = (can) => (can === openCanal);
 
   const changeCanal = () => {
     if (openCanal === 'Main chat') {
@@ -78,7 +74,6 @@ const ChatPage = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(message);
     await sendMessage(message);
   };
 

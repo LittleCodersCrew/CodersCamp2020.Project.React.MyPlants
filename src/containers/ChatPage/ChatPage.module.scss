@@ -8,6 +8,10 @@
   border: 2px solid #000;
   background-color: #0df46a;
   font-family: 'Abhaya Libre', serif;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-snap-type: y proximity;
+  height: 75vh;
 }
 
 .canals {
@@ -17,6 +21,8 @@
   justify-content: space-between;
   font-size: 1.3rem;
   width: 100%;
+  position: sticky;
+  top: 0;
 }
 
 .canal {
@@ -25,7 +31,10 @@
 
 .unlogged, .logged {
   background-color: #0df46a;
-  margin: 1em 0;
   text-align: center;
   font-size: 1.3rem;
+  position: sticky;
+  bottom: 0;
+  padding: 0.5em 0;
+  scroll-snap-align: end;
 }
