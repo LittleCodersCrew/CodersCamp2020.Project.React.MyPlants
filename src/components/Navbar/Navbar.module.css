@@ -1,0 +1,38 @@
+.navbar {
+  height: 70px;
+  padding: 0 2vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-family: 'Abhaya Libre', serif;
+}
+
+.li {
+  font-size: 24px;
+  list-style-type: none;
+}
+
+.link {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 105px 50px;
+      grid-template-columns: 105px 50px;
+  justify-items: end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #0e3416;
+  text-decoration: none;
+}
+
+.link.clicked {
+  text-shadow: 5px 5px 4px rgba(13, 244, 106, 0.51);
+  pointer-events: none;
+}
+/*# sourceMappingURL=Navbar.module.css.map */

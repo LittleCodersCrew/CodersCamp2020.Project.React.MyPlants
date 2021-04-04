@@ -1,0 +1,105 @@
+.mainContainer {
+  display: -ms-grid;
+  display: grid;
+  gap: 1px 1px;
+  -ms-grid-columns: 1fr 2.5fr 1fr 1fr;
+      grid-template-columns: 1fr 2.5fr 1fr 1fr;
+  -ms-grid-rows: 0.5fr 1.3fr 1.2fr;
+      grid-template-rows: 0.5fr 1.3fr 1.2fr;
+      grid-template-areas: "Header Header Header Header" "Journal Journal Garden Garden" "Journal Journal Friends Friends";
+  height: 80vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-area: Header;
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+}
+
+.journal {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: Journal;
+  text-align: center;
+}
+
+.notes {
+  height: 60vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.garden {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-area: Garden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: space-around;
+      -ms-flex-align: space-around;
+          align-items: space-around;
+}
+
+.friends {
+  -ms-grid-row: 3;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-area: Friends;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: space-around;
+      -ms-flex-align: space-around;
+          align-items: space-around;
+}
+
+.plants {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 8rem 8rem 8rem;
+      grid-template-columns: 8rem 8rem 8rem;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  height: 40vh;
+  -ms-grid-row-align: center;
+      align-self: center;
+  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.users {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 8rem 8rem 8rem;
+      grid-template-columns: 8rem 8rem 8rem;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  height: 20vh;
+  -ms-grid-row-align: center;
+      align-self: center;
+  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/*# sourceMappingURL=UserPage.module.css.map */

@@ -1,0 +1,38 @@
+.noteContainer {
+  background-color: #7fd291;
+  border: 1px solid #0e3416;
+  border-radius: 16px;
+  font-family: 'Abhaya Libre', serif;
+  text-align: left;
+  padding: 1% 2%;
+  margin: 1% 2%;
+}
+
+.mainText {
+  font-size: 1rem;
+  margin-bottom: 0.5em;
+}
+
+.signText {
+  font-size: 0.7rem;
+}
+
+.sign {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 5rem;
+}
+/*# sourceMappingURL=Note.module.css.map */

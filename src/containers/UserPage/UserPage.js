@@ -28,7 +28,7 @@ const UserPage = () => {
   return (
     <div className={mainContainer}>
       <header className={header}>
-        <UserWall isMyProfile={myProfile(id)} isFavourite />
+        <UserWall isMyProfile={myProfile(id)} isFavourite={false} />
       </header>
       <div className={journal}>
         <Text text="Login's journal" fontsize="1.5em" />

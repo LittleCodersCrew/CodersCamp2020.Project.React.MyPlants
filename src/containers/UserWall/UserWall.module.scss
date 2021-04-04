@@ -1,9 +1,35 @@
 .addNote {
   display: grid;
-  grid-template-columns: 5fr 1fr;
-  grid-template-rows: 2fr;
-  gap: 2rem;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 4em 4em 12em;
+  grid-template-areas:
+    "text text"
+    "title tick"
+    "note save";
   margin: 2em 1em 2em 1em;
   justify-items: center;
   align-items: center;
+  border: 1px solid black;
+}
+
+.text {
+  grid-area: text;
+}
+.title {
+  grid-area: title;
+  width: 100%;
+  align-self: center;
+  justify-self: center;
+}
+
+.note {
+  grid-area: note;
+  width: 100%;
+}
+
+.tick {
+  grid-area: tick;
+}
+.save {
+  grid-area: save;
 }

@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pompiere&display=swap");
+.login {
+  -ms-flex-line-pack: center;
+      align-content: center;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-size: 1.6em;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  line-height: 1.8em;
+  text-align: center;
+}
+
+.logo {
+  height: auto;
+  width: auto;
+}
+
+.input {
+  text-align: center;
+  width: 350px;
+  font-size: 1.2em;
+  font-family: 'Pompiere', 'serif';
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom: 3px solid;
+  border-bottom-color: #0e3416;
+  margin-bottom: 0.5em;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.buttons {
+  margin-top: 0.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn {
+  margin: 2px;
+  width: 5.5em;
+  height: 1.5em;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  background-color: white;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 1.2em;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #e5ffe5;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  outline: none;
+  -webkit-box-shadow: 0 0 1em #9f9;
+          box-shadow: 0 0 1em #9f9;
+}
+/*# sourceMappingURL=Register.module.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACP,aAAa,EAAE,MAAM;EACrB,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,SAAS,EAAE,IAAI;EACf,SAAS,EAAE,KAAK;EAChB,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,KAAK;EAClB,UAAU,EAAE,MAAM;CACnB;;AAED,AAAA,KAAK,CAAC;EACJ,KAAK,EAAE,IAAI;EACX,eAAe,EAAE,IAAI;CACtB;;AAED,AAAA,OAAO,CAAC;EACN,WAAW,EAAE,IAAI;CAClB",
+    "sources": [
+        "AuthorsList.module.scss"
+    ],
+    "names": [],
+    "file": "AuthorsList.module.css"
+}
