@@ -16,17 +16,26 @@ import Button from '../../components/Button';
 import Star from '../../assets/icons/Star.png';
 import GreenStar from '../../assets/icons/GreenStar.png';
 
-import { addNote, title, note, tick, save, text, additional, adding } from './UserWall.module.scss';
+import {
+  addNote,
+  title,
+  tick,
+  save,
+  notes,
+  text,
+  additional,
+  adding
+} from './UserWall.module.scss';
 
 const UserWall = ({ isMyProfile, isFavourite }) => {
   const [userName, setUserName] = useState('');
   const [userLogin, setUserLogin] = useState('');
-  // const [note, setNote] = useState({
-  //   title: '',
-  //   text: '',
-  //   plant: '',
-  //   private: false
-  // });
+  const [note, setNote] = useState({
+    title: '',
+    text: '',
+    plant: '',
+    private: false
+  });
   const { id } = useParams();
   const { token } = useToken();
 
@@ -50,14 +59,19 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(n)
-  }).then((data) => data.json());
-
-  const onSubmit = (data, e) => {
-    e.preventDefault();
-    const response = sendNote(data);
-    if (response?.errors) {
-      alert(response.errors);
+  }).then((data) => {
+    if (data.status === 200) {
+      window.location.reload();
     }
+    return data.json();
+  });
+
+  const onSubmit = () => {
+    sendNote(note);
+  };
+
+  const handleChange = (e) => {
+    setNote({ ...note, [e.target.name]: e.target.value });
   };
 
   if (isMyProfile) {
@@ -72,18 +86,47 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
           <form className={addNote} id="newNote" method="POST" onSubmit={handleSubmit(onSubmit)}>
             <Text className={text} text="Add new note" fontsize="1.5em" />
             <div className={title}>
-              <TextArea text="Add title.." name="title" height="3em" ref={register({ required: 'Title is required' })} />
+              <TextArea
+                text="Add title.."
+                name="title"
+                height="3em"
+                value={note.title}
+                onChange={handleChange}
+                ref={register({ required: 'Title is required' })}
+              />
             </div>
-            <div className={note}>
-              <TextArea text="Add note..." name="text" id="newNote" height="10em" ref={register({ required: 'Text of note is required' })} />
+            <div className={notes}>
+              <TextArea
+                text="Add note..."
+                name="text"
+                id="newNote"
+                height="10em"
+                value={note.name}
+                onChange={handleChange}
+                ref={register({ required: 'Text of note is required' })}
+              />
             </div>
             <div className={tick}>
-              <input type="checkbox" id="private" name="private" value="private" ref={register} />
+              <input type="checkbox" id="private" name="private" value="true" />
               <label htmlFor="private"> Private? </label>
             </div>
             <div className={additional}>
-              <TextArea className={adding} text="Add link to photo..." name="text" height="3em" ref={register} />
-              <TextArea text="Which plant is it about?" name="plant" height="3em" ref={register({ required: 'Plant name is required' })} />
+              <TextArea
+                className={adding}
+                text="Add link to photo..."
+                name="text"
+                height="3em"
+                value={note.text}
+                onChange={handleChange}
+              />
+              <TextArea
+                text="Which plant is it about?"
+                name="plant"
+                height="3em"
+                value={note.plant}
+                onChange={handleChange}
+                ref={register({ required: 'Plant name is required' })}
+              />
             </div>
             <div className={save}>
               <Button type="submit" text="Save" />
@@ -99,7 +142,10 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
       <Text text={userName} fontsize="1.5em" />
       <div>
         <img src={isFavourite ? GreenStar : Star} alt="star" width="20px" height="20px" />
-        <SmallButton text={isFavourite ? 'Delete from favourites' : 'Add to favourites'} fontsize="1.5em" />
+        <SmallButton
+          text={isFavourite ? 'Delete from favourites' : 'Add to favourites'}
+          fontsize="1.5em"
+        />
       </div>
     </div>
   );
