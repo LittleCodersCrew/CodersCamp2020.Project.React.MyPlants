@@ -18,6 +18,7 @@ const ChatPage = () => {
     user: ''
   });
   // const [userLogin, setUserLogin] = useState('');
+  // const userLogin = [];
 
   const { token } = useToken();
 
@@ -28,6 +29,20 @@ const ChatPage = () => {
         setMessages(json);
       });
   });
+
+  const deleteMessage = () => {
+    const id = '_id';
+    if (messages.length === 50) {
+      const lastMess = messages[0][`${id}`];
+      fetch(`${Database.URL}/message/${lastMess}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }).then((res) => res.json());
+    }
+  };
 
   const canalsId = {
     'Main chat': '6068ba811d4f091f788ea648',
@@ -43,13 +58,15 @@ const ChatPage = () => {
   // }).then((res) => res.json())
   //   .then((json) => {
   //     setUserLogin(json.login);
+  //     const newMessage =
   //   });
 
   const showMessage = (mess) => {
     // findLogin(mess);
+    const dateSubstr = mess.date.substr(0, 10);
     if (mess.chat === canalsId[openCanal]) {
       return (
-        <Message userName={mess.user} dateTime={mess.date.substr(0, 10)} content={mess.text} />
+        <Message userName={mess.user} dateTime={dateSubstr} content={mess.text} />
       );
     }
     return true;
@@ -75,6 +92,7 @@ const ChatPage = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    deleteMessage();
     await sendMessage(message);
     document.getElementsByClassName(`${input}`)[0].value = '';
     return (message.chat === canalsId['Main chat'] ? setOpenCanal('Main chat') : setOpenCanal('Trade your plants'));
@@ -104,10 +122,10 @@ const ChatPage = () => {
         <div className={chat}>
           {messages.map((mess) => showMessage(mess))}
           <div className={logged}>
-            <form id="newMessage" method="POST" onSubmit={onSubmit}>
+            <form id="newMessage" method="POST">
               <TextArea text="Send your message..." name="text" id="newMessage" onChange={updateMessage} />
               <div className={button}>
-                <Button text="Send" type="submit" />
+                <Button text="Send" type="submit" onClick={onSubmit} />
               </div>
             </form>
           </div>

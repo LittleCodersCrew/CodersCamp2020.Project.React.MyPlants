@@ -10,6 +10,7 @@ const TextArea = ({ text, id, name, onChange }) => (
     type="text"
     name={name}
     onChange={onChange}
+    data-testid="textArea"
   />
 );
 
