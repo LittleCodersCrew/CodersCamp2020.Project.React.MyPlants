@@ -1,65 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pompiere&display=swap');
-
-.login {
+.register {
   align-content: center;
   color: rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   font-size: 1.6em;
-  height: 100vh;
   justify-content: center;
-  line-height: 1.8em;
   text-align: center;
-}
-
-.logo {
-  height: auto;
-  width: auto;
 }
 
 .input {
+  background-color: transparent;
   text-align: center;
   width: 350px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: 'Pompiere', 'serif';
+  letter-spacing: 0.08em;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
-  border-bottom: 3px solid;
+  border-bottom-style: 3px solid;
   border-bottom-color: rgb(14, 52, 22);
-  margin-bottom: 0.5em;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.25em;
+
   &:focus {
     outline: none;
   }
 }
 
-.buttons {
-  margin-top: 0.5em;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
 .btn {
-  margin: 2px;
+  margin-top: 0.5em;
   width: 5.5em;
   height: 1.5em;
   align-content: center;
   background-color: white;
   font-family: 'Abhaya Libre', serif;
   font-size: 1.2em;
+  letter-spacing: 0.08rem;
   border: 1px solid black;
   border-radius: 5px;
+  color: #0e3416;
+
   &:hover {
-    background-color: #e5ffe5;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 1em #9f9;
   }
+
   &:focus {
     outline: none;
   }
+
   &:active {
     outline: none;
     box-shadow: 0 0 1em #9f9;
+  }
+}
+
+.error {
+  margin-top: -0.6em;
+  padding-bottom: 0.5em;
+  color: red;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 0.7em;
+  letter-spacing: 0.08rem;
+}
+
+.link {
+  margin-top: 2em;
+  font-family: 'Abhaya Libre', serif;
+  letter-spacing: 0.08rem;
+  font-size: 0.9em;
+
+  > .redirect {
+    text-decoration: none;
+    color: #6aa877;
+    font-weight: 700;
   }
 }
