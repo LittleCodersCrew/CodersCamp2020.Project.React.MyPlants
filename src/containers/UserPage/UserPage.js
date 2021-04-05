@@ -46,7 +46,7 @@ const UserPage = () => {
       .then((json) => {
         setNotes(json);
       });
-  }, []);
+  }, [id, token]);
 
   const showNote = (n) => (
     <Note

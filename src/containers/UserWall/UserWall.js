@@ -69,7 +69,6 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
 
   const onSubmit = () => {
     sendNote(note);
-    console.log(note);
   };
 
   const handleChange = (e) => {
