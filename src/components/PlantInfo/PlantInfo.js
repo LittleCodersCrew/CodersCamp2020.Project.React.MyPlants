@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './plantInfo.module.scss';
 
-const pathToPlantImage = '../../assets/';
-
 const PlantInfo = ({ plantDetails }) => {
   if (plantDetails === undefined || !plantDetails.accepted) {
     return <p>No such plant in database</p>;
   }
 
+  const image = plantDetails.image === '' ? 'test' : plantDetails.image;
+
   return (
     <div className={styles.info}>
-      <img className={styles.image} src={pathToPlantImage + plantDetails.image} alt="Plant" />
+      <img className={styles.image} src={`../img/${image}.png`} alt="Plant" />
       <div className={styles.about}>
         <div>
           <h2>{plantDetails.name}</h2>

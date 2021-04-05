@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classes from './comments.module.scss';
 import Comment from '../../components/Comment';
@@ -38,7 +38,6 @@ const Comments = ({ comments, plantId }) => {
     likes: []
   });
   const [toggler, setToggler] = useState(true);
-  const textArea = useRef();
   const { token } = useToken();
   let isLiked;
   let currentUserId = '';
@@ -51,10 +50,6 @@ const Comments = ({ comments, plantId }) => {
         (like) => like.user === currentUserId
       )
     );
-  }
-
-  if (comments.length === 0 || comments[0] === '') {
-    return <p>No comments for the plant</p>;
   }
 
   const updateComment = (e) => {
@@ -75,7 +70,6 @@ const Comments = ({ comments, plantId }) => {
       },
       body: JSON.stringify(newComment)
     });
-    textArea.current.value = '';
     setToggler(!toggler);
   };
 
@@ -83,29 +77,31 @@ const Comments = ({ comments, plantId }) => {
     <div className={classes.wrapper}>
       <p className={classes.header}>Comments</p>
       {token
-        ? <p className={classes.unlogged}>Login to leave your comment</p>
-        : (
-          <div className={classes.logged}>
+        ? (
+          <div>
             <form id="newComment" method="POST">
-              <TextArea ref={textArea} text="Add your comment..." name="text" id="newComment" onChange={updateComment} />
+              <TextArea text="Add your comment..." name="text" id="newComment" onChange={updateComment} />
               <div className={classes.button}>
                 <Button text="Send" type="submit" onClick={onSubmit} />
               </div>
             </form>
           </div>
-        )}
-      {comments.map((comment) => (
-        <Comment
-          key={comment._id}
-          username={comment.user}
-          dateTime={comment.timestamp}
-          content={comment.text}
-          likesCount={comment.likes.length}
-          likeHandler={token
-            ? () => handleLike(isLiked, token, plantId, comment, currentUserId) : null}
-          isLiked={isLiked}
-        />
-      ))}
+        )
+        : <p className={classes.unlogged}>Login to leave your comment</p>}
+      {(comments.length === 0 || comments[0] === '')
+        ? ''
+        : comments.map((comment) => (
+          <Comment
+            key={comment._id}
+            username={comment.user}
+            dateTime={comment.timestamp}
+            content={comment.text}
+            likesCount={comment.likes.length}
+            likeHandler={token
+              ? () => handleLike(isLiked, token, plantId, comment, currentUserId) : null}
+            isLiked={isLiked}
+          />
+        ))}
     </div>
   );
 };
