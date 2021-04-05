@@ -41,27 +41,29 @@ const UserPage = () => {
     title: '',
     text: '',
     plant: '',
-    image: ''
+    image: '',
+    timestamp: ''
   });
 
   useEffect(() => {
-    fetch(`${Database.URL}/user/${id}/notes`)
+    fetch(`${Database.URL}/user/${id}/notes`, { headers: { Authorization: `Bearer ${token}` } }, {})
       .then((res) => res.json())
       .then((json) => {
-        setNote(json);
+        setNotes(json);
       });
-  });
+  }, []);
 
   const showNote = (n) => (
     <Note
+      noteTitle={n.title}
       noteText={n.text}
       notePlant={n.plant}
       notePicture={n.image}
-      noteDate={n.date.substr(0, 10)}
+      noteDate={n.timestamp.substr(0, 10)}
     />
   );
 
-  console.log(note);
+  console.log(notes);
   console.log('Fetch data', notes);
 
   const myProfile = (userId) => (userId === myId);
@@ -74,8 +76,7 @@ const UserPage = () => {
       <div className={journal}>
         <Text text="Login's journal" fontsize="1.5em" />
         <div className={notesStyle}>
-          {notes.map((n) => showNote(n))}
-          <SmallButton text="Load more" fontsize="1.5em" />
+          {notes.map((n) => showNote(n)).reverse()}
         </div>
       </div>
       <div className={garden}>

@@ -19,7 +19,7 @@ const Buttons = ({ myProfile }) => {
   );
 };
 
-const Note = ({ noteText, noteDate, notePlant, notePicture }) => {
+const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture }) => {
   const { id } = useParams();
   const { token } = useToken();
   const myId = JSON.parse(atob(token.split('.')[1])).id;
@@ -34,6 +34,7 @@ const Note = ({ noteText, noteDate, notePlant, notePicture }) => {
 
   return (
     <div className={noteContainer}>
+      <p className={mainText}>{noteTitle}</p>
       <p className={mainText}>{noteText}</p>
       <p className={mainText}>{notePlant}</p>
       <ExistingPic />
@@ -51,6 +52,7 @@ Note.propTypes = {
   noteText: PropTypes.string.isRequired,
   noteDate: PropTypes.string.isRequired,
   notePlant: PropTypes.string.isRequired,
+  noteTitle: PropTypes.string.isRequired,
   notePicture: PropTypes.string
 };
 
