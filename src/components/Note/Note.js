@@ -2,19 +2,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
+import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
 import { noteContainer, mainText, signText, sign, buttons } from './Note.module.scss';
 import SmallButton from '../SmallButton';
 
 const Buttons = ({ myProfile }) => {
   const { id } = useParams();
+  const { nid } = params();
   const { token } = useToken();
-  const myId = JSON.parse(atob(token.split('.')[1])).id;
+  // const myId = JSON.parse(atob(token.split('.')[1])).id;
+
+  const handleClick = (note) => {
+    const requestOptions = { method: 'DELETE' };
+    fetch(`${Database.URL}/user/${id}/notes/${nid}`, requestOptions, { headers: { Authorization: `Bearer ${token}` } }, {})
+      .then((response) => response.json())
+      .then((result) => { console.log('note deleted'); console.log(nid); });
+  };
 
   if (myProfile) {
     return (
       <div className={buttons}>
-        <SmallButton text="Delete" fontsize="0.7rem" />
+        <SmallButton text="Delete" fontsize="0.7rem" onClick={() => handleClick(nid)} />
         <SmallButton text="Edit" fontsize="0.7rem" />
       </div>
     );
