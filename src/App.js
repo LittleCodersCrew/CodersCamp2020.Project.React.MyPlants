@@ -7,6 +7,7 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import AuthorsPage from './containers/AuthorsPage';
 import useToken from './hooks/useToken/useToken';
+import ChatPage from './containers/ChatPage';
 import Database from './database';
 
 function Home() {
@@ -15,10 +16,6 @@ function Home() {
 
 function Plants() {
   return <h2>Plants</h2>;
-}
-
-function Chat() {
-  return <h2>Chat</h2>;
 }
 
 function Garden() {
@@ -67,7 +64,7 @@ const App = () => {
           <Plants />
         </Route>
         <Route path="/chat" exact>
-          <Chat />
+          <ChatPage />
         </Route>
         <Route path="/garden" exact>
           <Garden />
