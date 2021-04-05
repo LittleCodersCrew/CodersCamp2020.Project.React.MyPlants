@@ -8,14 +8,11 @@ import RegisterPage from './containers/RegisterPage';
 import AuthorsPage from './containers/AuthorsPage';
 import useToken from './hooks/useToken/useToken';
 import PlantPage from './containers/PlantPage';
+import ChatPage from './containers/ChatPage';
 import Database from './database';
 
 function Home() {
   return <h2>About</h2>;
-}
-
-function Chat() {
-  return <h2>Chat</h2>;
 }
 
 function Garden() {
@@ -64,7 +61,7 @@ const App = () => {
           <PlantPage />
         </Route>
         <Route path="/chat" exact>
-          <Chat />
+          <ChatPage />
         </Route>
         <Route path="/garden" exact>
           <Garden />
