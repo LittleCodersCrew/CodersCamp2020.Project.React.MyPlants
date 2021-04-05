@@ -52,7 +52,7 @@ Comment.propTypes = {
   username: PropTypes.string.isRequired,
   dateTime: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  likesCount: PropTypes.string.isRequired,
+  likesCount: PropTypes.number.isRequired,
   likeHandler: PropTypes.func,
   isLiked: PropTypes.bool
 };
