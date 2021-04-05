@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -6,6 +7,10 @@ import { noteContainer, mainText, signText, sign, buttons } from './Note.module.
 import SmallButton from '../SmallButton';
 
 const Buttons = ({ myProfile }) => {
+  const { id } = useParams();
+  const { token } = useToken();
+  const myId = JSON.parse(atob(token.split('.')[1])).id;
+
   if (myProfile) {
     return (
       <div className={buttons}>

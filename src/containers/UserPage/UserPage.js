@@ -36,6 +36,8 @@ const UserPage = () => {
     image: '',
     timestamp: ''
   });
+  const [favourites, setFavourites] = useState([]);
+  const [favourite, setFavourite] = useState({ name: '' });
 
   useEffect(() => {
     fetch(`${Database.URL}/user/${id}/notes`, { headers: { Authorization: `Bearer ${token}` } }, {})
@@ -54,6 +56,23 @@ const UserPage = () => {
       noteDate={n.timestamp.substr(0, 10)}
     />
   );
+
+  useEffect(() => {
+    fetch(`${Database.URL}/user/${id}/favourites`, { headers: { Authorization: `Bearer ${token}` } }, {})
+      .then((res) => res.json())
+      .then((json) => {
+        setFavourites(json);
+      });
+  }, [id, token]);
+
+  const showFavourite = (f) => (
+    <UserProfile name={f.name} />
+  );
+
+  console.log(note);
+  console.log(notes);
+  console.log(favourites);
+  console.log(favourite);
 
   const myProfile = (userId) => (userId === myId);
   return (
@@ -81,9 +100,7 @@ const UserPage = () => {
       <div className={friends}>
         <Text text="Login's favorite users" fontsize="1.5em" />
         <div className={users}>
-          <UserProfile name="User" />
-          <UserProfile name="User" />
-          <SmallButton text="+ 17 more" fontsize="1.5em" />
+          {favourites.map((f) => showFavourite(f))}
         </div>
       </div>
     </div>
