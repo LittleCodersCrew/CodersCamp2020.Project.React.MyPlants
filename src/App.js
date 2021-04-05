@@ -63,7 +63,7 @@ const App = () => {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/plant/:plantNameFromURL">
+        <Route path="/plant/:plantNameFromURL" exact>
           <PlantPage />
         </Route>
         <Route path="/chat" exact>

@@ -15,6 +15,7 @@
     "react/jsx-one-expression-per-line": [1, { "allow": "single-child" }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/react-in-jsx-scope": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "no-underscore-dangle": "off"
   }
 }

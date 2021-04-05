@@ -1,14 +1,47 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from './comments.module.scss';
 import Comment from '../../components/Comment';
+import useToken from '../../hooks/useToken/useToken';
 
-const Comments = () => (
-  <div className={classes.wrapper}>
-    <p className={classes.header}>Comments</p>
-    <p className={classes.unlogged}>Login to leave your comment</p>
-    <Comment username="Weronika" dateTime="20.03.2021 12.01" content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum dolorem quod incidunt. Voluptatum eum placeat modi sed, temporibus neque? Reprehenderit vitae unde tempora nesciunt? Architecto, ex praesentium! Facilis, reprehenderit cum." likesCount="27" likeHandler={() => console.log('Hello')} isLiked />
-    <Comment username="Tom" dateTime="20.03.2021 12.01" content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum dolorem quod incidunt. Voluptatum eum placeat modi sed, temporibus neque? Reprehenderit vitae unde tempora nesciunt? Architecto, ex praesentium! Facilis, reprehenderit cum." likesCount="18" likeHandler={() => console.log('Hello')} />
-  </div>
-);
+const Comments = ({ comments }) => {
+  const { token } = useToken();
+  const currentUserId = JSON.parse(atob(token.split('.')[1])).id;
+  console.log(currentUserId);
+
+  if (comments.length === 0 || comments[0] === '') {
+    return <p>No comments for the plant</p>;
+  }
+
+  const isLiked = comments.find(
+    (comment) => comment.likes.find(
+      (like) => like.user === currentUserId
+    )
+  );
+
+  return (
+    <div className={classes.wrapper}>
+      <p className={classes.header}>Comments</p>
+      <p className={classes.unlogged}>Login to leave your comment</p>
+      {comments.map((comment) => (
+        <Comment
+          key={comment._id}
+          username={comment.user}
+          dateTime={comment.timestamp}
+          content={comment.text}
+          likesCount={comment.likes.length}
+          likeHandler={isLiked}
+          isLiked={isLiked}
+        />
+      ))}
+    </div>
+  );
+};
+
+Comments.propTypes = {
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({})
+  ).isRequired
+};
 
 export default Comments;

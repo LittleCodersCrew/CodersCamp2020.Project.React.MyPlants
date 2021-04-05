@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './plantInfo.module.scss';
-import Database from '../../database';
 
 const pathToPlantImage = '../../assets/';
 
-const PlantInfo = () => {
-  const [plantDetails, setPlantDetails] = useState([]);
-  const { plantNameFromURL } = useParams();
-
-  useEffect(() => {
-    const fetchPlantInfo = async (plantName) => {
-      const details = await fetch(`${Database.URL}/plant/`)
-        .then((res) => res.json())
-        .then((json) => json.find((plant) => plant.name === plantName));
-      setPlantDetails(details);
-    };
-    fetchPlantInfo(plantNameFromURL);
-  }, [plantNameFromURL]);
-
-  if (plantDetails === undefined) {
+const PlantInfo = ({ plantDetails }) => {
+  if (plantDetails === undefined || !plantDetails.accepted) {
     return <p>No such plant in database</p>;
   }
 
@@ -28,7 +14,7 @@ const PlantInfo = () => {
       <img className={styles.image} src={pathToPlantImage + plantDetails.image} alt="Plant" />
       <div className={styles.about}>
         <div>
-          <h2>{plantNameFromURL}</h2>
+          <h2>{plantDetails.name}</h2>
           <h3>{plantDetails.latin_name}</h3>
         </div>
         <div className={styles.details}>
@@ -96,6 +82,30 @@ const PlantInfo = () => {
       </div>
     </div>
   );
+};
+
+PlantInfo.propTypes = {
+  plantDetails: PropTypes.shape({
+    name: PropTypes.string,
+    latin_name: PropTypes.string,
+    image: PropTypes.string,
+    species: PropTypes.string,
+    min_temperature: PropTypes.number,
+    max_temperature: PropTypes.number,
+    sunlight: PropTypes.string,
+    humidity: PropTypes.string,
+    watering: PropTypes.string,
+    watering_method: PropTypes.string,
+    application: PropTypes.string,
+    subsoil: PropTypes.string,
+    conditioners: PropTypes.string,
+    spraying: PropTypes.string,
+    accepted: PropTypes.bool,
+    toxicity: PropTypes.arrayOf({
+      human: PropTypes.string,
+      animal: PropTypes.string
+    })
+  }).isRequired
 };
 
 export default PlantInfo;
