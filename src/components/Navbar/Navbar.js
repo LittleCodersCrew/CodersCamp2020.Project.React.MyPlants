@@ -8,6 +8,7 @@ import Profile from '../../assets/icons/Profile.png';
 import Users from '../../assets/icons/3 User.png';
 import Calendar from '../../assets/icons/Calendar.png';
 import Leaf from '../../assets/icons/Leaf.png';
+import Logout from '../../assets/icons/Logout.png';
 
 const createItem = (path, location, linkName, src, alt) => {
   const classes = [link, location === path ? clicked : ''];
@@ -35,7 +36,8 @@ const Navbar = ({ name }) => {
     ['/events', location, 'Events', Calendar, 'calendar'],
     ['/plant', location, 'Plants', Search, 'search'],
     ['/chat', location, 'Chat', Chat, 'chat'],
-    ['/myprofile', location, name, Profile, 'profile']
+    ['/myprofile', location, name, Profile, 'profile'],
+    ['/logout', location, 'Logout', Logout, 'logout']
   ];
 
   return (

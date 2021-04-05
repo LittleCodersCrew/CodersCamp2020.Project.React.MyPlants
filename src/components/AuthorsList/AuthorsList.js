@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../../assets/logo.png';
 import { authors, link, mentor } from './AuthorsList.module.scss';
 
 const createItem = (webpage, text, isMentor = false) => {
@@ -24,6 +25,10 @@ const AuthorsList = () => {
 
   return (
     <div className={authors}>
+      {' '}
+      <div>
+        <img src={Logo} alt="myplants logo" />
+      </div>
       {items.map((item) => createItem(...item))}
     </div>
   );

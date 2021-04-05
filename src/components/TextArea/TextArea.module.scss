@@ -1,0 +1,21 @@
+.input {
+  color: #0e3416;
+  border: 2px solid #0e3416;
+  border-radius: 4px;
+  height: 5.5rem;
+  padding: 0.8rem;
+  font-size: 0.9em;
+  cursor: text;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: 'Abhaya Libre', serif;
+  letter-spacing: 1.5px;
+  width: 98%;
+  resize: none;
+  overflow: auto;
+
+  &:focus {
+    outline: none;
+  }
+}
