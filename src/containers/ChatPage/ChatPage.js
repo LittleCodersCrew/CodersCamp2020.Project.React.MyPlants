@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
@@ -17,18 +16,42 @@ const ChatPage = () => {
     text: '',
     user: ''
   });
-  // const [userLogin, setUserLogin] = useState('');
-  // const userLogin = [];
 
   const { token } = useToken();
 
   useEffect(() => {
-    fetch(`${Database.URL}/message/`)
-      .then((res) => res.json())
-      .then((json) => {
-        setMessages(json);
-      });
-  });
+    async function fetchMessages() {
+      let messagess = [];
+
+      await fetch(`${Database.URL}/message/`)
+        .then((res) => res.json())
+        .then((json) => {
+          messagess = json;
+        });
+
+      async function fetchUsername(id) {
+        return fetch(`${Database.URL}/user/${id}`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }).then((res) => res.json())
+          .then((json) => json.login);
+      }
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const mess of messagess) {
+        // eslint-disable-next-line no-await-in-loop
+        const username = await fetchUsername(mess.user);
+        mess.user = username;
+      }
+
+      setMessages(messagess);
+    }
+
+    fetchMessages();
+  }, [token]);
 
   const deleteMessage = () => {
     const id = '_id';
@@ -49,24 +72,12 @@ const ChatPage = () => {
     'Trade your plants': '6068ba941d4f091f788ea649'
   };
 
-  // const findLogin = (mess) => fetch(`${Database.URL}/user/${mess.user}`, {
-  //   method: 'GET',
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //     'Content-Type': 'application/json'
-  //   }
-  // }).then((res) => res.json())
-  //   .then((json) => {
-  //     setUserLogin(json.login);
-  //     const newMessage =
-  //   });
-
   const showMessage = (mess) => {
-    // findLogin(mess);
     const dateSubstr = mess.date.substr(0, 10);
     if (mess.chat === canalsId[openCanal]) {
       return (
-        <Message userName={mess.user} dateTime={dateSubstr} content={mess.text} />
+        // eslint-disable-next-line no-underscore-dangle
+        <Message key={mess._id} userName={mess.user} dateTime={dateSubstr} content={mess.text} />
       );
     }
     return true;
