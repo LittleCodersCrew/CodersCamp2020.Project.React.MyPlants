@@ -1,7 +1,4 @@
-/* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-unreachable */
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useToken from '../../hooks/useToken/useToken';
@@ -59,7 +56,6 @@ const UserPage = () => {
   );
 
   const myProfile = (userId) => (userId === myId);
-  console.log(id);
   return (
     <div className={mainContainer}>
       <header className={header}>
