@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  height: calc(100vh - 70px - 70px);
+  justify-content: space-around;
+  align-items: center;
+
+  > div:first-of-type {
+    display: flex;
+    justify-content: center;
+    flex-basis: 40%;
+  }
+
+  > div:last-of-type {
+    flex-basis: 40%;
+  }
+}

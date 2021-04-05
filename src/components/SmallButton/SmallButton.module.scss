@@ -1,0 +1,10 @@
+.smallButton {
+  background-color: transparent;
+  border: none;
+  font-family: 'Abhaya Libre', serif;
+
+  &:hover {
+    cursor: pointer;
+    outline: none;
+  }
+};

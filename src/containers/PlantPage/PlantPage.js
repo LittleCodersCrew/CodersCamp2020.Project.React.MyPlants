@@ -30,7 +30,7 @@ const PlantPage = () => {
       <div className={info}>
         <PlantInfo plantDetails={plantDetails} />
       </div>
-      <Comments comments={plantDetails.comments} />
+      <Comments comments={plantDetails.comments} plantId={plantDetails._id} />
     </div>
   );
 };
