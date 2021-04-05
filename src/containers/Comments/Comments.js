@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classes from './comments.module.scss';
@@ -7,8 +8,8 @@ import Database from '../../database';
 import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
 
-const handleLike = (isLiked, token, plantId, comment, currentUserId) => {
-  if (isLiked) {
+const handleLike = (token, plantId, comment, currentUserId) => {
+  if (comment.isLiked) {
     const likeId = comment.likes.find((like) => like.user === currentUserId)._id;
     fetch(`${Database.URL}/plant/${plantId}/comments/${comment._id}/likes/${likeId}`, {
       method: 'DELETE',
@@ -16,8 +17,7 @@ const handleLike = (isLiked, token, plantId, comment, currentUserId) => {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
-    }).then((res) => res.json())
-      .then((json) => json.login);
+    });
   } else {
     fetch(`${Database.URL}/plant/${plantId}/comments/${comment._id}/likes`, {
       method: 'POST',
@@ -25,9 +25,8 @@ const handleLike = (isLiked, token, plantId, comment, currentUserId) => {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
-      body: { user: currentUserId }
-    }).then((res) => res.json())
-      .then((json) => json.login);
+      body: JSON.stringify({ user: currentUserId })
+    });
   }
 };
 
@@ -38,21 +37,18 @@ const Comments = ({ comments, plantId }) => {
     likes: []
   });
   const { token } = useToken();
-  let isLiked = false;
   let currentUserId = '';
 
   if (token) {
     currentUserId = JSON.parse(atob(token.split('.')[1])).id;
 
-    if (comments.length === 0) {
-      isLiked = false;
-    } else {
-      comments.forEach((comment) => {
-        if (comment.likes && comment.likes.find((like) => like.user === currentUserId)) {
-          isLiked = true;
-        }
-      });
-    }
+    comments.forEach((comment) => {
+      if (comment.likes && comment.likes.find((like) => like.user === currentUserId)) {
+        comment.isLiked = true;
+      } else {
+        comment.isLiked = false;
+      }
+    });
   }
 
   const updateComment = (e) => {
@@ -102,13 +98,14 @@ const Comments = ({ comments, plantId }) => {
           return (
             <Comment
               key={id}
-              username={comment.user}
+              userId={comment.user}
               dateTime={comment.timestamp}
               content={comment.text}
               likesCount={comment.likes.length}
               likeHandler={token
-                ? () => handleLike(isLiked, token, plantId, comment, currentUserId) : null}
-              isLiked={isLiked}
+                ? () => handleLike(token, plantId, comment, currentUserId) : null}
+              isLiked={comment.isLiked}
+              token={token}
             />
           );
         })}

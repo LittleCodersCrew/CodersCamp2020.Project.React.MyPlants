@@ -101,9 +101,9 @@ PlantInfo.propTypes = {
     conditioners: PropTypes.string,
     spraying: PropTypes.string,
     accepted: PropTypes.bool,
-    toxicity: PropTypes.arrayOf({
-      human: PropTypes.string,
-      animal: PropTypes.string
+    toxicity: PropTypes.shape({
+      human: PropTypes.bool,
+      animal: PropTypes.bool
     })
   }).isRequired
 };
