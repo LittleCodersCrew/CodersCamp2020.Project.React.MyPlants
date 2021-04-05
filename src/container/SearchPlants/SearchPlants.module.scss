@@ -18,6 +18,12 @@
     flex-basis: calc(20% - 20px);
     margin: 5px 10px;
   }
+
+  button {
+    background-color: #7fd291;
+    margin-top: 10px;
+    border: 2px solid black;
+  }
 }
 
 .searchPlantsContent {
@@ -25,24 +31,18 @@
   justify-content: space-between;
   width: 1033px;
   margin: 20px auto 0 auto;
-  > * {
+  > *:not(.noFoundPlantsContainer) {
     flex-basis: calc(33% - 30px);
   }
 }
 
 .noFoundPlantsContainer {
   display: flex;
-  justify-content: stretch;
+  justify-content: center;
   margin: 30px auto 0 auto;
   width: 1033px;
 
   > * {
-    flex-basis: unset;
-  }
-
-  span {
-    display: inline-block;
-    width: 100%;
     flex-basis: 100%;
   }
 

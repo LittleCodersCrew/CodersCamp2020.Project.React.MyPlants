@@ -25,7 +25,8 @@ const SearchPlants = () => {
       array.splice(index, 1);
       if (array.length === 0) break;
     }
-    return result;
+    return [];
+    // return result;
   };
 
   useEffect(() => {
@@ -75,7 +76,7 @@ const SearchPlants = () => {
           <div>
             <SearchPlantItem
               // eslint-disable-next-line no-underscore-dangle
-              key={plant._id.toString()}
+              key={(plant._id).toString()}
               name={plant.name}
               latinName={plant.latin_name}
               minTemp={plant.min_temperature}

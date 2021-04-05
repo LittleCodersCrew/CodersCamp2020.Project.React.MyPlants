@@ -53,7 +53,7 @@ const App = () => {
           <Route path="/register" exact>
             <Register />
           </Route>
-          <Route path="/search-plant" exact>
+          <Route path="/plant" exact>
             <Navbar />
             <SearchPlants />
             <Footer />
@@ -74,7 +74,7 @@ const App = () => {
           <Home />
         </Route>
         <Route path="/plant" exact>
-          <Plants />
+          <SearchPlants />
         </Route>
         <Route path="/chat" exact>
           <Chat />
@@ -96,9 +96,6 @@ const App = () => {
         </Route>
         <Route path="/authors" exact>
           <AuthorsList />
-        </Route>
-        <Route path="/search-plant" exact>
-          <SearchPlants />
         </Route>
       </Switch>
       <Footer />
