@@ -27,7 +27,7 @@ const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture }) => {
   const isMyProfile = (userId) => (userId === myId);
   const ExistingPic = () => {
     if (notePicture) {
-      return <img src={notePicture} alt={notePlant} height="100px" width="100px" />;
+      return <img src={notePicture} alt={notePlant} height="200px" width="200px" />;
     }
     return <p />;
   };
@@ -36,7 +36,10 @@ const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture }) => {
     <div className={noteContainer}>
       <p className={mainText}>{noteTitle}</p>
       <p className={mainText}>{noteText}</p>
-      <p className={mainText}>{notePlant}</p>
+      <p className={mainText}>
+        `Plant: `
+        {notePlant}
+      </p>
       <ExistingPic />
       <div className={sign}>
         <p className={signText}>{noteDate}</p>

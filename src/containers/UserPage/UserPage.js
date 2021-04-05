@@ -27,11 +27,6 @@ import {
   notesStyle
 } from './UserPage.module.scss';
 
-// const notetext = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ';
-// const date = '01.04.2021.   20.09';
-// const roslinka = 'roslinka';
-// const notepicture = 'https://2.allegroimg.com/s512/038ef0/d97a9b0745d99671f69f4316ce72/Pilea-peperomioides-roslina-pieniazek';
-
 const UserPage = () => {
   const { id } = useParams();
   const { token } = useToken();
@@ -62,9 +57,6 @@ const UserPage = () => {
       noteDate={n.timestamp.substr(0, 10)}
     />
   );
-
-  console.log(notes);
-  console.log('Fetch data', notes);
 
   const myProfile = (userId) => (userId === myId);
   console.log(id);
