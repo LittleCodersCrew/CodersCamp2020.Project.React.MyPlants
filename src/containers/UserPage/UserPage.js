@@ -34,7 +34,8 @@ const UserPage = () => {
     text: '',
     plant: '',
     image: '',
-    timestamp: ''
+    timestamp: '',
+    nid: ''
   });
   const [favourites, setFavourites] = useState([]);
   const [favourite, setFavourite] = useState({ name: '' });
@@ -54,6 +55,7 @@ const UserPage = () => {
       notePlant={n.plant}
       notePicture={n.image}
       noteDate={n.timestamp.substr(0, 10)}
+      nid={n.id}
     />
   );
 
@@ -68,11 +70,6 @@ const UserPage = () => {
   const showFavourite = (f) => (
     <UserProfile name={f.name} />
   );
-
-  console.log(note);
-  console.log(notes);
-  console.log(favourites);
-  console.log(favourite);
 
   const myProfile = (userId) => (userId === myId);
   return (
@@ -100,7 +97,7 @@ const UserPage = () => {
       <div className={friends}>
         <Text text="Login's favorite users" fontsize="1.5em" />
         <div className={users}>
-          {/* {favourites.map((f) => showFavourite(f))} */}
+          {favourites.map((f) => showFavourite(f))}
         </div>
       </div>
     </div>

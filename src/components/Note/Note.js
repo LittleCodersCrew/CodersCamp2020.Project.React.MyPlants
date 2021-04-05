@@ -10,18 +10,17 @@ import SmallButton from '../SmallButton';
 
 const Buttons = ({ myProfile }) => {
   const { id } = useParams();
-  const { nid } = useParams();
   const { token } = useToken();
-  // const myId = JSON.parse(atob(token.split('.')[1])).id;
+  const myId = JSON.parse(atob(token.split('.')[1])).id;
   const [notes, setNotes] = useState([]);
   const [note, setNote] = useState({
     title: '',
     text: '',
     plant: '',
     image: '',
-    timestamp: ''
+    timestamp: '',
+    nid: ''
   });
-  notes.map((n) => note._id);
 
   useEffect(() => {
     fetch(`${Database.URL}/user/${id}/notes`, { headers: { Authorization: `Bearer ${token}` } }, {})
@@ -33,15 +32,15 @@ const Buttons = ({ myProfile }) => {
 
   const handleClick = (n) => {
     const requestOptions = { method: 'DELETE' };
-    fetch(`${Database.URL}/user/${id}/notes/${nid}`, requestOptions, { headers: { Authorization: `Bearer ${token}` } }, {})
+    fetch(`${Database.URL}/user/${id}/notes/${note.nid}`, requestOptions, { headers: { Authorization: `Bearer ${token}` } }, {})
       .then((response) => response.json())
-      .then((result) => { console.log(note._id); });
+      .then((result) => { console.log(note.nid); });
   };
 
   if (myProfile) {
     return (
       <div className={buttons}>
-        <SmallButton text="Delete" fontsize="0.7rem" onClick={handleClick(note.id)} />
+        <SmallButton text="Delete" fontsize="0.7rem" onClick={handleClick(note.nid)} />
         <SmallButton text="Edit" fontsize="0.7rem" />
       </div>
     );
@@ -51,7 +50,7 @@ const Buttons = ({ myProfile }) => {
   );
 };
 
-const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture }) => {
+const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture, nid }) => {
   const { id } = useParams();
   const { token } = useToken();
   const myId = JSON.parse(atob(token.split('.')[1])).id;
@@ -88,7 +87,8 @@ Note.propTypes = {
   noteDate: PropTypes.string.isRequired,
   notePlant: PropTypes.string.isRequired,
   noteTitle: PropTypes.string.isRequired,
-  notePicture: PropTypes.string
+  notePicture: PropTypes.string,
+  nid: PropTypes.number.isRequired
 };
 
 Note.defaultProps = { notePicture: '' };
