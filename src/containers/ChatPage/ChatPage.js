@@ -11,6 +11,7 @@ import { input } from '../../components/TextArea/TextArea.module.scss';
 const ChatPage = () => {
   const [openCanal, setOpenCanal] = useState('Main chat');
   const [messages, setMessages] = useState([]);
+  const [lastMess, setLastMess] = useState('');
   const [message, setMessage] = useState({
     chat: '',
     text: '',
@@ -18,6 +19,11 @@ const ChatPage = () => {
   });
 
   const { token } = useToken();
+
+  const canalsId = {
+    'Main chat': '6068ba811d4f091f788ea648',
+    'Trade your plants': '6068ba941d4f091f788ea649'
+  };
 
   useEffect(() => {
     async function fetchMessages() {
@@ -51,26 +57,7 @@ const ChatPage = () => {
     }
 
     fetchMessages();
-  }, [token]);
-
-  const deleteMessage = () => {
-    const id = '_id';
-    if (messages.length === 50) {
-      const lastMess = messages[0][`${id}`];
-      fetch(`${Database.URL}/message/${lastMess}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      }).then((res) => res.json());
-    }
-  };
-
-  const canalsId = {
-    'Main chat': '6068ba811d4f091f788ea648',
-    'Trade your plants': '6068ba941d4f091f788ea649'
-  };
+  }, [token, openCanal, lastMess]);
 
   const showMessage = (mess) => {
     const dateSubstr = mess.date.substr(0, 10);
@@ -99,13 +86,16 @@ const ChatPage = () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(mess)
-  }).then((data) => data.json());
+  })
+    .then((data) => data.json())
+    .then(() => setOpenCanal('Main chat'));
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    deleteMessage();
     await sendMessage(message);
     document.getElementsByClassName(`${input}`)[0].value = '';
+    // eslint-disable-next-line max-len
+    setLastMess(message);
     return (message.chat === canalsId['Main chat'] ? setOpenCanal('Main chat') : setOpenCanal('Trade your plants'));
   };
 
@@ -119,6 +109,8 @@ const ChatPage = () => {
     });
   };
 
+  const renderingText = () => ((messages.length === 0) ? <p>Rendering or no messages yet ...</p> : '');
+
   if (token) {
     return (
       <div className={wrapper}>
@@ -131,6 +123,7 @@ const ChatPage = () => {
           </div>
         </div>
         <div className={chat}>
+          {renderingText()}
           {messages.map((mess) => showMessage(mess))}
           <div className={logged}>
             <form id="newMessage" method="POST">
@@ -155,6 +148,7 @@ const ChatPage = () => {
         </div>
       </div>
       <div className={chat}>
+        {renderingText()}
         {messages.map((mess) => showMessage(mess))}
         <p className={unlogged}>Login to send a message</p>
       </div>
