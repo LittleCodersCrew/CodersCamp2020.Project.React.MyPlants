@@ -1,5 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import Database from '../../database';
@@ -9,21 +10,38 @@ import SmallButton from '../SmallButton';
 
 const Buttons = ({ myProfile }) => {
   const { id } = useParams();
-  const { nid } = params();
+  const { nid } = useParams();
   const { token } = useToken();
   // const myId = JSON.parse(atob(token.split('.')[1])).id;
+  const [notes, setNotes] = useState([]);
+  const [note, setNote] = useState({
+    title: '',
+    text: '',
+    plant: '',
+    image: '',
+    timestamp: ''
+  });
+  notes.map((n) => note._id);
 
-  const handleClick = (note) => {
+  useEffect(() => {
+    fetch(`${Database.URL}/user/${id}/notes`, { headers: { Authorization: `Bearer ${token}` } }, {})
+      .then((res) => res.json())
+      .then((json) => {
+        setNotes(json);
+      });
+  }, [id, token]);
+
+  const handleClick = (n) => {
     const requestOptions = { method: 'DELETE' };
     fetch(`${Database.URL}/user/${id}/notes/${nid}`, requestOptions, { headers: { Authorization: `Bearer ${token}` } }, {})
       .then((response) => response.json())
-      .then((result) => { console.log('note deleted'); console.log(nid); });
+      .then((result) => { console.log(note._id); });
   };
 
   if (myProfile) {
     return (
       <div className={buttons}>
-        <SmallButton text="Delete" fontsize="0.7rem" onClick={() => handleClick(nid)} />
+        <SmallButton text="Delete" fontsize="0.7rem" onClick={handleClick(note.id)} />
         <SmallButton text="Edit" fontsize="0.7rem" />
       </div>
     );

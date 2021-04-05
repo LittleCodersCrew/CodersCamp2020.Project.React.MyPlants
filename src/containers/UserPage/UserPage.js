@@ -100,7 +100,7 @@ const UserPage = () => {
       <div className={friends}>
         <Text text="Login's favorite users" fontsize="1.5em" />
         <div className={users}>
-          {favourites.map((f) => showFavourite(f))}
+          {/* {favourites.map((f) => showFavourite(f))} */}
         </div>
       </div>
     </div>
