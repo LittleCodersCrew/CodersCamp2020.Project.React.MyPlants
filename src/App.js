@@ -8,13 +8,10 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
 import useToken from './hooks/useToken/useToken';
+import PlantPage from './containers/PlantPage';
 
 function Home() {
   return <h2>About</h2>;
-}
-
-function Plants() {
-  return <h2>Plants</h2>;
 }
 
 function Chat() {
@@ -66,8 +63,8 @@ const App = () => {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/plant" exact>
-          <Plants />
+        <Route path="/plant/:plantNameFromURL">
+          <PlantPage />
         </Route>
         <Route path="/chat" exact>
           <Chat />
