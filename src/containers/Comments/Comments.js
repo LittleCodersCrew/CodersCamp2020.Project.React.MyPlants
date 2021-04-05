@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classes from './comments.module.scss';
@@ -73,8 +72,7 @@ const Comments = ({ comments, plantId }) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newComment)
-    }).then((res) => console.log(res));
-    console.log(`${Database.URL}/plant/${plantId}/comments`, newComment);
+    });
     setNewComment({
       user: '',
       text: '',
