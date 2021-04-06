@@ -36,6 +36,7 @@ const Comments = ({ comments, plantId }) => {
     text: '',
     likes: []
   });
+  const [clearSignal, setClearSignal] = useState(false);
   const { token } = useToken();
   let currentUserId = '';
 
@@ -69,11 +70,7 @@ const Comments = ({ comments, plantId }) => {
       },
       body: JSON.stringify(newComment)
     });
-    setNewComment({
-      user: '',
-      text: '',
-      likes: []
-    });
+    setClearSignal((prevSignal) => !prevSignal);
   };
 
   return (
@@ -83,7 +80,7 @@ const Comments = ({ comments, plantId }) => {
         ? (
           <div>
             <form id="newComment" method="POST" className={classes.form}>
-              <TextArea text="Add your comment..." name="text" id="newComment" onChange={updateComment} />
+              <TextArea text="Add your comment..." name="text" id="newComment" onChange={updateComment} clearSignal={clearSignal} />
               <div>
                 <Button text="Send" type="submit" onClick={onSubmit} />
               </div>

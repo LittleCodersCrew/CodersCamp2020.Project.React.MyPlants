@@ -16,7 +16,21 @@ const PlantPage = () => {
         .then((res) => res.json())
         .then((json) => json.find((plant) => plant.name === plantName));
       setPlantDetails(details);
+
+      const fetchPlantSpecies = async (plantSpeciesId) => {
+        let species;
+        try {
+          species = await fetch(`${Database.URL}/species/${plantSpeciesId}`)
+            .then((res) => res.json())
+            .then((json) => json.name);
+          setPlantDetails((restDetails) => ({ ...restDetails, species }));
+        } catch (e) {
+          setPlantDetails((restDetails) => ({ ...restDetails, species: 'Unknown' }));
+        }
+      };
+      fetchPlantSpecies(details.species);
     };
+
     fetchPlantInfo(plantNameFromURL);
   }, [plantNameFromURL]);
 
