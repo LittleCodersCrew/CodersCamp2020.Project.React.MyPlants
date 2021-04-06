@@ -26,18 +26,18 @@ const Modal = (props) => {
   const { show, closeModal } = props;
 
   return (
-    <div className={show ? 'modal' : 'hide'}>
+    <div className={show ? 'showStyle' : 'hide'}>
       <div className={styles.modal}>
         <PlantInfo name="Chinese Money" latinName="Pilea peperomides" plantDetails={plantDetails} image={samplePlant} />
         <div className={styles.summary}>
-          <Button className={styles.button} text="Edit" />
-          <Button className={styles.button} text="Delete" />
+          <Button text="Edit" />
+          <Button text="Delete" />
         </div>
         <div className={styles.userMessage}>
           <Text text="Thank you for your participation!" fontsize="1.5em" />
           <Text text="As soon as it is verified by our team, this plant will be available for others in our base." fontsize="1.5em" />
         </div>
-        <Button className={styles.button} text="Save" onClick={closeModal} />
+        <Button text="Save" onClick={closeModal} />
       </div>
     </div>
   );

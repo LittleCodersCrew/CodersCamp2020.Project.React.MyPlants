@@ -21,23 +21,23 @@ const AddPlant = () => {
           <Text text="If you did not find your plant in our base, you can add it below." fontsize="2em" />
         </div>
         <Modal closeModal={closeModal} show={show} />
-        <Input className={styles.input} text="Name" />
-        <Input className={styles.input} text="Latin Name" />
-        <Select className={styles.select} title="Species" />
+        <Input text="Name" />
+        <Input text="Latin Name" />
+        <Select title="Species" />
       </div>
       <div className={styles.detailedInfo}>
-        <Select className={styles.select} title="Min temperature" values={[10, 15, 20]} />
-        <Select className={styles.select} title="Humidity" />
-        <Select className={styles.select} title="Watering" />
-        <Select className={styles.select} title="Application" />
-        <Select className={styles.select} title="Max Temperature" />
-        <Select className={styles.select} title="Sunlight" />
-        <Select className={styles.select} title="Watering Method" />
-        <Select className={styles.select} title="Subsoil" />
-        <Select className={styles.select} title="Conditioners" />
-        <Select className={styles.select} title="Spraying" />
-        <Select className={styles.select} title="Toxicity" />
-        <Select className={styles.select} title="Animals at home?" />
+        <Select title="Min temperature" values={[10, 15, 20]} />
+        <Select title="Humidity" />
+        <Select title="Watering" />
+        <Select title="Application" />
+        <Select title="Max Temperature" />
+        <Select title="Sunlight" />
+        <Select title="Watering Method" />
+        <Select title="Subsoil" />
+        <Select title="Conditioners" />
+        <Select title="Spraying" />
+        <Select title="Toxicity" />
+        <Select title="Animals at home?" />
       </div>
       <div className={styles.addPicture}>
         <div className={styles.plantPicture}>
@@ -47,11 +47,11 @@ const AddPlant = () => {
           <img src={RemovePic} alt="remove" style={{ height: '25px', width: '25px' }} />
         </div>
         <div className={styles.addBtn}>
-          <Button className={styles.button} text="Add picture" />
+          <Button text="Add picture" />
         </div>
       </div>
       <div className={styles.submit}>
-        {!show && <Button className={styles.button} text="Add your plant" onClick={openModal} />}
+        {!show && <Button text="Add your plant" onClick={openModal} />}
       </div>
     </div>
   );

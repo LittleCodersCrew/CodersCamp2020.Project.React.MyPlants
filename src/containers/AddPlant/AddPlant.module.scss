@@ -16,14 +16,16 @@
 }
 
 .detailedInfo {
-  padding: 1em;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  width: 90%;
-  padding: 10px;
-  margin: auto;
-  margin-bottom: 1em;
+  justify-content: center;
+  width: 1033px;
+  margin: 0 auto;
+
+  > * {
+    flex-basis: calc(20% - 20px);
+    margin: 5px 10px;
+  }
 }
 
 .addPicture {
