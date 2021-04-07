@@ -1,21 +1,26 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import AuthorsPage from './containers/AuthorsPage';
-import useToken from './hooks/useToken/useToken';
+import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import ChatPage from './containers/ChatPage';
+
 import Database from './database';
+
+import useToken from './hooks/useToken/useToken';
 
 function Home() {
   return <h2>About</h2>;
 }
 
-function Plants() {
-  return <h2>Plants</h2>;
+function Chat() {
+  return <h2>Chat</h2>;
 }
 
 function Garden() {
@@ -41,17 +46,31 @@ function Logout() {
 }
 
 const App = () => {
-  const [userName, setUserName] = useState('');
-  const { token } = useToken();
+  const [userName, setUserName] = useState('Test');
+  const { token, setToken } = useToken();
 
-  useEffect(() => {
-    if (token) {
-      const userId = JSON.parse(atob(token.split('.')[1])).id;
-      fetch(`${Database.URL}/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } }, {})
-        .then((data) => data.json())
-        .then((json) => setUserName(json.name));
-    }
-  });
+  if (!token) {
+    return (
+      <>
+        <Switch>
+          <Route path="/login" exact>
+            <LoginPage setToken={setToken} />
+          </Route>
+          <Route path="/register" exact>
+            <RegisterPage />
+          </Route>
+          <Route path="/plant" exact>
+            <Navbar />
+            <SearchPlantsPage />
+            <Footer />
+          </Route>
+          <Route path="/">
+            <Redirect to="/login" />
+          </Route>
+        </Switch>
+      </>
+    );
+  }
 
   return (
     <>
@@ -61,7 +80,7 @@ const App = () => {
           <Home />
         </Route>
         <Route path="/plant" exact>
-          <Plants />
+          <SearchPlantsPage />
         </Route>
         <Route path="/chat" exact>
           <ChatPage />
@@ -74,9 +93,6 @@ const App = () => {
         </Route>
         <Route path="/register" exact>
           <RegisterPage />
-        </Route>
-        <Route path="/login" exact>
-          <LoginPage />
         </Route>
         <Route path="/events" exact>
           <Calendar />
