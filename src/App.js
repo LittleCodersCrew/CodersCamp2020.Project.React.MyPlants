@@ -1,13 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
-import AuthorsList from './components/AuthorsList';
 import Footer from './components/Footer';
-import Login from './components/Login';
-import Register from './components/Register';
-import SearchPlants from './containers/SearchPlants/SearchPlants';
+
+import LoginPage from './containers/LoginPage';
+import RegisterPage from './containers/RegisterPage';
+import AuthorsPage from './containers/AuthorsPage';
+import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
+import ChatPage from './containers/ChatPage';
+
+import Database from './database';
 
 import useToken from './hooks/useToken/useToken';
 
@@ -35,6 +39,12 @@ function Profile() {
   return <h2>Profile</h2>;
 }
 
+function Logout() {
+  localStorage.removeItem('token');
+  window.location.replace('/');
+  return null;
+}
+
 const App = () => {
   const [userName, setUserName] = useState('Test');
   const { token, setToken } = useToken();
@@ -44,14 +54,14 @@ const App = () => {
       <>
         <Switch>
           <Route path="/login" exact>
-            <Login setToken={setToken} />
+            <LoginPage setToken={setToken} />
           </Route>
           <Route path="/register" exact>
-            <Register />
+            <RegisterPage />
           </Route>
           <Route path="/plant" exact>
             <Navbar />
-            <SearchPlants />
+            <SearchPlantsPage />
             <Footer />
           </Route>
           <Route path="/">
@@ -70,10 +80,10 @@ const App = () => {
           <Home />
         </Route>
         <Route path="/plant" exact>
-          <SearchPlants />
+          <SearchPlantsPage />
         </Route>
         <Route path="/chat" exact>
-          <Chat />
+          <ChatPage />
         </Route>
         <Route path="/garden" exact>
           <Garden />
@@ -82,7 +92,7 @@ const App = () => {
           <Users />
         </Route>
         <Route path="/register" exact>
-          <Register />
+          <RegisterPage />
         </Route>
         <Route path="/events" exact>
           <Calendar />
@@ -90,8 +100,11 @@ const App = () => {
         <Route path="/myprofile" exact>
           <Profile />
         </Route>
+        <Route path="/logout" exact>
+          <Logout />
+        </Route>
         <Route path="/authors" exact>
-          <AuthorsList />
+          <AuthorsPage />
         </Route>
       </Switch>
       <Footer />
