@@ -5,7 +5,7 @@
 .title {
   font-family: 'Abhaya Libre', serif;
   font-weight: 200;
-  margin-bottom: 1.5em;
+  margin-bottom: 2em;
 }
 
 .basicInfo {
@@ -13,6 +13,14 @@
   margin: 1px auto;
   padding-bottom: 1em;
   text-align: center;
+
+  > * {
+    margin: 5px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Pompiere', 'serif';
+    font-size: 1.5em;
+  }
 }
 
 .detailedInfo {
@@ -21,10 +29,11 @@
   justify-content: center;
   width: 1033px;
   margin: 0 auto;
+  margin-bottom: 1em;
 
   > * {
     flex-basis: calc(20% - 20px);
-    margin: 5px 10px;
+    margin: 10px 30px;
   }
 }
 
@@ -76,4 +85,8 @@
 
 .submitButton {
   padding: 50% 0;
+}
+
+.show {
+  display: block;
 }

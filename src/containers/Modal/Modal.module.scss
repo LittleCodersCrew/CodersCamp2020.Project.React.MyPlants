@@ -1,13 +1,3 @@
-.modal {
-  height: 60%;
-  width: 90%;
-  border-radius: 10px;
-  border: 1px solid black;
-  box-shadow: 2px 3px lightgreen;
-  padding: 2em;
-  text-align: center;
-}
-
 .button {
   margin: 10px;
   padding: 10px;
@@ -15,6 +5,10 @@
 
 .summary {
   text-align: center;
+
+  > * {
+    margin: 10px;
+  }
 }
 
 .userMessage {
@@ -29,8 +23,14 @@
   margin: 1em;
 }
 
-.showStyle {
-  display: block;
+.modal {
+  height: 60%;
+  width: 90%;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 2px 3px lightgreen;
+  padding: 2em;
+  text-align: center;
 }
 
 .hide {
