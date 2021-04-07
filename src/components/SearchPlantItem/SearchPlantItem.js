@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { searchPlantItemContainer, itemHeader, itemHeaderTitle, itemContent, itemList, itemListItem, itemFooter } from './SearchPlantItem.module.scss';
 
-import Text from '../../components/Text';
+import Text from '../Text';
 
 import Image from '../../assets/illustrations/plant-leaf.png';
 

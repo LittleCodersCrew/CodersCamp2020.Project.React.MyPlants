@@ -5,7 +5,7 @@ import Text from '../../components/Text';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
-import SearchPlantItem from '../SearchPlantItem/SearchPlantItem';
+import SearchPlantItem from '../../components/SearchPlantItem/SearchPlantItem';
 
 import Database from '../../database';
 import iconNoSearch from '../../assets/illustrations/icon - no search.png';
@@ -25,8 +25,7 @@ const SearchPlants = () => {
       array.splice(index, 1);
       if (array.length === 0) break;
     }
-    return [];
-    // return result;
+    return result;
   };
 
   useEffect(() => {
