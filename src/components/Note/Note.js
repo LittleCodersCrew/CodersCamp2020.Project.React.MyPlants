@@ -1,3 +1,4 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
@@ -60,10 +61,11 @@ const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture, noteId })
 
   return (
     <div className={noteContainer}>
-      <p className={mainText}>{noteTitle}</p>
+      <h1 className={mainText}>{noteTitle}</h1>
       <p className={mainText}>{noteText}</p>
       <p className={mainText}>
-        `Plant: `
+        Plant:
+        &nbsp;
         {notePlant}
       </p>
       <ExistingPic />

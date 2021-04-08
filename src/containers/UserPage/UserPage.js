@@ -1,3 +1,8 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-shadow */
+/* eslint-disable no-console */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
@@ -43,19 +48,40 @@ const UserPage = () => {
   const [favourite, setFavourite] = useState({ name: '' });
 
   useEffect(() => {
-    fetch(`${Database.URL}/user/${id}/notes`,
-      {
-        headers:
+    async function fetchNotes() {
+      let notes = [];
+
+      await fetch(`${Database.URL}/user/${id}/notes`,
+        {
+          headers:
         {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
-      }, {})
-      .then((res) => res.json())
-      .then((json) => {
-        setNotes(json);
-      });
-  }, [id, token]);
+        }, {})
+        .then((res) => res.json())
+        .then((json) => {
+          notes = json;
+        });
+
+      async function fetchPlantName(pid) {
+        return fetch(`${Database.URL}/plant/${pid}`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }).then((res) => res.json())
+          .then((json) => json.name);
+      }
+      for (const n of notes) {
+        const plantName = await fetchPlantName(n.plant);
+        n.plant = plantName;
+      }
+      setNotes(notes);
+    }
+    fetchNotes();
+  }, []);
 
   const showNote = (n) => (
     <Note
@@ -102,10 +128,6 @@ const UserPage = () => {
       <div className={garden}>
         <Text text="Login's garden" fontsize="1.5em" />
         <div className={plants}>
-          <PlantProfile name="Name" image={profileleaf} />
-          <PlantProfile name="Name" image={profileleaf} />
-          <PlantProfile name="Name" image={profileleaf} />
-          <PlantProfile name="Name" image={profileleaf} />
           <PlantProfile name="Name" image={profileleaf} />
         </div>
       </div>
