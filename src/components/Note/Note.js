@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
@@ -9,40 +10,31 @@ import useToken from '../../hooks/useToken/useToken';
 import { noteContainer, mainText, signText, sign, buttons } from './Note.module.scss';
 import SmallButton from '../SmallButton';
 
-const Buttons = ({ myProfile }) => {
+const Buttons = ({ myProfile, getNoteId }) => {
   const { id } = useParams();
   const { token } = useToken();
   const myId = JSON.parse(atob(token.split('.')[1])).id;
-  const [notes, setNotes] = useState([]);
-  const [note, setNote] = useState({
-    title: '',
-    text: '',
-    plant: '',
-    image: '',
-    timestamp: '',
-    nid: ''
-  });
 
-  useEffect(() => {
-    fetch(`${Database.URL}/user/${id}/notes`, { headers: { Authorization: `Bearer ${token}` } }, {})
-      .then((res) => res.json())
-      .then((json) => {
-        setNotes(json);
-      });
-  }, [id, token]);
-
-  const handleClick = (n) => {
-    const requestOptions = { method: 'DELETE' };
-    fetch(`${Database.URL}/user/${id}/notes/${note.nid}`, requestOptions, { headers: { Authorization: `Bearer ${token}` } }, {})
-      .then((response) => response.json())
-      .then((result) => { console.log(note.nid); });
-  };
+  const handleClick = () => fetch(`${Database.URL}/user/${myId}/notes/${getNoteId}`, {
+    method: 'DELETE',
+    headers:
+        {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+  }, {})
+    .then((data) => {
+      if (data.status === 200) {
+        window.location.reload();
+      }
+      return data.json();
+    });
 
   if (myProfile) {
     return (
       <div className={buttons}>
-        <SmallButton text="Delete" fontsize="0.7rem" onClick={handleClick(note.nid)} />
-        <SmallButton text="Edit" fontsize="0.7rem" />
+        <SmallButton type="button" text="Delete" fontsize="0.7rem" onClick={handleClick} />
+        <SmallButton type="button" text="Edit" fontsize="0.7rem" onClick={null} />
       </div>
     );
   }
@@ -51,7 +43,7 @@ const Buttons = ({ myProfile }) => {
   );
 };
 
-const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture, nid }) => {
+const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture, noteId }) => {
   const { id } = useParams();
   const { token } = useToken();
   const myId = JSON.parse(atob(token.split('.')[1])).id;
@@ -64,6 +56,8 @@ const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture, nid }) =>
     return <p />;
   };
 
+  const getNoteId = (n) => n;
+
   return (
     <div className={noteContainer}>
       <p className={mainText}>{noteTitle}</p>
@@ -75,13 +69,16 @@ const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture, nid }) =>
       <ExistingPic />
       <div className={sign}>
         <p className={signText}>{noteDate}</p>
-        <Buttons myProfile={isMyProfile(id)} />
+        <Buttons myProfile={isMyProfile(id)} getNoteId={noteId} />
       </div>
     </div>
   );
 };
 
-Buttons.propTypes = { myProfile: PropTypes.bool.isRequired };
+Buttons.propTypes = {
+  myProfile: PropTypes.bool.isRequired,
+  getNoteId: PropTypes.number.isRequired
+};
 
 Note.propTypes = {
   noteText: PropTypes.string.isRequired,
@@ -89,7 +86,7 @@ Note.propTypes = {
   notePlant: PropTypes.string.isRequired,
   noteTitle: PropTypes.string.isRequired,
   notePicture: PropTypes.string,
-  nid: PropTypes.number.isRequired
+  noteId: PropTypes.number.isRequired
 };
 
 Note.defaultProps = { notePicture: '' };

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
@@ -42,7 +43,14 @@ const UserPage = () => {
   const [favourite, setFavourite] = useState({ name: '' });
 
   useEffect(() => {
-    fetch(`${Database.URL}/user/${id}/notes`, { headers: { Authorization: `Bearer ${token}` } }, {})
+    fetch(`${Database.URL}/user/${id}/notes`,
+      {
+        headers:
+        {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }, {})
       .then((res) => res.json())
       .then((json) => {
         setNotes(json);
@@ -56,12 +64,19 @@ const UserPage = () => {
       notePlant={n.plant}
       notePicture={n.image}
       noteDate={n.timestamp.substr(0, 10)}
-      nid={n.id}
+      noteId={n._id}
     />
   );
 
   useEffect(() => {
-    fetch(`${Database.URL}/user/${id}/favourites`, { headers: { Authorization: `Bearer ${token}` } }, {})
+    fetch(`${Database.URL}/user/${id}/favourites`,
+      {
+        headers:
+      {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+      }, {})
       .then((res) => res.json())
       .then((json) => {
         setFavourites(json);
@@ -92,7 +107,6 @@ const UserPage = () => {
           <PlantProfile name="Name" image={profileleaf} />
           <PlantProfile name="Name" image={profileleaf} />
           <PlantProfile name="Name" image={profileleaf} />
-          <SmallButton text="+ 12 more" fontsize="1.5em" />
         </div>
       </div>
       <div className={friends}>

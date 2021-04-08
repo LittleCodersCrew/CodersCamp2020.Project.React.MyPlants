@@ -81,7 +81,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
         <Text text={userLogin} fontsize="2em" />
         <Text text={userName} fontsize="1.5em" />
         <div>
-          <SmallButton text="Edit profile" fontsize="1.5em" />
+          <SmallButton type="button" text="Edit profile" fontsize="1.5em" onClick={null} />
         </div>
         <div>
           <form className={addNote} id="newNote" method="POST" onSubmit={handleSubmit(onSubmit)}>
@@ -147,6 +147,8 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
         <SmallButton
           text={isFavourite ? 'Delete from favourites' : 'Add to favourites'}
           fontsize="1.5em"
+          type="button"
+          onClick={null}
         />
       </div>
     </div>
