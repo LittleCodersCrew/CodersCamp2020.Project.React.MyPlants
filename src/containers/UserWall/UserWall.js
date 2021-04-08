@@ -122,7 +122,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
               />
               <TextArea
                 className={adding}
-                text="Which plant is it about?"
+                text="Which plant?"
                 name="plant"
                 height="3em"
                 value={note.plant}

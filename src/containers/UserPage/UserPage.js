@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -80,7 +81,7 @@ const UserPage = () => {
       <div className={journal}>
         <Text text="Login's journal" fontsize="1.5em" />
         <div className={notesStyle}>
-          {notes.map((n) => showNote(n)).reverse()}
+          {/* {(notes.length >= 1) ? notes.map((n) => showNote(n)).reverse() : <Text text="Journal is empty :(" fontsize="1.4em" />} */}
         </div>
       </div>
       <div className={garden}>
@@ -97,7 +98,7 @@ const UserPage = () => {
       <div className={friends}>
         <Text text="Login's favorite users" fontsize="1.5em" />
         <div className={users}>
-          {favourites.map((f) => showFavourite(f))}
+          {/* {(favourites.length >= 1) ? favourites.map((f) => showFavourite(f)) : <Text text="No favourite users yet" fontsize="1em" />} */}
         </div>
       </div>
     </div>
