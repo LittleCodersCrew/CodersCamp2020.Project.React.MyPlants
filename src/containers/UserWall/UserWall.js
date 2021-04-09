@@ -110,6 +110,11 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
+      }).then((data) => {
+        if (data.status === 200) {
+          window.location.reload();
+        }
+        return data.json();
       });
     } else {
       fetch(`${Database.URL}/user/${myId}/favourites`, {
@@ -119,6 +124,11 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ user: id })
+      }).then((data) => {
+        if (data.status === 200) {
+          window.location.reload();
+        }
+        return data.json();
       });
     }
   };
