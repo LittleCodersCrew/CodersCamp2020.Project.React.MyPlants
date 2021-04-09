@@ -1,17 +1,13 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-shadow */
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
 
-import SmallButton from '../../components/SmallButton';
 import Text from '../../components/Text';
 import Note from '../../components/Note';
 import PlantProfile from '../../components/PlantProfile';
@@ -81,7 +77,7 @@ const UserPage = () => {
       setNotes(notes);
     }
     fetchNotes();
-  }, []);
+  }, [id, token]);
 
   const showNote = (n) => (
     <Note
