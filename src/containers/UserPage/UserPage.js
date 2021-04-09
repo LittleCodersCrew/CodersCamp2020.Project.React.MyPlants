@@ -47,6 +47,7 @@ const UserPage = () => {
   const [myPlant, setMyPlant] = useState({ name: '' });
   const [myFavourites, setMyFavourites] = useState([]);
   const [myFavourite, setMyFavourite] = useState({ user: '' });
+  const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
     async function fetchNotes() {
@@ -125,16 +126,6 @@ const UserPage = () => {
       });
   }, []);
 
-  const showFavourite = (f) => {
-    const giveUsersId = myFavourites.map((f) => f.user);
-    return (<UserProfile usersId={giveUsersId} userName="hi" />);
-    console.log(giveUsersId);
-  };
-
-  const showMyPlants = (p) => (
-    <PlantProfile user={p.user} />
-  );
-
   useEffect(() => {
     fetch(`${Database.URL}/user/${myId}/favourites`,
       {
@@ -149,6 +140,16 @@ const UserPage = () => {
         setMyFavourites(json);
       });
   }, [id, token]);
+
+  const showFavourite = (f) => {
+    const giveUsersId = myFavourites.map((f) => f.user);
+    return (<UserProfile usersId={giveUsersId} usersName="hi" />);
+    console.log(giveUsersId);
+  };
+
+  const showMyPlants = (p) => (
+    <PlantProfile user={p.user} />
+  );
 
   const myProfile = (userId) => (userId === myId);
 
