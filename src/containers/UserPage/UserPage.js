@@ -85,7 +85,7 @@ const UserPage = () => {
       noteText={n.text}
       notePlant={n.plant}
       notePicture={n.image}
-      noteDate={n.timestamp.substr(0, 10)}
+      noteDate={n.timestamp}
       noteId={n._id}
     />
   );

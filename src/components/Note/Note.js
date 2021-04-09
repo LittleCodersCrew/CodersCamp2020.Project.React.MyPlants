@@ -66,7 +66,7 @@ const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture, noteId })
       </p>
       <ExistingPic />
       <div className={sign}>
-        <p className={signText}>{noteDate}</p>
+        <p className={signText}>{`${noteDate.split('T')[0]} ${noteDate.split('T')[1].split('.')[0]}`}</p>
         <Buttons myProfile={isMyProfile(id)} getNoteId={noteId} />
       </div>
     </div>
