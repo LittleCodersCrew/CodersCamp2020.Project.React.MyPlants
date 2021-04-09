@@ -1,9 +1,5 @@
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-console */
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import Database from '../../database';
@@ -34,8 +30,8 @@ const Buttons = ({ myProfile, getNoteId }) => {
   if (myProfile) {
     return (
       <div className={buttons}>
-        <SmallButton type="button" text="Delete" fontsize="0.7rem" onClick={handleClick} />
-        <SmallButton type="button" text="Edit" fontsize="0.7rem" onClick={null} />
+        <SmallButton type="button" text="Delete" fontsize="0.9rem" onClick={handleClick} />
+        <SmallButton type="button" text="Edit" fontsize="0.9rem" onClick={null} />
       </div>
     );
   }
