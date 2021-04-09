@@ -83,8 +83,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
   //  Favourites
 
   const handleFavourite = () => {
-    if (user.isFavourite) {
-      const favId = user.favourites.find((fav) => favourites.user === id)._id;
+    if (isFavourite) {
       fetch(`${Database.URL}/user/${myId}/favourites/${id}`, {
         method: 'DELETE',
         headers: {
@@ -177,7 +176,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
           text={isFavourite ? 'Delete from favourites' : 'Add to favourites'}
           fontsize="1.5em"
           type="button"
-          onClick={null}
+          onClick={handleFavourite}
         />
       </div>
     </div>

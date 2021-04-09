@@ -15,8 +15,6 @@ import PlantProfile from '../../components/PlantProfile';
 import UserProfile from '../../components/UserProfile';
 import UserWall from '../UserWall';
 
-import profileleaf from '../../assets/illustrations/plant-leaf.png';
-
 import {
   mainContainer,
   header,
@@ -44,7 +42,9 @@ const UserPage = () => {
   const [favourites, setFavourites] = useState([]);
   const [favourite, setFavourite] = useState({ name: '' });
   const [myPlants, setMyPlants] = useState([]);
-  const [myPplant, setMyPlant] = useState({ name: '' });
+  const [myPlant, setMyPlant] = useState({ name: '' });
+  const [myFavourites, setMyFavourites] = useState([]);
+  const [myFavourite, setMyFavourite] = useState({ user: '' });
 
   useEffect(() => {
     async function fetchNotes() {
@@ -131,7 +131,25 @@ const UserPage = () => {
     <PlantProfile name={p.name} />
   );
 
+  useEffect(() => {
+    fetch(`${Database.URL}/user/${myId}/favourites`,
+      {
+        headers:
+    {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+      }, {})
+      .then((res) => res.json())
+      .then((json) => {
+        setMyFavourites(json);
+      });
+  }, [id, token]);
+
   const myProfile = (userId) => (userId === myId);
+
+  const isFavourite = (userId) => (myFavourites.forEach((f) => f.user === userId));
+
   return (
     <div className={mainContainer}>
       <header className={header}>
@@ -146,7 +164,6 @@ const UserPage = () => {
       <div className={garden}>
         <Text text="Login's garden" fontsize="1.5em" />
         <div className={plants}>
-          <PlantProfile name="Name" image={profileleaf} />
           {(myPlants.length >= 1) ? myPlants.map((p) => showMyPlants(p)) : <Text text="Garden is empty" fontsize="1em" />}
         </div>
       </div>
