@@ -2,20 +2,18 @@
   height: 70px;
   width: 100%;
   padding: 0 2vh;
-  position: fixed;
-  bottom: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: 'Abhaya Libre', serif;
-};
+}
 
 .container {
   display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
-};
+}
 
 .link {
   color: rgb(14, 52, 22);
@@ -25,7 +23,7 @@
   &.clicked {
     text-shadow: 5px 5px 4px rgba(13, 244, 106, 0.51);
   }
-};
+}
 
 .copyright {
   color: rgb(14, 52, 22);
