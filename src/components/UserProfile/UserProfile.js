@@ -7,15 +7,18 @@ import { user, userImage } from './UserProfile.module.scss';
 
 import profile from '../../assets/icons/Profile.png';
 
-const UserProfile = ({ name }) => (
+const UserProfile = ({ usersId, usersName }) => (
   <div className={user}>
-    <Link to={user / { name }}>
+    <Link to={user / usersId}>
       <img className={userImage} src={profile} alt="Profile" height="80rem" width="80rem" />
-      <SmallButton text={name} fontsize="1.5em" />
+      <SmallButton text={usersName} fontsize="1.5em" />
     </Link>
   </div>
 );
 
-UserProfile.propTypes = { name: PropTypes.string.isRequired };
+UserProfile.propTypes = {
+  usersId: PropTypes.number.isRequired,
+  usersName: PropTypes.string.isRequired
+};
 
 export default UserProfile;

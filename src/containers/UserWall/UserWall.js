@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
@@ -39,6 +40,9 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     image: '',
     private: false
   });
+  const [myFavourites, setMyFavourites] = useState([]);
+  const [myFavourite, setMyFavourite] = useState({ user: '' });
+
   const { id } = useParams();
   const { token } = useToken();
   const myId = JSON.parse(atob(token.split('.')[1])).id;
@@ -82,9 +86,25 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
 
   //  Favourites
 
+  useEffect(() => {
+    fetch(`${Database.URL}/user/${myId}/favourites`,
+      {
+        headers:
+    {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+      }, {})
+      .then((res) => res.json())
+      .then((json) => {
+        setMyFavourites(json);
+      });
+  }, [id, token]);
+
   const handleFavourite = () => {
     if (isFavourite) {
-      fetch(`${Database.URL}/user/${myId}/favourites/${id}`, {
+      const favouriteId = myFavourites.find((favourite) => favourite.user === id)._id;
+      fetch(`${Database.URL}/user/${myId}/favourites/${favouriteId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -92,13 +112,13 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
         }
       });
     } else {
-      fetch(`${Database.URL}/user/${myId}`, {
-        method: 'DELETE',
+      fetch(`${Database.URL}/user/${myId}/favourites`, {
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ user: { id } })
+        body: JSON.stringify({ user: id })
       });
     }
   };

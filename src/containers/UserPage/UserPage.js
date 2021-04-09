@@ -1,3 +1,5 @@
+/* eslint-disable no-unreachable */
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-shadow */
@@ -40,7 +42,7 @@ const UserPage = () => {
     nid: ''
   });
   const [favourites, setFavourites] = useState([]);
-  const [favourite, setFavourite] = useState({ name: '' });
+  const [favourite, setFavourite] = useState({ user: '' });
   const [myPlants, setMyPlants] = useState([]);
   const [myPlant, setMyPlant] = useState({ name: '' });
   const [myFavourites, setMyFavourites] = useState([]);
@@ -123,12 +125,14 @@ const UserPage = () => {
       });
   }, []);
 
-  const showFavourite = (f) => (
-    <UserProfile name={f.name} />
-  );
+  const showFavourite = (f) => {
+    const giveUsersId = myFavourites.map((f) => f.user);
+    return (<UserProfile usersId={giveUsersId} userName="hi" />);
+    console.log(giveUsersId);
+  };
 
   const showMyPlants = (p) => (
-    <PlantProfile name={p.name} />
+    <PlantProfile user={p.user} />
   );
 
   useEffect(() => {
@@ -148,12 +152,12 @@ const UserPage = () => {
 
   const myProfile = (userId) => (userId === myId);
 
-  const isFavourite = (userId) => (myFavourites.forEach((f) => f.user === userId));
+  const isFavourite = (userId) => (myFavourites.find((f) => f.user === userId));
 
   return (
     <div className={mainContainer}>
       <header className={header}>
-        <UserWall isMyProfile={myProfile(id)} isFavourite={false} />
+        <UserWall isMyProfile={myProfile(id)} isFavourite={isFavourite(id)} />
       </header>
       <div className={journal}>
         <Text text="Login's journal" fontsize="1.5em" />
