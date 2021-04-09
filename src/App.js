@@ -8,6 +8,7 @@ import RegisterPage from './containers/RegisterPage';
 import AuthorsPage from './containers/AuthorsPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import ChatPage from './containers/ChatPage';
+import CalendarPage from './containers/CalendarPage';
 import useToken from './hooks/useToken/useToken';
 import Database from './database';
 
@@ -17,10 +18,6 @@ function Garden() {
 
 function Users() {
   return <h2>Users</h2>;
-}
-
-function Calendar() {
-  return <h2>Calendar</h2>;
 }
 
 function Profile() {
@@ -72,7 +69,7 @@ const App = () => {
           <LoginPage />
         </Route>
         <Route path="/events" exact>
-          <Calendar />
+          <CalendarPage />
         </Route>
         <Route path="/myprofile" exact>
           <Profile />
