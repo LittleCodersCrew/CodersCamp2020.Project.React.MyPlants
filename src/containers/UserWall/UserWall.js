@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -39,6 +41,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
   });
   const { id } = useParams();
   const { token } = useToken();
+  const myId = JSON.parse(atob(token.split('.')[1])).id;
 
   useEffect(() => {
     if (token) {
@@ -50,6 +53,8 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
         });
     }
   });
+
+  // Adding notes
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -73,6 +78,30 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
 
   const handleChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
+  };
+
+  //  Favourites
+
+  const handleFavourite = () => {
+    if (user.isFavourite) {
+      const favId = user.favourites.find((fav) => favourites.user === id)._id;
+      fetch(`${Database.URL}/user/${myId}/favourites/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+    } else {
+      fetch(`${Database.URL}/user/${myId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user: { id } })
+      });
+    }
   };
 
   if (isMyProfile) {

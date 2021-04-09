@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-shadow */
 /* eslint-disable no-restricted-syntax */
@@ -42,6 +43,8 @@ const UserPage = () => {
   });
   const [favourites, setFavourites] = useState([]);
   const [favourite, setFavourite] = useState({ name: '' });
+  const [myPlants, setMyPlants] = useState([]);
+  const [myPplant, setMyPlant] = useState({ name: '' });
 
   useEffect(() => {
     async function fetchNotes() {
@@ -105,8 +108,27 @@ const UserPage = () => {
       });
   }, [id, token]);
 
+  useEffect(() => {
+    fetch(`${Database.URL}/users/${id}/plants`,
+      {
+        headers:
+    {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+      }, {})
+      .then((res) => res.json())
+      .then((json) => {
+        setMyPlants(json);
+      });
+  }, []);
+
   const showFavourite = (f) => (
     <UserProfile name={f.name} />
+  );
+
+  const showMyPlants = (p) => (
+    <PlantProfile name={p.name} />
   );
 
   const myProfile = (userId) => (userId === myId);
@@ -125,6 +147,7 @@ const UserPage = () => {
         <Text text="Login's garden" fontsize="1.5em" />
         <div className={plants}>
           <PlantProfile name="Name" image={profileleaf} />
+          {(myPlants.length >= 1) ? myPlants.map((p) => showMyPlants(p)) : <Text text="Garden is empty" fontsize="1em" />}
         </div>
       </div>
       <div className={friends}>
