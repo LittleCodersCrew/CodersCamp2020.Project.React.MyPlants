@@ -13,6 +13,8 @@ import {
   isSameDay
 } from 'date-fns';
 import styles, { daysOfMonth, disabled, today, selected } from './Calendar.module.scss';
+import ArrowLeft from '../../assets/icons/ArrowLeft.png';
+import ArrowRight from '../../assets/icons/ArrowRight.png';
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -25,13 +27,7 @@ const Calendar = () => {
   const header = () => (
     <div className={styles.header}>
       <div>
-        <button onClick={prevMonth}>left</button>
-      </div>
-      <div>
         <span>{format(currentDate, 'MMMM yyyy')}</span>
-      </div>
-      <div>
-        <button onClick={nextMonth}>right</button>
       </div>
     </div>
   );
@@ -110,10 +106,18 @@ const Calendar = () => {
   };
 
   return (
-    <div className={styles.calendar}>
-      <div>{header()}</div>
-      <div>{daysOfWeek()}</div>
-      <div>{cells()}</div>
+    <div className={styles.wrapper}>
+      <button onClick={prevMonth}>
+        <img src={ArrowLeft} alt="left" />
+      </button>
+      <div className={styles.calendar}>
+        <div>{header()}</div>
+        <div>{daysOfWeek()}</div>
+        <div>{cells()}</div>
+      </div>
+      <button onClick={nextMonth}>
+        <img src={ArrowRight} alt="right" />
+      </button>
     </div>
   );
 };
