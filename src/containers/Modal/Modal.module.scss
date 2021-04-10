@@ -24,7 +24,9 @@
 }
 
 .modal {
-  height: 60%;
+  position: absolute;
+  background-color: #fff;
+  z-index: 1;
   width: 90%;
   border-radius: 10px;
   border: 1px solid black;

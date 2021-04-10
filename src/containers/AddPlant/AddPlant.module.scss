@@ -87,6 +87,16 @@
   padding: 50% 0;
 }
 
+.modal {
+  height: 60%;
+  width: 90%;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 2px 3px lightgreen;
+  padding: 2em;
+  text-align: center;
+}
+
 .show {
   display: block;
 }
