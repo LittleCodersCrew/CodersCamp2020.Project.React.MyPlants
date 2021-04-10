@@ -38,7 +38,7 @@ const NewPlantsPage = () => {
     }
 
     fetchPlants();
-  }, [token]);
+  }, [token, newPlants]);
 
   return (
     <div className={wrapper}>
