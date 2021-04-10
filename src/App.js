@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.scss';
@@ -33,17 +34,28 @@ function Logout() {
   return null;
 }
 
+function Admin() {
+  return <h2>Admin</h2>;
+}
+
 const App = () => {
   const [userName, setUserName] = useState('');
+  // const [ifAdmin, setIfAdmin] = useState();
   const { token } = useToken();
 
   useEffect(() => {
     if (token) {
       const userId = JSON.parse(atob(token.split('.')[1])).id;
-      fetch(`${Database.URL}/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } }, {})
+      fetch(`${Database.URL}/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }, {})
         .then((data) => data.json())
         .then((json) => setUserName(json.name));
     }
+    console.log(userName);
   });
 
   return (
@@ -82,6 +94,9 @@ const App = () => {
         </Route>
         <Route path="/authors" exact>
           <AuthorsPage />
+        </Route>
+        <Route path="/admin" exact>
+          <Admin />
         </Route>
       </Switch>
       <Footer />

@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-console */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
@@ -9,6 +11,7 @@ import Users from '../../assets/icons/3 User.png';
 import Calendar from '../../assets/icons/Calendar.png';
 import Leaf from '../../assets/icons/Leaf.png';
 import Logout from '../../assets/icons/Logout.png';
+import Crown from '../../assets/icons/Crown.png';
 
 const createItem = (path, location, linkName, src, alt) => {
   const classes = [link, location === path ? clicked : ''];
@@ -23,14 +26,19 @@ const createItem = (path, location, linkName, src, alt) => {
   );
 };
 
-const Navbar = ({ name }) => {
+const Navbar = ({ name, admin }) => {
   const location = useLocation().pathname;
 
-  const items = name === '' ? [
+  const checkAdmin = admin === false ? [
+    ['/garden', location, 'My garden', Leaf, 'leaf'],
+    ['/users', location, 'Users', Users, 'users'],
+    ['/events', location, 'Events', Calendar, 'calendar'],
     ['/plant', location, 'Plants', Search, 'search'],
     ['/chat', location, 'Chat', Chat, 'chat'],
-    ['/login', location, 'Login', Profile, 'profile']
+    ['/myprofile', location, name, Profile, 'profile'],
+    ['/logout', location, 'Logout', Logout, 'logout']
   ] : [
+    ['/options', location, 'Options', Crown, 'crown'],
     ['/garden', location, 'My garden', Leaf, 'leaf'],
     ['/users', location, 'Users', Users, 'users'],
     ['/events', location, 'Events', Calendar, 'calendar'],
@@ -39,6 +47,12 @@ const Navbar = ({ name }) => {
     ['/myprofile', location, name, Profile, 'profile'],
     ['/logout', location, 'Logout', Logout, 'logout']
   ];
+
+  const items = name === '' ? [
+    ['/plant', location, 'Plants', Search, 'search'],
+    ['/chat', location, 'Chat', Chat, 'chat'],
+    ['/login', location, 'Login', Profile, 'profile']
+  ] : checkAdmin;
 
   return (
     <nav>
@@ -49,8 +63,14 @@ const Navbar = ({ name }) => {
   );
 };
 
-Navbar.propTypes = { name: PropTypes.string };
+Navbar.propTypes = {
+  name: PropTypes.string,
+  admin: PropTypes.bool
+};
 
-Navbar.defaultProps = { name: '' };
+Navbar.defaultProps = {
+  name: '',
+  admin: false
+};
 
 export default Navbar;
