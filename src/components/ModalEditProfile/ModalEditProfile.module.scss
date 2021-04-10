@@ -15,12 +15,12 @@
 .modal {
   display: block;
   width: 40vw;
-  height: 60vh;
+  height: 70vh;
   position: absolute;
-  top: 15%;
+  top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #fff;
-  transform: translateX(-50%);
   border: 1px solid #0e3416;
   box-shadow: 5px 5px 4px rgba(13, 244, 106, 0.51);
   border-radius: 20px;
@@ -86,5 +86,21 @@
       cursor: pointer;
       box-shadow: 0 0 1em #9f9;
     }
+  }
+}
+
+.error {
+  margin-top: -0.6em;
+  padding-bottom: 10px;
+  color: red;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 1rem;
+  letter-spacing: 0.08rem;
+}
+
+@media (max-width: 1400px) {
+  .modal {
+    height: 95vh;
+    width: 50vw;
   }
 }
