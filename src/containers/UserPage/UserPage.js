@@ -112,14 +112,14 @@ const UserPage = () => {
   }, [id, token]);
 
   useEffect(() => {
-    fetch(`${Database.URL}/users/${id}/plants`,
+    fetch(`${Database.URL}/user/${id}/plants`,
       {
         headers:
     {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
     }
-      }, {})
+      }, [])
       .then((res) => res.json())
       .then((json) => {
         setMyPlants(json);
