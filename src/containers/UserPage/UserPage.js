@@ -98,7 +98,7 @@ const UserPage = () => {
   );
 
   useEffect(() => {
-    fetch(`${Database.URL}/user/${id}/favourites`,
+    fetch(`${Database.URL}/user/${myId}/favourites`,
       {
         headers:
       {
@@ -108,7 +108,7 @@ const UserPage = () => {
       }, {})
       .then((res) => res.json())
       .then((json) => {
-        setFavourites(json);
+        setMyFavourites(json);
       });
   }, [id, token]);
 
@@ -128,37 +128,45 @@ const UserPage = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`${Database.URL}/user/${myId}/favourites`,
-      {
-        headers:
-    {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
-      }, {})
-      .then((res) => res.json())
-      .then((json) => {
-        setMyFavourites(json);
-      });
-  }, [id, token]);
+    async function fetchFavourites() {
+      let favourites = [];
 
-  const showFavourite = (f) => {
-    const usersId = f.user;
-    const giveUsersName = () => {
-      fetch(`${Database.URL}/user/${usersId}`, {
-        headers: {
+      await fetch(`${Database.URL}/user/${id}/favourites`,
+        {
+          headers:
+        {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
-      })
+        }, [])
         .then((res) => res.json())
         .then((json) => {
-          setGetUsersName(json.login);
+          favourites = json;
         });
-    };
-    console.log(getUsersName);
-    return (<UserProfile usersId={f.user} usersName={f.user} />);
-  };
+
+      async function fetchUserName(uid) {
+        return fetch(`${Database.URL}/user/${uid}`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }).then((res) => res.json())
+          .then((json) => json.login);
+      }
+      for (const f of favourites) {
+        const userName = await fetchUserName(f.user);
+        f.username = userName;
+        console.log(userName);
+      }
+      setFavourites(favourites);
+    }
+    fetchFavourites();
+  }, [id, token]);
+
+  const showFavourite = (f) => (
+    <UserProfile usersId={f.user} usersName={f.username} />
+  );
 
   const showMyPlants = (p) => (
     <PlantProfile user={p.user} />
