@@ -38,12 +38,12 @@ const Navbar = ({ name, admin }) => {
     ['/myprofile', location, name, Profile, 'profile'],
     ['/logout', location, 'Logout', Logout, 'logout']
   ] : [
-    ['/options', location, 'Options', Crown, 'crown'],
     ['/garden', location, 'My garden', Leaf, 'leaf'],
     ['/users', location, 'Users', Users, 'users'],
     ['/events', location, 'Events', Calendar, 'calendar'],
     ['/plant', location, 'Plants', Search, 'search'],
     ['/chat', location, 'Chat', Chat, 'chat'],
+    ['/options', location, 'Options', Crown, 'crown'],
     ['/myprofile', location, name, Profile, 'profile'],
     ['/logout', location, 'Logout', Logout, 'logout']
   ];

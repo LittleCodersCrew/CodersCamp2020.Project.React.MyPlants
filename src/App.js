@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import AuthorsPage from './containers/AuthorsPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import ChatPage from './containers/ChatPage';
+import NewPlantsPage from './containers/NewPlantsPage';
+import Footer from './components/Footer';
 import useToken from './hooks/useToken/useToken';
 import Database from './database';
 
@@ -34,13 +35,9 @@ function Logout() {
   return null;
 }
 
-function Admin() {
-  return <h2>Admin</h2>;
-}
-
 const App = () => {
   const [userName, setUserName] = useState('');
-  // const [ifAdmin, setIfAdmin] = useState();
+  const [ifAdmin, setIfAdmin] = useState();
   const { token } = useToken();
 
   useEffect(() => {
@@ -53,14 +50,16 @@ const App = () => {
         }
       }, {})
         .then((data) => data.json())
-        .then((json) => setUserName(json.name));
+        .then((json) => {
+          setUserName(json.name);
+          setIfAdmin(json.admin);
+        });
     }
-    console.log(userName);
   });
 
   return (
     <>
-      <Navbar name={userName} />
+      <Navbar name={userName} admin={ifAdmin} />
       <Switch>
         <Route path="/" exact>
           <SearchPlantsPage />
@@ -95,8 +94,8 @@ const App = () => {
         <Route path="/authors" exact>
           <AuthorsPage />
         </Route>
-        <Route path="/admin" exact>
-          <Admin />
+        <Route path="/options" exact>
+          <NewPlantsPage />
         </Route>
       </Switch>
       <Footer />
