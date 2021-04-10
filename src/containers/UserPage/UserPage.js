@@ -32,6 +32,7 @@ const UserPage = () => {
   const { id } = useParams();
   const { token } = useToken();
   const myId = JSON.parse(atob(token.split('.')[1])).id;
+  const [userLogin, setUserLogin] = useState('');
   const [notes, setNotes] = useState([]);
   const [note, setNote] = useState({
     title: '',
@@ -48,6 +49,16 @@ const UserPage = () => {
   const [myFavourites, setMyFavourites] = useState([]);
   const [myFavourite, setMyFavourite] = useState({ user: '' });
   const [getUsersName, setGetUsersName] = useState('');
+
+  useEffect(() => {
+    if (token) {
+      fetch(`${Database.URL}/user/${id}`, { headers: { Authorization: `Bearer ${token}` } }, {})
+        .then((res) => res.json())
+        .then((json) => {
+          setUserLogin(json.login);
+        });
+    }
+  });
 
   useEffect(() => {
     async function fetchNotes() {
@@ -173,6 +184,9 @@ const UserPage = () => {
   const myProfile = (userId) => (userId === myId);
 
   const isFavourite = (userId) => (myFavourites.find((f) => f.user === userId));
+  const journalText = `${userLogin}'s journal`;
+  const gardenText = `${userLogin}'s garden`;
+  const favText = `${userLogin}'s favourite users`;
 
   return (
     <div className={mainContainer}>
@@ -180,19 +194,19 @@ const UserPage = () => {
         <UserWall isMyProfile={myProfile(id)} isFavourite={isFavourite(id)} />
       </header>
       <div className={journal}>
-        <Text text="Login's journal" fontsize="1.5em" />
+        <Text text={journalText} fontsize="1.5em" />
         <div className={notesStyle}>
           {(notes.length >= 1) ? notes.map((n) => showNote(n)).reverse() : <Text text="Journal is empty :(" fontsize="1.4em" />}
         </div>
       </div>
       <div className={garden}>
-        <Text text="Login's garden" fontsize="1.5em" />
+        <Text text={gardenText} fontsize="1.5em" />
         <div className={plants}>
           {(myPlants.length >= 1) ? myPlants.map((p) => showMyPlants(p)) : <Text text="Garden is empty" fontsize="1em" />}
         </div>
       </div>
       <div className={friends}>
-        <Text text="Login's favorite users" fontsize="1.5em" />
+        <Text text={favText} fontsize="1.5em" />
         <div className={users}>
           {(favourites.length >= 1) ? favourites.map((f) => showFavourite(f)) : <Text text="No favourite users yet" fontsize="1em" />}
         </div>
