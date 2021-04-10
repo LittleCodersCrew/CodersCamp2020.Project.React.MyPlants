@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
+import React, { useState, useEffect, useReducer } from 'react';
 import { searchPlantsContainer, searchPlantsHeader, searchPlantsMenu, searchPlantsContent, noFoundPlantsContainer, background, backgroundWrap, newPlant } from './SearchPlants.module.scss';
 
 import Text from '../../components/Text';
@@ -7,13 +9,38 @@ import Select from '../../components/Select';
 import Button from '../../components/Button';
 import SearchPlantItem from '../../components/SearchPlantItem/SearchPlantItem';
 
+import { SearchPlantConstants, SearchPlantKeys } from '../../constants/SearchPlantConstants';
+
 import Database from '../../database';
 import iconNoSearch from '../../assets/illustrations/icon - no search.png';
 
 import useToken from '../../hooks/useToken/useToken';
 
 const SearchPlants = () => {
+  const AMOUNTHOFPLANTSTOSHOW = 3;
   const [plants, setPlants] = useState([]);
+  const [currentPlants, setCurrentPlants] = useState([]);
+  const [searchedPlant, dispatch] = useReducer(
+    (searchPlant, action) => ({ ...searchPlant, [action.name]: action.value }),
+    {
+      name: undefined,
+      minTemp: undefined,
+      watering: undefined,
+      subsoil: undefined,
+      spraying: undefined,
+      latinName: undefined,
+      maxTemp: undefined,
+      watering_method: undefined,
+      conditioners: undefined,
+      sunlight: undefined,
+      species: undefined,
+      application: undefined,
+      humidity: undefined,
+      toxicity: undefined,
+      animal: undefined
+    }
+  );
+
   const { token } = useToken();
 
   const getRandomPlants = (array, amounth) => {
@@ -35,15 +62,54 @@ const SearchPlants = () => {
         headers: { 'Content-Type': 'application/json' }
       });
       response = await response.json();
-      response = getRandomPlants(response, 3);
       setPlants(response);
+      response = getRandomPlants(response, AMOUNTHOFPLANTSTOSHOW);
+      setCurrentPlants(response);
     };
 
     getPlants();
   }, []);
 
-  const handleSubmit = () => {
+  const onChange = (property, value) => {
+    if (property.toLowerCase() === 'animals at home?') {
+      dispatch({ name: 'animal', value });
+    } else {
+      dispatch({ name: property.toLowerCase(), value });
+    }
+  };
 
+  const getMatchedPlants = (array, searchObject) => {
+    if (array.length === 0) return array;
+    const result = [];
+    array.map((item) => {
+      for (let i = 0; i < SearchPlantKeys.length; i += 1) {
+        const property = SearchPlantKeys[i];
+        if (property === 'toxicity') {
+          if (searchObject[property] === 'yes' && item[property].human !== true) break;
+          if (searchObject[property] === 'no' && item[property].human !== false) break;
+        } else if (property === 'animal') {
+          if (searchObject[property] === 'yes' && item.toxicity.animal !== true) break;
+          if (searchObject[property] === 'no' && item.toxicity.animal !== false) break;
+        // eslint-disable-next-line max-len
+        } else if (searchObject[property] !== undefined && searchObject[property] !== item[property]) {
+          break;
+        }
+
+        if ((searchObject[property] === item[property]
+             || searchObject[property] === undefined)
+             && i === SearchPlantKeys.length - 1) {
+          result.push(item);
+        }
+      }
+      return null;
+    });
+
+    return result;
+  };
+
+  const handleSubmit = () => {
+    const result = getMatchedPlants(plants, searchedPlant);
+    setCurrentPlants([...result]);
   };
 
   return (
@@ -54,28 +120,29 @@ const SearchPlants = () => {
       </div>
       <div className={searchPlantsMenu}>
         <Input text="Name" />
-        <Select title="Min temperature" values={['0', '10', '20']} />
-        <Select title="Watering" />
-        <Select title="Subsoil" />
-        <Select title="Spraying" />
+        <Input text="Min temperature" />
+        <Select title="Watering" values={SearchPlantConstants.watering} cb={onChange} />
+        <Select title="Subsoil" values={SearchPlantConstants.subsoil} cb={onChange} />
+        <Select title="Spraying" values={SearchPlantConstants.spraying} cb={onChange} />
         <Input text="Latin name" />
-        <Select title="Max temperature" />
-        <Select title="Watering method" />
-        <Select title="Conditioners" />
-        <Select title="Sunlight" />
-        <Select title="Species" />
-        <Select title="Application" />
-        <Select title="Humidity" />
-        <Select title="Toxicity" />
-        <Select title="Animals at home?" />
+        <Input text="Max temperature" />
+        <Select title="Watering method" values={SearchPlantConstants.watering_method} cb={onChange} />
+        <Select title="Conditioners" values={SearchPlantConstants.conditioners} cb={onChange} />
+        <Select title="Sunlight" values={SearchPlantConstants.sunlight} cb={onChange} />
+        <Select title="Species" values={SearchPlantConstants.species} cb={onChange} />
+        <Select title="Application" values={SearchPlantConstants.application} cb={onChange} />
+        <Select title="Humidity" values={SearchPlantConstants.humidity} cb={onChange} />
+        <Select title="Toxicity" values={SearchPlantConstants.toxicity} cb={onChange} />
+        <Select title="Animals at home?" values={SearchPlantConstants.animal} cb={onChange} />
         <Button type="button" text="Search" onClick={handleSubmit} />
       </div>
       <div className={searchPlantsContent}>
-        {plants?.length > 0 ? (plants.map((plant, index) => (
+        {currentPlants?.length > 0 ? (currentPlants.map((plant, index) => (
           <div>
             <SearchPlantItem
               // eslint-disable-next-line no-underscore-dangle
-              key={(plant._id).toString()}
+              key={plant._id}
+              image={plant.image}
               name={plant.name}
               latinName={plant.latin_name}
               minTemp={plant.min_temperature}

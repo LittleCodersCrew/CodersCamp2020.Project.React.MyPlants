@@ -10,7 +10,7 @@ import Image from '../../assets/illustrations/plant-leaf.png';
 const SearchPlantItem = ({ image, name, latinName, minTemp, maxTemp, sunlight, humidity, bgcolor }) => (
   <div className={searchPlantItemContainer} style={{ backgroundColor: bgcolor }}>
     <div className={itemHeader}>
-      <img src={image} alt="plant icon" width="50px" height="50px" />
+      <img src={image || Image} alt="plant icon" width="50px" height="50px" />
       <div className={itemHeaderTitle}>
         <Text text={name} fontsize="25px" />
         <Text text={latinName} fontsize="20px" />
@@ -20,21 +20,25 @@ const SearchPlantItem = ({ image, name, latinName, minTemp, maxTemp, sunlight, h
       <ul className={itemList}>
         <li className={itemListItem}>
           <span>Min temperature:</span>
-          { minTemp }
-          °C
+          <p>
+            { minTemp }
+            °C
+          </p>
         </li>
         <li className={itemListItem}>
           <span>Max temperature:</span>
-          { maxTemp }
-          °C
+          <p>
+            { maxTemp }
+            °C
+          </p>
         </li>
         <li className={itemListItem}>
           <span>Sunlight:</span>
-          { sunlight }
+          <p>{ sunlight }</p>
         </li>
         <li className={itemListItem}>
           <span>Humidity:</span>
-          { humidity }
+          <p>{ humidity }</p>
         </li>
       </ul>
     </div>
@@ -45,7 +49,7 @@ const SearchPlantItem = ({ image, name, latinName, minTemp, maxTemp, sunlight, h
 );
 
 SearchPlantItem.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  image: PropTypes.string,
   name: PropTypes.string.isRequired,
   latinName: PropTypes.string.isRequired,
   minTemp: PropTypes.number.isRequired,
