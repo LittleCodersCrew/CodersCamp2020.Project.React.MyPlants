@@ -9,7 +9,7 @@ import profile from '../../assets/icons/Profile.png';
 
 const UserProfile = ({ usersId, usersName }) => (
   <div className={user}>
-    <Link to={`/user/${usersId}`}>
+    <Link className={user} to={`/user/${usersId}`}>
       <img className={userImage} src={profile} alt="Profile" height="80rem" width="80rem" />
       <SmallButton text={usersName} fontsize="1.5em" />
     </Link>
