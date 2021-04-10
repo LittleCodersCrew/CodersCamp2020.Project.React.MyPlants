@@ -18,7 +18,7 @@ const AddPlant = () => {
   const { register, handleSubmit } = useForm();
 
   // eslint-disable-next-line no-alert
-  const onSubmit = () => alert('zapisano');
+  const onSubmit = (data) => alert(JSON.stringify(data));
 
   return (
     <div className={container}>
