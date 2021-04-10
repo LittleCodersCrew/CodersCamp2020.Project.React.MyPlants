@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Message from './Message';
 
 describe('Message component render', () => {
-  it('Gives the right text inside paragrapsh', () => {
+  it('Gives the right text inside paragraph', () => {
     render(<Message userName="name" dateTime="123" content="test" />);
 
     expect(screen.getByText('test')).toBeInTheDocument();
