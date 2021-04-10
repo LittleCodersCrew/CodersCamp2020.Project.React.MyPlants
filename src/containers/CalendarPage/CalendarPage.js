@@ -4,6 +4,7 @@ import Text from '../../components/Text';
 import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
 import ModalEditProfile from '../../components/ModalEditProfile';
+import { wrapper, link } from './CalendarPage.module.scss';
 
 const CalendarPage = () => {
   const [show, setShow] = useState(false);
@@ -29,10 +30,14 @@ const CalendarPage = () => {
   });
 
   return (
-    <div>
+    <div className={wrapper}>
       <Text text={userLogin} fontsize="2em" />
       <Text text={userName} fontsize="1.5em" />
-      {!show && <button onClick={openModal}>Show modal</button>}
+
+      <button className={link} onClick={openModal}>
+        Edit profile
+      </button>
+
       <ModalEditProfile closeModal={closeModal} show={show} />
       <Calendar />
     </div>
