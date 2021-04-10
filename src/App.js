@@ -95,7 +95,7 @@ const App = () => {
           <AuthorsPage />
         </Route>
         <Route path="/options" exact>
-          <NewPlantsPage />
+          {ifAdmin ? <NewPlantsPage /> : <p>Such page does not exist</p>}
         </Route>
       </Switch>
       <Footer />
