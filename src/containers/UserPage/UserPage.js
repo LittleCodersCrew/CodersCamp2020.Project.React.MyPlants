@@ -47,7 +47,6 @@ const UserPage = () => {
   const [myPlant, setMyPlant] = useState({ name: '' });
   const [myFavourites, setMyFavourites] = useState([]);
   const [myFavourite, setMyFavourite] = useState({ user: '' });
-  // const [getUsersNames, setGetUsersNames] = useState([]);
   const [getUsersName, setGetUsersName] = useState('');
 
   useEffect(() => {
@@ -157,7 +156,6 @@ const UserPage = () => {
       for (const f of favourites) {
         const userName = await fetchUserName(f.user);
         f.username = userName;
-        console.log(userName);
       }
       setFavourites(favourites);
     }
@@ -169,7 +167,7 @@ const UserPage = () => {
   );
 
   const showMyPlants = (p) => (
-    <PlantProfile user={p.user} />
+    <PlantProfile plantName={p.name} plantId={p._id} plantPhoto={p.image} />
   );
 
   const myProfile = (userId) => (userId === myId);
