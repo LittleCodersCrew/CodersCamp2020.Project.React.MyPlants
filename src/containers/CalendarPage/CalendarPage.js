@@ -3,8 +3,14 @@ import Calendar from '../../components/Calendar';
 import Text from '../../components/Text';
 import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
+import ModalEditProfile from '../../components/ModalEditProfile';
 
 const CalendarPage = () => {
+  const [show, setShow] = useState(false);
+
+  const openModal = () => setShow(true);
+  const closeModal = () => setShow(false);
+
   const [userName, setUserName] = useState('');
   const [userLogin, setUserLogin] = useState('');
   const { token } = useToken();
@@ -26,6 +32,8 @@ const CalendarPage = () => {
     <div>
       <Text text={userLogin} fontsize="2em" />
       <Text text={userName} fontsize="1.5em" />
+      {!show && <button onClick={openModal}>Show modal</button>}
+      <ModalEditProfile closeModal={closeModal} show={show} />
       <Calendar />
     </div>
   );
