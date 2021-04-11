@@ -1,10 +1,3 @@
-/* eslint-disable no-loop-func */
-/* eslint-disable operator-linebreak */
-/* eslint-disable object-curly-newline */
-/* eslint-disable react/jsx-closing-bracket-location */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable indent */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
   format,
@@ -50,11 +43,7 @@ const Calendar = () => {
     async function fetchEvents() {
       let userEvents = [];
 
-      await fetch(`${Database.URL}/calendar/user/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      await fetch(`${Database.URL}/calendar/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
         .then((res) => res.json())
         .then((json) => {
           userEvents = json.calendar.events;
@@ -130,13 +119,14 @@ const Calendar = () => {
             className={classes}
             key={day}
             onClick={openModal}
-            onKeyDown={() => null}>
+            onKeyDown={() => null}
+          >
             <span>{formattedDate}</span>
             <p>
-              {events &&
-                events
-                  .filter((event) => isSameDay(addDays(day, 1), parseISO(event.date)))
-                  .map((event) => <span className={styles.title}>{event.title}</span>)}
+              {events
+              && events
+                .filter((event) => isSameDay(addDays(cloneDay, 1), parseISO(event.date)))
+                .map((event) => <span className={styles.title}>{event.title}</span>)}
             </p>
           </div>
         );

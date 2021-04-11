@@ -1,6 +1,3 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable implicit-arrow-linebreak */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
@@ -18,7 +15,7 @@ const ModalEvent = (props) => {
 
   const { register, errors, handleSubmit } = useForm();
 
-  const [toMuchEvents, setToMuchEvents] = useState('');
+  const [tooMuchEvents, setTooMuchEvents] = useState('');
   const [disabled, setDisabled] = useState('');
 
   const [eventData, setEventDate] = useState('');
@@ -34,25 +31,21 @@ const ModalEvent = (props) => {
 
   const userId = JSON.parse(atob(token.split('.')[1])).id;
 
-  const to = () => {
+  const tooMuch = () => {
     setDisabled(`${styles.disabled}`);
-    setToMuchEvents('You can have three events for a one day.');
+    setTooMuchEvents('You can have three events for a one day.');
   };
 
-  const not = () => {
+  const notTooMuch = () => {
     setDisabled('');
-    setToMuchEvents('');
+    setTooMuchEvents('');
   };
 
   useEffect(() => {
     async function fetchEvents() {
       let userEvents = [];
 
-      await fetch(`${Database.URL}/calendar/user/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      await fetch(`${Database.URL}/calendar/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
         .then((res) => res.json())
         .then((json) => {
           userEvents = json.calendar.events;
@@ -66,31 +59,30 @@ const ModalEvent = (props) => {
 
     fetchEvents();
 
-    const amount = () => (eventsForDay.length === 3 ? to() : not());
+    const amount = () => (eventsForDay.length === 3 ? tooMuch() : notTooMuch());
 
     amount();
   }, [eventsForDay, token, userId, date]);
 
-  const sendEvent = (e) =>
-    fetch(`${Database.URL}/calendar/user/${userId}/event`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(e)
-    }).then((data) => {
-      if (data.status === 200) {
-        document.getElementById('input').value = '';
-        document.getElementById('description').value = '';
-      }
+  const sendEvent = (e) => fetch(`${Database.URL}/calendar/user/${userId}/event`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(e)
+  }).then((data) => {
+    if (data.status === 200) {
+      document.getElementById('input').value = '';
+      document.getElementById('description').value = '';
+    }
 
-      data.json();
-      setEvent({
-        ...event,
-        description: ''
-      });
+    data.json();
+    setEvent({
+      ...event,
+      description: ''
     });
+  });
 
   const onSubmit = () => (eventsForDay.length === 3 ? null : sendEvent(event));
 
@@ -125,7 +117,11 @@ const ModalEvent = (props) => {
 
           <div>
             <p className={styles.eventDate}>
-              {day}-{month}-{year}
+              {day}
+              -
+              {month}
+              -
+              {year}
             </p>
           </div>
 
@@ -143,7 +139,7 @@ const ModalEvent = (props) => {
 
           <div className={styles.inputForm}>
             <Text text="Add event" fontsize="1.8rem" />
-            <p className={styles.amount}>{toMuchEvents}</p>
+            <p className={styles.amount}>{tooMuchEvents}</p>
             <div className={disabled}>
               <input
                 id="input"
