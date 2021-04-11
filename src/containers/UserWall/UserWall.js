@@ -186,8 +186,8 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
         <Text text={userName} fontsize="1.5em" />
         <div>
           <SmallButton type="button" text="Edit profile" fontsize="1.5em" onClick={openModal} />
-          <ModalEditProfile closeModal={closeModal} show={show} />
         </div>
+        <ModalEditProfile closeModal={closeModal} show={show} />
         <div>
           <form className={addNote} id="newNote" method="POST" onSubmit={handleSubmit(onSubmit)}>
             <Text className={text} text="Add new note" fontsize="1.5em" />

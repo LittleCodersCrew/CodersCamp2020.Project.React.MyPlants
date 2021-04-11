@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Text from '../Text';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
-import { hide, overlay, modal, form, input, button, error } from './ModalEditProfile.modal.scss';
+import { hide, overlay, modal, form, input, button, error } from './ModalEditProfile.module.scss';
 import closeSquare from '../../assets/icons/Close Square.png';
 
 const ModalEditProfile = (props) => {

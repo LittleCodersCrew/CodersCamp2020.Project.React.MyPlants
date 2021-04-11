@@ -25,7 +25,7 @@
   box-shadow: 5px 5px 4px rgba(13, 244, 106, 0.51);
   border-radius: 20px;
 
-  button {
+  > button {
     background-color: white;
     border: none;
     position: absolute;
@@ -47,7 +47,7 @@
   justify-content: center;
   text-align: center;
 
-  p:first-of-type {
+  > p:first-of-type {
     margin-bottom: 20px;
   }
 
