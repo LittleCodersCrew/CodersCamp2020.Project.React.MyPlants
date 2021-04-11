@@ -1,22 +1,25 @@
 .wrapper {
   margin: 20px 0;
-}
-
-.name {
-  font-size: 1.5rem;
   font-family: 'Abhaya Libre', serif;
   letter-spacing: 0.08rem;
   text-align: center;
   color: #0e3416;
 }
 
-.buttons {
-  display: flex;
-  width: 100%;
-  gap: 20px;
-  margin-top: 10px;
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
 
-  > .button {
+.description {
+  font-size: 1.2rem;
+}
+
+.button {
+  margin-top: 10px;
+  text-align: center;
+
+  > .buttonDelete {
     color: #0e3416;
     font-size: 1rem;
     flex-basis: 45%;
@@ -27,7 +30,7 @@
     cursor: pointer;
 
     &:hover {
-      color: #7fd291;
+      color: red;
     }
   }
 }

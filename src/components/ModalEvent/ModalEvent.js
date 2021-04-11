@@ -10,6 +10,7 @@ import Database from '../../database';
 import Text from '../Text';
 import Button from '../Button';
 import Event from '../Event';
+import TextArea from '../TextArea';
 import useToken from '../../hooks/useToken/useToken';
 import {
   hide,
@@ -22,9 +23,8 @@ import {
   input,
   inputForm,
   events,
-  eventName,
-  eventButton,
-  error
+  error,
+  textarea
 } from './ModalEvent.module.scss';
 import closeSquare from '../../assets/icons/CloseSquare.png';
 
@@ -39,6 +39,7 @@ const ModalEvent = (props) => {
 
   const [event, setEvent] = useState({
     title: '',
+    description: '',
     date: ''
   });
 
@@ -79,7 +80,8 @@ const ModalEvent = (props) => {
       body: JSON.stringify(e)
     }).then((data) => {
       if (data.status === 200) {
-        window.location.reload();
+        document.getElementById('input').value = '';
+        document.getElementById('description').value = '';
       }
 
       data.json();
@@ -129,7 +131,10 @@ const ModalEvent = (props) => {
               {eventsForDay.length === 0 ? (
                 <p style={{ fontSize: '1.5rem' }}>No events for this day...</p>
               ) : (
-                eventsForDay.map((e) => <Event key={e.id} event={e.title} />)
+                eventsForDay.map((e) => (
+                  // eslint-disable-next-line no-underscore-dangle
+                  <Event key={e._id} title={e.title} description={e.description} id={e._id} />
+                ))
               )}
             </div>
           </div>
@@ -137,15 +142,28 @@ const ModalEvent = (props) => {
           <div className={inputForm}>
             <Text text="Add event" fontsize="1.8rem" />
             <input
+              id="input"
               className={input}
               onChange={updateField}
               name="title"
               placeholder="Add event..."
               ref={register({
-                required: 'Name of the event is required.'
+                required: 'Name of the event is required.',
+                maxLength: {
+                  value: 20,
+                  message: 'Name of the event too long.'
+                }
               })}
             />
             {errors.title && <p className={error}>{errors.title.message}</p>}
+            <div className={textarea}>
+              <TextArea
+                text="Add description for your event if you like."
+                id="description"
+                name="description"
+                onChange={updateField}
+              />
+            </div>
           </div>
 
           <div className={submit}>

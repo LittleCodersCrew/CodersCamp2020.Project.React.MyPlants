@@ -57,16 +57,20 @@
       margin-top: 20px;
       color: #0e3416;
       border: 2px solid #0e3416;
-      border-radius: 8px;
+      border-radius: 4px;
       height: 50px;
       padding: 10px;
-      font-size: 1.125rem;
+      font-size: 1rem;
       cursor: text;
       font-family: 'Abhaya Libre', serif;
       letter-spacing: 1.5px;
-      width: 100%;
+      width: 98%;
       outline: none;
     }
+  }
+
+  .textarea {
+    margin-top: 20px;
   }
 
   .error {
