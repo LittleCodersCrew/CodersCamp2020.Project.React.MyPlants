@@ -12,11 +12,10 @@ import {
   startOfMonth,
   endOfMonth,
   isSameMonth,
-  isToday,
-  isSameDay
+  isToday
 } from 'date-fns';
 import ModalEvent from '../ModalEvent';
-import styles, { daysOfMonth, disabled, today, selected } from './Calendar.module.scss';
+import styles, { daysOfMonth, disabled, today } from './Calendar.module.scss';
 import ArrowLeft from '../../assets/icons/ArrowLeft.png';
 import ArrowRight from '../../assets/icons/ArrowRight.png';
 
@@ -74,10 +73,6 @@ const Calendar = () => {
         formattedDate = format(day, 'd');
 
         let classes = `${daysOfMonth}`;
-
-        if (selectedDate && isSameDay(day, selectedDate) && !isToday(day)) {
-          classes += ` ${selected}`;
-        }
 
         if (isToday(day)) {
           classes += ` ${today}`;

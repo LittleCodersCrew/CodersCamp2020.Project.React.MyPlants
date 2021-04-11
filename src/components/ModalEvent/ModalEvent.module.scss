@@ -34,32 +34,6 @@
     top: calc(0% + 10px);
     left: calc(100% - 40px);
   }
-
-  .events {
-    > .eventName {
-      font-size: 1.5rem;
-    }
-
-    > .eventButton {
-      display: flex;
-      align-content: flex-end;
-      margin-top: 10px;
-
-      > button {
-        font-size: 1rem;
-        flex-basis: 45%;
-        background-color: white;
-        border: none;
-        font-family: 'Abhaya Libre', serif;
-        letter-spacing: 0.08rem;
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.submit {
-  text-align: center;
 }
 
 .wrapper {
@@ -92,6 +66,35 @@
       width: 100%;
       outline: none;
     }
+  }
+
+  .events {
+    > .eventName {
+      font-size: 1.5rem;
+    }
+
+    > .eventButton {
+      display: flex;
+      align-content: flex-end;
+      margin-top: 10px;
+
+      > button {
+        font-size: 1rem;
+        flex-basis: 45%;
+        background-color: white;
+        border: none;
+        font-family: 'Abhaya Libre', serif;
+        letter-spacing: 0.08rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .error {
+    margin-top: 10px;
+    text-align: center;
+    color: red;
+    font-size: 1rem;
   }
 }
 

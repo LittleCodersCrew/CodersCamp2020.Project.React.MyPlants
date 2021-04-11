@@ -1,13 +1,14 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable function-paren-newline */
 /* eslint-disable no-unused-vars */
 /* eslint-disable implicit-arrow-linebreak */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 import Database from '../../database';
 import Text from '../Text';
 import Button from '../Button';
-import Input from '../Input';
 import useToken from '../../hooks/useToken/useToken';
 import {
   hide,
@@ -21,7 +22,8 @@ import {
   inputForm,
   events,
   eventName,
-  eventButton
+  eventButton,
+  error
 } from './ModalEvent.module.scss';
 import closeSquare from '../../assets/icons/CloseSquare.png';
 
@@ -29,12 +31,14 @@ const ModalEvent = (props) => {
   const { show, closeModal, date } = props;
   const { token } = useToken();
 
-  const jsonDate = new Date().toJSON();
+  const { register, errors, handleSubmit } = useForm();
 
-  // eslint-disable-next-line no-unused-vars
+  const [eventData, setEventDate] = useState('');
+  useEffect(() => setEventDate(date), [date]);
+
   const [event, setEvent] = useState({
-    title: 'test',
-    date
+    title: '',
+    date: ''
   });
 
   const userId = JSON.parse(atob(token.split('.')[1])).id;
@@ -54,15 +58,15 @@ const ModalEvent = (props) => {
       data.json();
     });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = () => {
     sendEvent(event);
   };
 
   const updateField = (e) => {
     setEvent({
       ...event,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      date: eventData
     });
   };
 
@@ -108,11 +112,15 @@ const ModalEvent = (props) => {
               onChange={updateField}
               name="title"
               placeholder="Add event..."
+              ref={register({
+                required: 'Name of the event is required.'
+              })}
             />
+            {errors.title && <p className={error}>{errors.title.message}</p>}
           </div>
 
           <div className={submit}>
-            <Button text="Add" type="submit" onClick={onSubmit} />
+            <Button text="Add" type="submit" onClick={handleSubmit(onSubmit)} />
           </div>
         </div>
       </div>
