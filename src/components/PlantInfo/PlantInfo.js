@@ -70,11 +70,11 @@ const PlantInfo = ({ plantDetails }) => {
           </p>
           <p>
             <span>Toxicity: </span>
-            <span>{plantDetails.toxicity?.human ? 'Yes' : 'No'}</span>
+            <span>{plantDetails.toxicity?.human ? 'yes' : 'no'}</span>
           </p>
           <p>
             <span>Safe for domestic animals: </span>
-            <span>{plantDetails.toxicity?.animal ? 'Yes' : 'No'}</span>
+            <span>{plantDetails.toxicity?.animal ? 'no' : 'yes'}</span>
           </p>
         </div>
       </div>

@@ -1,6 +1,7 @@
 .info {
   display: flex;
   align-items: stretch;
+  margin-bottom: 2em;
 }
 
 .about {
@@ -16,7 +17,7 @@
 .image {
   width: 250px;
   height: 250px;
-  margin-right: 2em;
+  margin-right: 4em;
   object-fit: contain;
   align-self: center;
 }
@@ -31,5 +32,10 @@
   p {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    span:last-child {
+      text-align: right;
+    }
   }
 }
