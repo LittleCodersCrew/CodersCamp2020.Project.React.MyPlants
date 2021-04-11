@@ -87,7 +87,6 @@ const ModalEditProfile = (props) => {
         <button onClick={closeModal}>
           <img src={closeSquare} alt="close" />
         </button>
-
         <div className={form}>
           <Text text="Edit your profile" fontsize="1.8rem" />
           <form onSubmit={handleSubmit(onSubmit)}>

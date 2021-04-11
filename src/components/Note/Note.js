@@ -1,15 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
 import { noteContainer, mainText, signText, sign, buttons } from './Note.module.scss';
 import SmallButton from '../SmallButton';
+import ModalEditNote from '../ModalEditNote';
 
 const Buttons = ({ myProfile, getNoteId }) => {
   const { id } = useParams();
   const { token } = useToken();
+
+  const [show, setShow] = useState(false);
+
+  const openModal = () => setShow(true);
+  const closeModal = () => setShow(false);
+
   const myId = JSON.parse(atob(token.split('.')[1])).id;
 
   const handleClick = () => fetch(`${Database.URL}/user/${myId}/notes/${getNoteId}`, {
@@ -31,7 +38,8 @@ const Buttons = ({ myProfile, getNoteId }) => {
     return (
       <div className={buttons}>
         <SmallButton type="button" text="Delete" fontsize="0.9rem" onClick={handleClick} />
-        <SmallButton type="button" text="Edit" fontsize="0.9rem" onClick={null} />
+        <SmallButton type="button" text="Edit" fontsize="0.9rem" onClick={openModal} />
+        <ModalEditNote closeModal={closeModal} show={show} />
       </div>
     );
   }
