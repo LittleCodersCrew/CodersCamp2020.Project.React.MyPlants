@@ -1,3 +1,7 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-shadow */
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
@@ -15,6 +19,7 @@ import SmallButton from '../../components/SmallButton';
 import Text from '../../components/Text';
 import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
+import Select from '../../components/Select';
 
 import Star from '../../assets/icons/Star.png';
 import GreenStar from '../../assets/icons/GreenStar.png';
@@ -42,6 +47,10 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
   });
   const [myFavourites, setMyFavourites] = useState([]);
   const [myFavourite, setMyFavourite] = useState({ user: '' });
+  const [myPlants, setMyPlants] = useState([]);
+  const [myPlantsName, setMyPlantsName] = useState('');
+  const [myPlantsId, setMyPlantsId] = useState('');
+  const [myPlantsBaseId, setMyPlantsBaseId] = useState('');
 
   const { id } = useParams();
   const { token } = useToken();
@@ -57,6 +66,29 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
         });
     }
   });
+
+  useEffect(() => {
+    async function fetchMyPlants() {
+      let myPlants = [];
+
+      await fetch(`${Database.URL}/user/${myId}/plants`,
+        {
+          headers:
+        {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+        }, {})
+        .then((res) => res.json())
+        .then((json) => {
+          myPlants = json;
+        });
+      setMyPlants(myPlants);
+    }
+    fetchMyPlants();
+  }, []);
+
+  console.log(myPlants);
 
   // Adding notes
 
@@ -83,6 +115,15 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
   const handleChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
+
+  const giveNamesOFMyPlants = (mp) => (
+    <Select
+      title="Choose plant"
+      values={mp.name}
+      value={note.plant}
+      onChange={handleChange}
+    />
+  );
 
   //  Favourites
 
@@ -178,7 +219,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 value={note.image}
                 onChange={handleChange}
               />
-              <TextArea
+              {/* <TextArea
                 className={adding}
                 text="Which plant?"
                 name="plant"
@@ -186,7 +227,8 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 value={note.plant}
                 onChange={handleChange}
                 ref={register({ required: 'Plant name is required' })}
-              />
+              /> */}
+
             </div>
             <div className={save}>
               <Button type="submit" text="Save" />
