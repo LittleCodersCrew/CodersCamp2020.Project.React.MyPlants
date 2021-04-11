@@ -6,10 +6,11 @@ import Footer from './components/Footer';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import AuthorsPage from './containers/AuthorsPage';
+import useToken from './hooks/useToken/useToken';
+import PlantPage from './containers/PlantPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import ChatPage from './containers/ChatPage';
 import CalendarPage from './containers/CalendarPage';
-import useToken from './hooks/useToken/useToken';
 import Database from './database';
 
 function Garden() {
@@ -49,6 +50,9 @@ const App = () => {
       <Switch>
         <Route path="/" exact>
           <SearchPlantsPage />
+        </Route>
+        <Route path="/plant/:plantNameFromURL" exact>
+          <PlantPage />
         </Route>
         <Route path="/plant" exact>
           <SearchPlantsPage />
