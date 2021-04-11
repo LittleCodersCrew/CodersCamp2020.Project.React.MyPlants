@@ -24,12 +24,12 @@ const SearchPlants = () => {
     (searchPlant, action) => ({ ...searchPlant, [action.name]: action.value }),
     {
       name: undefined,
-      minTemp: undefined,
+      mintemp: undefined,
       watering: undefined,
       subsoil: undefined,
       spraying: undefined,
-      latinName: undefined,
-      maxTemp: undefined,
+      latinname: undefined,
+      maxtemp: undefined,
       watering_method: undefined,
       conditioners: undefined,
       sunlight: undefined,
@@ -67,10 +67,10 @@ const SearchPlants = () => {
         headers: { 'Content-Type': 'application/json' }
       });
       response = await response.json();
-      response = checkAcceptedPlants(response);
-      setPlants(response);
-      response = getRandomPlants(response, AMOUNTHOFPLANTSTOSHOW);
-      setCurrentPlants(response);
+      const acceptedPlants = checkAcceptedPlants(response);
+      setPlants(acceptedPlants);
+      const randomPlants = getRandomPlants(response, AMOUNTHOFPLANTSTOSHOW);
+      setCurrentPlants(randomPlants);
     };
 
     getPlants();
@@ -79,6 +79,14 @@ const SearchPlants = () => {
   const onChange = (property, value) => {
     if (property.toLowerCase() === 'animals at home?') {
       dispatch({ name: 'animal', value });
+    } else if (property.toLowerCase() === 'latin name') {
+      dispatch({ name: 'latinname', value });
+    } else if (property.toLowerCase() === 'min temperature') {
+      dispatch({ name: 'mintemp', value });
+    } else if (property.toLowerCase() === 'max temperature') {
+      dispatch({ name: 'maxtemp', value });
+    } else if (property.toLowerCase() === 'watering method') {
+      dispatch({ name: 'watering_method', value });
     } else {
       dispatch({ name: property.toLowerCase(), value });
     }
@@ -90,12 +98,22 @@ const SearchPlants = () => {
     array.map((item) => {
       for (let i = 0; i < SearchPlantKeys.length; i += 1) {
         const property = SearchPlantKeys[i];
-        if (property === 'toxicity') {
-          if (searchObject[property] === 'yes' && item[property].human !== true) break;
-          if (searchObject[property] === 'no' && item[property].human !== false) break;
-        } else if (property === 'animal') {
-          if (searchObject[property] === 'yes' && item.toxicity.animal !== true) break;
-          if (searchObject[property] === 'no' && item.toxicity.animal !== false) break;
+        if (property === 'toxicity' && searchObject.toxicity !== undefined) {
+          if (searchObject[property] === 'yes' && item[property].human === true) break;
+          if (searchObject[property] === 'no' && item[property].human === false) break;
+        } else if (property === 'animal' && searchObject.animal !== undefined) {
+          if (searchObject[property] === 'yes' && item.toxicity.animal === true) break;
+          if (searchObject[property] === 'no' && item.toxicity.animal === false) break;
+        // eslint-disable-next-line max-len
+        } else if (property === 'name' && searchObject.name !== undefined) {
+          if (item.name.toLowerCase().indexOf(searchObject.name.toLowerCase()) === -1) break;
+        } else if (property === 'latinname' && searchObject.latinname !== undefined) {
+          // eslint-disable-next-line max-len
+          if (item.latin_name.toLowerCase().indexOf(searchObject.latinname.toLowerCase()) === -1) break;
+        } else if (property === 'mintemp' && (searchObject.mintemp !== undefined || searchObject.mintemp !== '')) {
+          if (item.min_temperature < searchObject.mintemp) break;
+        } else if (property === 'maxtemp' && (searchObject.maxtemp !== undefined || searchObject.maxtemp !== '')) {
+          if (item.max_temperature > searchObject.maxtemp) break;
         // eslint-disable-next-line max-len
         } else if (searchObject[property] !== undefined && searchObject[property] !== item[property]) {
           break;
@@ -104,6 +122,11 @@ const SearchPlants = () => {
         if ((searchObject[property] === item[property]
              || searchObject[property] === undefined)
              && i === SearchPlantKeys.length - 1) {
+          result.push(item);
+          break;
+        }
+
+        if ((property === 'name' || property === 'latinname' || property === 'mintemp' || property === 'maxtemp' || property === 'toxicity' || property === 'animal') && i === SearchPlantKeys.length - 1) {
           result.push(item);
         }
       }
@@ -125,13 +148,13 @@ const SearchPlants = () => {
         <Text text="Already have one? Check how to take best care of it." fontsize="33px" />
       </div>
       <div className={searchPlantsMenu}>
-        <Input text="Name" />
-        <Input text="Min temperature" />
+        <Input text="Name" cb={onChange} />
+        <Input text="Min temperature" cb={onChange} />
         <Select title="Watering" values={SearchPlantConstants.watering} cb={onChange} />
         <Select title="Subsoil" values={SearchPlantConstants.subsoil} cb={onChange} />
         <Select title="Spraying" values={SearchPlantConstants.spraying} cb={onChange} />
-        <Input text="Latin name" />
-        <Input text="Max temperature" />
+        <Input text="Latin name" cb={onChange} />
+        <Input text="Max temperature" cb={onChange} />
         <Select title="Watering method" values={SearchPlantConstants.watering_method} cb={onChange} />
         <Select title="Conditioners" values={SearchPlantConstants.conditioners} cb={onChange} />
         <Select title="Sunlight" values={SearchPlantConstants.sunlight} cb={onChange} />

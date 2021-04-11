@@ -12,4 +12,4 @@ export const SearchPlantConstants = {
   animal: ['yes', 'no']
 };
 
-export const SearchPlantKeys = ['watering', 'watering_method', 'subsoil', 'conditioners', 'spraying', 'sunlight', 'humidity', 'application', 'species', 'toxicity', 'animal', 'latinName', 'name', 'maxTemp', 'minTemp'];
+export const SearchPlantKeys = ['watering', 'watering_method', 'subsoil', 'conditioners', 'spraying', 'sunlight', 'humidity', 'application', 'species', 'toxicity', 'animal', 'latinname', 'name', 'maxtemp', 'mintemp'];
