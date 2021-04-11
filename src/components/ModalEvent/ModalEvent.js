@@ -1,8 +1,5 @@
-/* eslint-disable no-confusing-arrow */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable function-paren-newline */
-/* eslint-disable no-unused-vars */
 /* eslint-disable implicit-arrow-linebreak */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -138,7 +135,6 @@ const ModalEvent = (props) => {
                 <p style={{ fontSize: '1.5rem' }}>No events for this day...</p>
               ) : (
                 eventsForDay.map((e) => (
-                  // eslint-disable-next-line no-underscore-dangle
                   <Event key={e._id} title={e.title} description={e.description} id={e._id} />
                 ))
               )}

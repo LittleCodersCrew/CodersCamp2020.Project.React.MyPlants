@@ -1,7 +1,11 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable operator-linebreak */
+/* eslint-disable object-curly-newline */
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   format,
   addMonths,
@@ -12,24 +16,55 @@ import {
   startOfMonth,
   endOfMonth,
   isSameMonth,
-  isToday
+  isToday,
+  isSameDay,
+  parseISO
 } from 'date-fns';
 import ModalEvent from '../ModalEvent';
 import styles, { daysOfMonth, disabled, today } from './Calendar.module.scss';
 import ArrowLeft from '../../assets/icons/ArrowLeft.png';
 import ArrowRight from '../../assets/icons/ArrowRight.png';
+import useToken from '../../hooks/useToken/useToken';
+import Database from '../../database';
 
 const Calendar = () => {
+  const { token } = useToken();
   const [show, setShow] = useState(false);
 
   const closeModal = () => setShow(false);
 
+  const [events, setEvents] = useState([]);
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const date = new Date(selectedDate.getTime() + 86400000).toJSON();
 
   const nextMonth = () => setCurrentDate(addMonths(currentDate, 1));
 
   const prevMonth = () => setCurrentDate(subMonths(currentDate, 1));
+
+  const userId = JSON.parse(atob(token.split('.')[1])).id;
+
+  useEffect(() => {
+    async function fetchEvents() {
+      let userEvents = [];
+
+      await fetch(`${Database.URL}/calendar/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          userEvents = json.calendar.events;
+        });
+
+      setEvents(userEvents);
+    }
+
+    fetchEvents();
+  });
 
   const header = () => (
     <div className={styles.header}>
@@ -95,9 +130,14 @@ const Calendar = () => {
             className={classes}
             key={day}
             onClick={openModal}
-            // eslint-disable-next-line react/jsx-closing-bracket-location
             onKeyDown={() => null}>
             <span>{formattedDate}</span>
+            <p>
+              {events &&
+                events
+                  .filter((event) => isSameDay(addDays(day, 1), parseISO(event.date)))
+                  .map((event) => <span className={styles.title}>{event.title}</span>)}
+            </p>
           </div>
         );
 
@@ -113,8 +153,6 @@ const Calendar = () => {
 
     return <div>{rows}</div>;
   };
-
-  const date = new Date(selectedDate.getTime() + 86400000).toJSON();
 
   return (
     <div className={styles.wrapper}>

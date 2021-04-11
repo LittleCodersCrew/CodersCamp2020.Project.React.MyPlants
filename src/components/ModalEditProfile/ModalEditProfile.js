@@ -1,3 +1,6 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable import/no-unresolved */
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
@@ -38,16 +41,17 @@ const ModalEditProfile = (props) => {
 
   const userId = JSON.parse(atob(token.split('.')[1])).id;
 
-  const editUser = async (user1) => fetch(`${Database.URL}/user/${userId}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-    body: JSON.stringify(user1)
-  }).then((data) => {
-    if (data.status === 200) {
-      window.location.reload();
-    }
-    return data.json();
-  });
+  const editUser = async (user1) =>
+    fetch(`${Database.URL}/user/${userId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify(user1)
+    }).then((data) => {
+      if (data.status === 200) {
+        window.location.reload();
+      }
+      return data.json();
+    });
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
@@ -63,8 +67,8 @@ const ModalEditProfile = (props) => {
   useEffect(() => {
     fetch(`${Database.URL}/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } }, {})
       .then((data) => data.json())
-      .then(
-        (json) => setUser({
+      .then((json) =>
+        setUser({
           name: json.name,
           surname: json.surname,
           login: json.login,

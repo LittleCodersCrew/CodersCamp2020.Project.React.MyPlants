@@ -80,6 +80,13 @@
   }
 }
 
+.title {
+  display: block;
+  color: #0e3416;
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 1800px) {
   .calendar {
     .row {
