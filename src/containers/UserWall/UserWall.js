@@ -89,10 +89,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     fetchMyPlants();
   }, []);
 
-  // console.log(myPlants);
-
   const myPlantsNames = myPlants.map((plant) => plant.name);
-  // console.log(myPlantsNames);
 
   // Adding notes
 
@@ -113,7 +110,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
   });
 
   const onSubmit = () => {
-    console.log(chosenPlant);
+    note.plant = chosenPlant._id;
     sendNote(note);
   };
 
@@ -221,19 +218,11 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 value={note.image}
                 onChange={handleChange}
               />
-              {/* <TextArea
-                className={adding}
-                text="Which plant?"
-                name="plant"
-                height="3em"
-                value={note.plant}
-                onChange={handleChange}
-                ref={register({ required: 'Plant name is required' })}
-              /> */}
               <Select
                 title="Which plant?"
                 values={myPlantsNames}
                 cb={handleSelectChange}
+                value={note.plant}
               />
             </div>
             <div className={save}>
