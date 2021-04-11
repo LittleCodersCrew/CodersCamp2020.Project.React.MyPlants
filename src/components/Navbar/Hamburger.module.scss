@@ -1,5 +1,5 @@
 .OHamburger {
-  position: absolute;
+  position: fixed;
   right: 0.5rem;
   top: 0.5rem;
   z-index: 1;
@@ -9,9 +9,9 @@
   }
 
   ul {
-    position: absolute;
+    position: fixed;
     right: 0.5rem;
-    top: 2.5rem;
+    top: 3rem;
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-end;

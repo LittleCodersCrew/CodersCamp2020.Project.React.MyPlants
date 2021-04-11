@@ -51,7 +51,7 @@
 .CHamburger {
 
   @media (max-width: 923px) {
-    position: absolute;
+    position: fixed;
     right: 0.5rem;
     top: 0.5rem;
     z-index: 1;

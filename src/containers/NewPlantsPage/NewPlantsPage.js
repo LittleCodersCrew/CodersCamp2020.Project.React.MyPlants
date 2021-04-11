@@ -13,8 +13,6 @@ const NewPlantsPage = () => {
   useEffect(() => {
     async function fetchPlants() {
       let plants = [];
-      // eslint-disable-next-line no-alert
-      // alert(window.innerWidth);
 
       await fetch(`${Database.URL}/plant/`)
         .then((res) => res.json())
@@ -44,6 +42,7 @@ const NewPlantsPage = () => {
 
   return (
     <div className={wrapper}>
+      <h1>New plants</h1>
       {newPlants.length === 0 ? <h2>No new plants yet ...</h2> : newPlants.map((p) => <NewPlant key={p.name} plant={p} />)}
     </div>
   );
