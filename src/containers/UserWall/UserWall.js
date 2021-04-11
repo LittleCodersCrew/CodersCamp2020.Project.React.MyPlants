@@ -20,6 +20,7 @@ import Text from '../../components/Text';
 import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
+import ModalEditProfile from '../../components/ModalEditProfile';
 
 import Star from '../../assets/icons/Star.png';
 import GreenStar from '../../assets/icons/GreenStar.png';
@@ -36,6 +37,11 @@ import {
 } from './UserWall.module.scss';
 
 const UserWall = ({ isMyProfile, isFavourite }) => {
+  const [show, setShow] = useState(false);
+
+  const openModal = () => setShow(true);
+  const closeModal = () => setShow(false);
+
   const [userName, setUserName] = useState('');
   const [userLogin, setUserLogin] = useState('');
   const [note, setNote] = useState({
@@ -179,7 +185,8 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
         <Text text={userLogin} fontsize="2em" />
         <Text text={userName} fontsize="1.5em" />
         <div>
-          <SmallButton type="button" text="Edit profile" fontsize="1.5em" onClick={null} />
+          <SmallButton type="button" text="Edit profile" fontsize="1.5em" onClick={openModal} />
+          <ModalEditProfile closeModal={closeModal} show={show} />
         </div>
         <div>
           <form className={addNote} id="newNote" method="POST" onSubmit={handleSubmit(onSubmit)}>

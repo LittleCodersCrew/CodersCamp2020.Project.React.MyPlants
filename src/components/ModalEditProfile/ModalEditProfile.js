@@ -1,11 +1,12 @@
+/* eslint-disable import/no-unresolved */
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
-import { hide, overlay, modal, form, input, button, error } from './ModalEditProfile.module.scss';
-import closeSquare from '../../assets/icons/CloseSquare.png';
+import { hide, overlay, modal, form, input, button, error } from './ModalEditProfile.modal.scss';
+import closeSquare from '../../assets/icons/Close Square.png';
 
 const ModalEditProfile = (props) => {
   const [errorLogin, setErrorLogin] = useState('');
