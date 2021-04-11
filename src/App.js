@@ -8,12 +8,9 @@ import RegisterPage from './containers/RegisterPage';
 import AuthorsPage from './containers/AuthorsPage';
 import useToken from './hooks/useToken/useToken';
 import PlantPage from './containers/PlantPage';
+import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import ChatPage from './containers/ChatPage';
 import Database from './database';
-
-function Home() {
-  return <h2>About</h2>;
-}
 
 function Garden() {
   return <h2>Garden</h2>;
@@ -55,10 +52,13 @@ const App = () => {
       <Navbar name={userName} />
       <Switch>
         <Route path="/" exact>
-          <Home />
+          <SearchPlantsPage />
         </Route>
         <Route path="/plant/:plantNameFromURL" exact>
           <PlantPage />
+        </Route>
+        <Route path="/plant" exact>
+          <SearchPlantsPage />
         </Route>
         <Route path="/chat" exact>
           <ChatPage />

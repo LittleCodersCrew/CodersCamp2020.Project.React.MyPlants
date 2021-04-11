@@ -1,0 +1,42 @@
+.searchPlantItemContainer {
+  padding: 15px 20px 5px 20px;
+  border-radius: 16px;
+  border: 1px solid #0e3416;
+  box-sizing: border-box;
+  font-family: 'Abhaya Libre', serif;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.itemHeaderTitle {
+  margin-left: 20px;
+
+  > * {
+    line-height: 1.125rem;
+
+    &:last-child {
+      margin-left: -5px;
+    }
+  }
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.itemListItem {
+  span {
+    display: inline-block;
+    width: 150px;
+  }
+}
+
+.itemFooter {
+  margin: 30px 0 0 0;
+}

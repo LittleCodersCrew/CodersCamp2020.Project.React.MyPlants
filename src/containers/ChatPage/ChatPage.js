@@ -46,11 +46,18 @@ const ChatPage = () => {
           .then((json) => json.login);
       }
 
-      // eslint-disable-next-line no-restricted-syntax
-      for (const mess of messagess) {
-        // eslint-disable-next-line no-await-in-loop
-        const username = await fetchUsername(mess.user);
-        mess.user = username;
+      if (token) {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const mess of messagess) {
+          // eslint-disable-next-line no-await-in-loop
+          const username = await fetchUsername(mess.user);
+          mess.user = username;
+        }
+      } else {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const mess of messagess) {
+          mess.user = 'Anonymous';
+        }
       }
 
       setMessages(messagess);
