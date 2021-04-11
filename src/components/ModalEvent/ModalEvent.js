@@ -11,23 +11,8 @@ import Database from '../../database';
 import Text from '../Text';
 import Button from '../Button';
 import Event from '../Event';
-import TextArea from '../TextArea';
 import useToken from '../../hooks/useToken/useToken';
-import {
-  hide,
-  overlay,
-  modal,
-  button,
-  submit,
-  wrapper,
-  eventDate,
-  input,
-  inputForm,
-  events,
-  error,
-  textarea,
-  disabledd
-} from './ModalEvent.module.scss';
+import styles, { hide, overlay, modal, error } from './ModalEvent.module.scss';
 import closeSquare from '../../assets/icons/CloseSquare.png';
 
 const ModalEvent = (props) => {
@@ -53,8 +38,13 @@ const ModalEvent = (props) => {
   const userId = JSON.parse(atob(token.split('.')[1])).id;
 
   const to = () => {
-    setDisabled(`${disabledd}`);
-    setToMuchEvents('za duzo');
+    setDisabled(`${styles.disabled}`);
+    setToMuchEvents('You can have three events for a one day.');
+  };
+
+  const not = () => {
+    setDisabled('');
+    setToMuchEvents('');
   };
 
   useEffect(() => {
@@ -79,10 +69,10 @@ const ModalEvent = (props) => {
 
     fetchEvents();
 
-    const amount = () => (eventsForDay.length === 3 ? to() : setToMuchEvents(''));
+    const amount = () => (eventsForDay.length === 3 ? to() : not());
 
     amount();
-  }, [token, userId, date, eventsForDay]);
+  }, [eventsForDay, token, userId, date]);
 
   const sendEvent = (e) =>
     fetch(`${Database.URL}/calendar/user/${userId}/event`, {
@@ -99,6 +89,10 @@ const ModalEvent = (props) => {
       }
 
       data.json();
+      setEvent({
+        ...event,
+        description: ''
+      });
     });
 
   const onSubmit = () => (eventsForDay.length === 3 ? null : sendEvent(event));
@@ -125,20 +119,20 @@ const ModalEvent = (props) => {
         tabIndex="0"
       />
       <div className={show ? modal : hide}>
-        <button className={button} onClick={closeModal}>
+        <button className={styles.button} onClick={closeModal}>
           <img src={closeSquare} alt="close" />
         </button>
 
-        <div className={wrapper}>
+        <div className={styles.wrapper}>
           <Text text="Events" fontsize="2rem" />
 
           <div>
-            <p className={eventDate}>
+            <p className={styles.eventDate}>
               {day}-{month}-{year}
             </p>
           </div>
 
-          <div className={events}>
+          <div className={styles.events}>
             <div>
               {eventsForDay.length === 0 ? (
                 <p style={{ fontSize: '1.5rem' }}>No events for this day...</p>
@@ -151,35 +145,46 @@ const ModalEvent = (props) => {
             </div>
           </div>
 
-          <div className={inputForm}>
+          <div className={styles.inputForm}>
             <Text text="Add event" fontsize="1.8rem" />
-            <p className={error}>{toMuchEvents}</p>
-            <input
-              id="input"
-              className={`${input} ${disabled}`}
-              onChange={updateField}
-              name="title"
-              placeholder="Add name of your event."
-              ref={register({
-                required: 'Name of the event is required.',
-                maxLength: {
-                  value: 20,
-                  message: 'Name of the event is too long.'
-                }
-              })}
-            />
-            {errors.title && <p className={error}>{errors.title.message}</p>}
+            <p className={styles.amount}>{toMuchEvents}</p>
             <div className={disabled}>
-              <TextArea
-                text="Add description for your event if you like."
+              <input
+                id="input"
+                className={styles.input}
+                onChange={updateField}
+                name="title"
+                placeholder="Add name of your event."
+                ref={register({
+                  required: 'Name of the event is required.',
+                  maxLength: {
+                    value: 20,
+                    message: 'Name of the event is too long.'
+                  }
+                })}
+              />
+              {errors.title && <p className={error}>{errors.title.message}</p>}
+            </div>
+            <div className={disabled}>
+              <textarea
+                className={`${styles.textarea} ${disabled}`}
+                placeholder="Add description for your event if you like."
                 id="description"
                 name="description"
+                type="text"
                 onChange={updateField}
+                ref={register({
+                  maxLength: {
+                    value: 100,
+                    message: 'Description is too long.'
+                  }
+                })}
               />
+              {errors.description && <p className={error}>{errors.description.message}</p>}
             </div>
           </div>
 
-          <div className={submit}>
+          <div className={disabled}>
             <Button text="Add" type="submit" onClick={handleSubmit(onSubmit)} />
           </div>
         </div>

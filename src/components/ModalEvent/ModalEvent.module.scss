@@ -15,7 +15,7 @@
 .modal {
   display: block;
   width: 40vw;
-  height: 70vh;
+  height: 90vh;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -45,48 +45,80 @@
   font-family: 'Abhaya Libre', serif;
   letter-spacing: 0.08rem;
   color: #0e3416;
+}
 
-  .eventDate {
-    font-size: 2rem;
-  }
+.eventDate {
+  font-size: 2rem;
+}
 
-  .inputForm {
-    width: 80%;
+.inputForm {
+  width: 80%;
 
-    .input {
-      margin-top: 20px;
-      color: #0e3416;
-      border: 2px solid #0e3416;
-      border-radius: 4px;
-      height: 50px;
-      padding: 10px;
-      font-size: 1rem;
-      font-family: 'Abhaya Libre', serif;
-      letter-spacing: 1.5px;
-      width: 98%;
-      outline: none;
-    }
+  .input {
+    margin-top: 20px;
+    color: #0e3416;
+    border: 2px solid #0e3416;
+    border-radius: 4px;
+    height: 50px;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-family: 'Abhaya Libre', serif;
+    letter-spacing: 1.5px;
+    width: 100%;
+    outline: none;
   }
 
   .textarea {
     margin-top: 20px;
+    color: #0e3416;
+    border: 2px solid #0e3416;
+    border-radius: 4px;
+    height: 5.5rem;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    font-family: 'Abhaya Libre', serif;
+    letter-spacing: 0.08em;
+    width: 100%;
+    resize: none;
+    overflow: auto;
+  }
+}
+
+.error {
+  margin-top: 5px;
+  text-align: center;
+  color: red;
+  font-size: 1rem;
+}
+
+.amount {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.disabled {
+  pointer-events: none;
+
+  .input,
+  .textarea {
+    background-color: lightgrey;
+    border: 1px solid grey;
   }
 
-  .error {
-    margin-top: 10px;
-    text-align: center;
-    color: red;
-    font-size: 1rem;
+  > button {
+    border: 1px solid grey;
+    background-color: lightgrey;
+    color: grey;
   }
 }
 
 @media (max-width: 1400px) {
   .modal {
-    height: 95vh;
-    width: 50vw;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 105vh;
+    width: 60vw;
   }
-}
-
-.disabledd {
-  background-color: red;
 }
