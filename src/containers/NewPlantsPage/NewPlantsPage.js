@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
