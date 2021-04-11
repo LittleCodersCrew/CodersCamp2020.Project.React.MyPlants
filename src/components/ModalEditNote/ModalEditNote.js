@@ -13,7 +13,7 @@ import closeSquare from '../../assets/icons/Close Square.png';
 import { hide, overlay, modal, form, input, button } from './ModalEditNote.module.scss';
 
 const ModalEditNote = (props) => {
-  const { show, closeModal, getNoteId } = props;
+  const { show, closeModal, noteId } = props;
   const { handleSubmit } = useForm();
   const { token } = useToken();
   const [note, setNote] = useState({
@@ -25,6 +25,13 @@ const ModalEditNote = (props) => {
   const [myPlants, setMyPlants] = useState([]);
   const [chosenPlant, setChosenPlant] = useState('');
   const myId = JSON.parse(atob(token.split('.')[1])).id;
+
+  const updateField = (e) => {
+    setNote({
+      ...note,
+      [e.target.name]: e.target.value
+    });
+  };
 
   useEffect(() => {
     async function fetchMyPlants() {
@@ -49,14 +56,7 @@ const ModalEditNote = (props) => {
 
   const myPlantsNames = myPlants.map((plant) => plant.name);
 
-  const updateField = (e) => {
-    setNote({
-      ...note,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const editNote = async (note1) => fetch(`${Database.URL}/user/${myId}/notes/${getNoteId}`, {
+  const editNote = async (note1) => fetch(`${Database.URL}/user/${myId}/notes/${noteId}`, {
     method: 'PUT',
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(note1)
@@ -80,7 +80,7 @@ const ModalEditNote = (props) => {
   };
 
   useEffect(() => {
-    fetch(`${Database.URL}/user/${myId}/notes/${getNoteId}`, {
+    fetch(`${Database.URL}/user/${myId}/notes/${noteId}`, {
       headers: {
         'Content-Type': 'application/',
         Authorization: `Bearer ${token}`
@@ -159,7 +159,7 @@ const ModalEditNote = (props) => {
 ModalEditNote.propTypes = {
   show: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  getNoteId: PropTypes.number.isRequired
+  noteId: PropTypes.number.isRequired
 };
 
 export default ModalEditNote;

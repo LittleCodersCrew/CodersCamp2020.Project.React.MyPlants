@@ -34,12 +34,14 @@ const Buttons = ({ myProfile, getNoteId }) => {
       return data.json();
     });
 
+  const noteId = getNoteId;
+
   if (myProfile) {
     return (
       <div className={buttons}>
         <SmallButton type="button" text="Delete" fontsize="0.9rem" onClick={handleClick} />
         <SmallButton type="button" text="Edit" fontsize="0.9rem" onClick={openModal} />
-        <ModalEditNote closeModal={closeModal} show={show} />
+        <ModalEditNote closeModal={closeModal} show={show} noteId={noteId} />
       </div>
     );
   }
