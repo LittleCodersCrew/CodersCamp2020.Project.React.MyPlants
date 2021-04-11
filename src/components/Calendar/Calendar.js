@@ -1,3 +1,6 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable indent */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   format,
@@ -12,11 +15,16 @@ import {
   isToday,
   isSameDay
 } from 'date-fns';
+import ModalEvent from '../ModalEvent';
 import styles, { daysOfMonth, disabled, today, selected } from './Calendar.module.scss';
 import ArrowLeft from '../../assets/icons/ArrowLeft.png';
 import ArrowRight from '../../assets/icons/ArrowRight.png';
 
 const Calendar = () => {
+  const [show, setShow] = useState(false);
+
+  const closeModal = () => setShow(false);
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -79,13 +87,19 @@ const Calendar = () => {
           classes += ` ${disabled}`;
         }
 
+        const openModal = () => {
+          setShow(true);
+          isSameMonth(cloneDay, currentDate);
+          setSelectedDate(cloneDay);
+        };
+
         days.push(
           <div
             role="button"
             tabIndex="0"
             className={classes}
             key={day}
-            onClick={() => isSameMonth(cloneDay, currentDate) && setSelectedDate(cloneDay)}
+            onClick={openModal}
             // eslint-disable-next-line react/jsx-closing-bracket-location
             onKeyDown={() => null}>
             <span>{formattedDate}</span>
@@ -105,6 +119,8 @@ const Calendar = () => {
     return <div>{rows}</div>;
   };
 
+  const date = new Date(selectedDate.getTime() + 86400000).toJSON();
+
   return (
     <div className={styles.wrapper}>
       <button onClick={prevMonth}>
@@ -118,6 +134,8 @@ const Calendar = () => {
       <button onClick={nextMonth}>
         <img src={ArrowRight} alt="right" />
       </button>
+
+      <ModalEvent closeModal={closeModal} show={show} date={date} />
     </div>
   );
 };
