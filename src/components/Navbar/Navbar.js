@@ -1,8 +1,5 @@
-/* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-console */
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
@@ -81,7 +78,7 @@ const Navbar = ({ name, admin }) => {
   ] : checkAdmin;
 
   return (
-    <div className={width < 560 && ifOpen ? OHamburger : CHamburger} ref={node}>
+    <div className={width < 923 && ifOpen ? OHamburger : CHamburger} ref={node}>
       <img src={Menu} alt="Menu" height="40px" width="40px" onClick={() => setIfOpen(!ifOpen)} />
       <nav>
         <ul className={navbar}>

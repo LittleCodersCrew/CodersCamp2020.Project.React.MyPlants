@@ -13,6 +13,8 @@ const NewPlantsPage = () => {
   useEffect(() => {
     async function fetchPlants() {
       let plants = [];
+      // eslint-disable-next-line no-alert
+      // alert(window.innerWidth);
 
       await fetch(`${Database.URL}/plant/`)
         .then((res) => res.json())
