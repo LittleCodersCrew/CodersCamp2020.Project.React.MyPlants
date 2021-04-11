@@ -1,0 +1,33 @@
+.wrapper {
+  margin: 20px 0;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-family: 'Abhaya Libre', serif;
+  letter-spacing: 0.08rem;
+  text-align: center;
+  color: #0e3416;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  margin-top: 10px;
+
+  > .button {
+    color: #0e3416;
+    font-size: 1rem;
+    flex-basis: 45%;
+    background-color: white;
+    border: none;
+    font-family: 'Abhaya Libre', serif;
+    letter-spacing: 0.08rem;
+    cursor: pointer;
+
+    &:hover {
+      color: #7fd291;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import Database from '../../database';
 import Text from '../Text';
 import Button from '../Button';
+import Event from '../Event';
 import useToken from '../../hooks/useToken/useToken';
 import {
   hide,
@@ -41,7 +42,33 @@ const ModalEvent = (props) => {
     date: ''
   });
 
+  const [eventsForDay, setEventsForDay] = useState([]);
+
   const userId = JSON.parse(atob(token.split('.')[1])).id;
+
+  useEffect(() => {
+    async function fetchEvents() {
+      let userEvents = [];
+
+      await fetch(`${Database.URL}/calendar/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          userEvents = json.calendar.events;
+        });
+
+      const lookingData = date.substring(0, 10);
+
+      userEvents = userEvents.filter((e) => e.date.substring(0, 10) === lookingData);
+      setEventsForDay(userEvents);
+    }
+
+    fetchEvents();
+  }, [token, userId, date, eventsForDay]);
+
   const sendEvent = (e) =>
     fetch(`${Database.URL}/calendar/user/${userId}/event`, {
       method: 'POST',
@@ -98,10 +125,12 @@ const ModalEvent = (props) => {
           </div>
 
           <div className={events}>
-            <p className={eventName}>Some event</p>
-            <div className={eventButton}>
-              <button>Edit</button>
-              <button>Delete</button>
+            <div>
+              {eventsForDay.length === 0 ? (
+                <p style={{ fontSize: '1.5rem' }}>No events for this day...</p>
+              ) : (
+                eventsForDay.map((e) => <Event key={e.id} event={e.title} />)
+              )}
             </div>
           </div>
 

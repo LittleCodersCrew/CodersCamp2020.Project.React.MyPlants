@@ -15,7 +15,7 @@
 .modal {
   display: block;
   width: 40vw;
-  height: 65vh;
+  height: 70vh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -44,6 +44,7 @@
   align-items: center;
   font-family: 'Abhaya Libre', serif;
   letter-spacing: 0.08rem;
+  color: #0e3416;
 
   .eventDate {
     font-size: 2rem;
@@ -65,28 +66,6 @@
       letter-spacing: 1.5px;
       width: 100%;
       outline: none;
-    }
-  }
-
-  .events {
-    > .eventName {
-      font-size: 1.5rem;
-    }
-
-    > .eventButton {
-      display: flex;
-      align-content: flex-end;
-      margin-top: 10px;
-
-      > button {
-        font-size: 1rem;
-        flex-basis: 45%;
-        background-color: white;
-        border: none;
-        font-family: 'Abhaya Libre', serif;
-        letter-spacing: 0.08rem;
-        cursor: pointer;
-      }
     }
   }
 
