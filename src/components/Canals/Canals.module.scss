@@ -1,0 +1,22 @@
+.canal {
+  background-color: #fff;
+  padding: 0.7rem 1.3rem;
+  width: 100%;
+  text-align: left;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: 2px solid #000;
+  cursor: pointer;
+  outline: none;
+}
+
+.open {
+  background-color: #0df46a;
+  pointer-events: none;
+  cursor: default;
+}
+
+.notOpen {
+  color: rgb(14, 52, 22);
+}

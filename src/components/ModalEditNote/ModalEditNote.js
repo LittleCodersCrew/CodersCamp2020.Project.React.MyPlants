@@ -114,7 +114,7 @@ const ModalEditNote = (props) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <input
-                title="Title"
+                name="title"
                 className={input}
                 placeholder={note.title}
                 onChange={updateField}
