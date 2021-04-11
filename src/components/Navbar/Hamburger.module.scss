@@ -1,0 +1,24 @@
+.OHamburger {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  z-index: 1;
+
+  > img {
+    cursor: pointer;
+  }
+
+  ul {
+    position: absolute;
+    right: 0.5rem;
+    top: 2.5rem;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    border: 1px solid rgb(14, 52, 22);
+    height: fit-content;
+    padding: 1rem;
+  }
+}

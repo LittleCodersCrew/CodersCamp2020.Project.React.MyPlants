@@ -33,3 +33,29 @@
     padding-right: 0.5rem;
   }
 };
+
+.CHamburger {
+
+  @media (max-width: 560px) {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    z-index: 1;
+  }
+
+  nav {
+
+    @media (max-width: 560px) {
+      display: none;
+    }
+  }
+
+  > img {
+    display: none;
+
+    @media (max-width: 560px) {
+      display: block;
+      cursor: pointer;
+    }
+  }
+}
