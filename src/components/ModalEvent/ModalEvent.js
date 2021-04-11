@@ -29,12 +29,12 @@ const ModalEvent = (props) => {
   const { show, closeModal, date } = props;
   const { token } = useToken();
 
-  // const jsonDate = new Date().toJSON();
+  const jsonDate = new Date().toJSON();
 
   // eslint-disable-next-line no-unused-vars
   const [event, setEvent] = useState({
     title: 'test',
-    date: { date }
+    date
   });
 
   const userId = JSON.parse(atob(token.split('.')[1])).id;
@@ -47,13 +47,16 @@ const ModalEvent = (props) => {
       },
       body: JSON.stringify(e)
     }).then((data) => {
+      if (data.status === 200) {
+        window.location.reload();
+      }
+
       data.json();
     });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const response = sendEvent(event);
-    console.log(date);
+    sendEvent(event);
   };
 
   const updateField = (e) => {
