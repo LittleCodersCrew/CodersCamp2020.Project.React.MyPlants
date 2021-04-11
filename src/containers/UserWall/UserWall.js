@@ -51,6 +51,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
   const [myPlantsName, setMyPlantsName] = useState('');
   const [myPlantsId, setMyPlantsId] = useState('');
   const [myPlantsBaseId, setMyPlantsBaseId] = useState('');
+  const [chosenPlant, setChosenPlant] = useState('');
 
   const { id } = useParams();
   const { token } = useToken();
@@ -88,7 +89,10 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     fetchMyPlants();
   }, []);
 
-  console.log(myPlants);
+  // console.log(myPlants);
+
+  const myPlantsNames = myPlants.map((plant) => plant.name);
+  // console.log(myPlantsNames);
 
   // Adding notes
 
@@ -109,6 +113,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
   });
 
   const onSubmit = () => {
+    console.log(chosenPlant);
     sendNote(note);
   };
 
@@ -116,14 +121,11 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
 
-  const giveNamesOFMyPlants = (mp) => (
-    <Select
-      title="Choose plant"
-      values={mp.name}
-      value={note.plant}
-      onChange={handleChange}
-    />
-  );
+  const handleSelectChange = (title, value) => {
+    const choosenPlant1 = myPlants.filter((plant) => `${plant.name}` === value);
+    setChosenPlant(...choosenPlant1);
+    console.log(chosenPlant._id);
+  };
 
   //  Favourites
 
@@ -228,7 +230,11 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 onChange={handleChange}
                 ref={register({ required: 'Plant name is required' })}
               /> */}
-
+              <Select
+                title="Which plant?"
+                values={myPlantsNames}
+                cb={handleSelectChange}
+              />
             </div>
             <div className={save}>
               <Button type="submit" text="Save" />
