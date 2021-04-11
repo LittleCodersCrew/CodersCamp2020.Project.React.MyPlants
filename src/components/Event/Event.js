@@ -34,8 +34,10 @@ const Event = ({ title, description, id }) => {
 
 Event.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   id: PropTypes.string.isRequired
 };
+
+Event.defaultProps = { description: null };
 
 export default Event;

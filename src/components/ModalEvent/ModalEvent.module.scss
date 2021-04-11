@@ -16,7 +16,7 @@
   display: block;
   width: 40vw;
   height: 70vh;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -61,7 +61,6 @@
       height: 50px;
       padding: 10px;
       font-size: 1rem;
-      cursor: text;
       font-family: 'Abhaya Libre', serif;
       letter-spacing: 1.5px;
       width: 98%;
@@ -86,4 +85,8 @@
     height: 95vh;
     width: 50vw;
   }
+}
+
+.disabledd {
+  background-color: red;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable function-paren-newline */
@@ -24,7 +25,8 @@ import {
   inputForm,
   events,
   error,
-  textarea
+  textarea,
+  disabledd
 } from './ModalEvent.module.scss';
 import closeSquare from '../../assets/icons/CloseSquare.png';
 
@@ -33,6 +35,9 @@ const ModalEvent = (props) => {
   const { token } = useToken();
 
   const { register, errors, handleSubmit } = useForm();
+
+  const [toMuchEvents, setToMuchEvents] = useState('');
+  const [disabled, setDisabled] = useState('');
 
   const [eventData, setEventDate] = useState('');
   useEffect(() => setEventDate(date), [date]);
@@ -46,6 +51,11 @@ const ModalEvent = (props) => {
   const [eventsForDay, setEventsForDay] = useState([]);
 
   const userId = JSON.parse(atob(token.split('.')[1])).id;
+
+  const to = () => {
+    setDisabled(`${disabledd}`);
+    setToMuchEvents('za duzo');
+  };
 
   useEffect(() => {
     async function fetchEvents() {
@@ -68,6 +78,10 @@ const ModalEvent = (props) => {
     }
 
     fetchEvents();
+
+    const amount = () => (eventsForDay.length === 3 ? to() : setToMuchEvents(''));
+
+    amount();
   }, [token, userId, date, eventsForDay]);
 
   const sendEvent = (e) =>
@@ -87,9 +101,7 @@ const ModalEvent = (props) => {
       data.json();
     });
 
-  const onSubmit = () => {
-    sendEvent(event);
-  };
+  const onSubmit = () => (eventsForDay.length === 3 ? null : sendEvent(event));
 
   const updateField = (e) => {
     setEvent({
@@ -141,22 +153,23 @@ const ModalEvent = (props) => {
 
           <div className={inputForm}>
             <Text text="Add event" fontsize="1.8rem" />
+            <p className={error}>{toMuchEvents}</p>
             <input
               id="input"
-              className={input}
+              className={`${input} ${disabled}`}
               onChange={updateField}
               name="title"
-              placeholder="Add event..."
+              placeholder="Add name of your event."
               ref={register({
                 required: 'Name of the event is required.',
                 maxLength: {
                   value: 20,
-                  message: 'Name of the event too long.'
+                  message: 'Name of the event is too long.'
                 }
               })}
             />
             {errors.title && <p className={error}>{errors.title.message}</p>}
-            <div className={textarea}>
+            <div className={disabled}>
               <TextArea
                 text="Add description for your event if you like."
                 id="description"
