@@ -1,5 +1,5 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect, useReducer } from 'react';
 import { searchPlantsContainer, searchPlantsHeader, searchPlantsMenu, searchPlantsContent, noFoundPlantsContainer, background, backgroundWrap, newPlant } from './SearchPlants.module.scss';
 
@@ -55,6 +55,11 @@ const SearchPlants = () => {
     return result;
   };
 
+  const checkAcceptedPlants = (array) => {
+    if (!array) return [];
+    return array.filter((item) => item.accepted);
+  };
+
   useEffect(() => {
     const getPlants = async () => {
       let response = await fetch(`${Database.URL}/plant`, {
@@ -62,6 +67,7 @@ const SearchPlants = () => {
         headers: { 'Content-Type': 'application/json' }
       });
       response = await response.json();
+      response = checkAcceptedPlants(response);
       setPlants(response);
       response = getRandomPlants(response, AMOUNTHOFPLANTSTOSHOW);
       setCurrentPlants(response);
