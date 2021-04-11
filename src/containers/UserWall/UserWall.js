@@ -195,7 +195,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
               <TextArea
                 text="Add title.."
                 name="title"
-                height="3em"
+                height="3.5em"
                 value={note.title}
                 onChange={handleChange}
                 ref={register({ required: 'Title is required' })}
@@ -221,7 +221,8 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 className={adding}
                 text="Add link to photo..."
                 name="image"
-                height="3em"
+                height="3.5em"
+                width="45em"
                 value={note.image}
                 onChange={handleChange}
               />

@@ -3,7 +3,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Select from '../Select';
@@ -14,7 +13,6 @@ import { hide, overlay, modal, form, input, button } from './ModalEditNote.modul
 
 const ModalEditNote = (props) => {
   const { show, closeModal, noteId } = props;
-  const { handleSubmit } = useForm();
   const { token } = useToken();
   const [note, setNote] = useState({
     image: '',
@@ -70,7 +68,8 @@ const ModalEditNote = (props) => {
   const onSubmit = async (data, e) => {
     e.preventDefault();
     note.plant = chosenPlant._id;
-    editNote(note);
+    const response = await editNote(note);
+    console.log(response);
   };
 
   const handleSelectChange = (title, value) => {
@@ -86,6 +85,7 @@ const ModalEditNote = (props) => {
         Authorization: `Bearer ${token}`
       }
     }, {})
+      .then((data) => data.json())
       .then(
         (json) => setNote({
           image: json.image,
@@ -111,9 +111,10 @@ const ModalEditNote = (props) => {
         </button>
         <div className={form}>
           <Text text="Edit your note" fontsize="1.8rem" />
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={onSubmit}>
             <div>
               <input
+                text="Title"
                 name="title"
                 className={input}
                 placeholder={note.title}
