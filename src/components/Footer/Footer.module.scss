@@ -6,6 +6,22 @@
   justify-content: space-between;
   align-items: center;
   font-family: 'Abhaya Libre', serif;
+
+  @media (max-width: 1000px) {
+    height: 50px;
+  }
+
+  img {
+    @media (max-width: 1535px) {
+      width: 35px;
+      height: 35px;
+    }
+
+    @media (max-width: 1000px) {
+      width: 30px;
+      height: 30px;
+    }
+  }
 };
 
 .container {
@@ -23,9 +39,21 @@
   &.clicked {
     text-shadow: 5px 5px 4px rgba(13, 244, 106, 0.51);
   }
+
+  @media (max-width: 1535px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 18px;
+  }
 };
 
 .copyright {
   color: rgb(14, 52, 22);
   font-size: 16px;
+
+  @media (max-width: 1000px) {
+    font-size: 14px;
+  }
 }
