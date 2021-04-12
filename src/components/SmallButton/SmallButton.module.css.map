@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,YAAY,CAAC;EACX,gBAAgB,EAAE,WAAW;EAC7B,MAAM,EAAE,IAAI;EACZ,WAAW,EAAE,qBAAqB;CAMnC;;AATD,AAKE,YALU,AAKT,MAAM,CAAC;EACN,MAAM,EAAE,OAAO;EACf,OAAO,EAAE,IAAI;CACd",
-    "sources": [
-        "SmallButton.module.scss"
-    ],
-    "names": [],
-    "file": "SmallButton.module.css"
-}

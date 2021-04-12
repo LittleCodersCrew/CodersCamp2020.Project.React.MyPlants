@@ -198,7 +198,6 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 height="3.5em"
                 value={note.title}
                 onChange={handleChange}
-                ref={register({ required: 'Title is required' })}
               />
             </div>
             <div className={notes}>
@@ -209,7 +208,6 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 height="10em"
                 value={note.name}
                 onChange={handleChange}
-                ref={register({ required: 'Text of note is required' })}
               />
             </div>
             <div className={tick}>
