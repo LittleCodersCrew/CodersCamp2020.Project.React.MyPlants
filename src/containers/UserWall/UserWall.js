@@ -226,6 +226,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 onChange={handleChange}
               />
               <Select
+                className={adding}
                 title="Which plant?"
                 values={myPlantsNames}
                 cb={handleSelectChange}

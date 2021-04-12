@@ -12,7 +12,7 @@
   align-items: center;
   border: 1px solid black;
 
-  @media (max-width: 485px) {
+  @media (max-width: 990px) {
     grid-template-columns: 90vw;
     grid-template-rows: 10vh 10vh 25vh 5vh 20vh 10vh;
     grid-template-areas:
@@ -33,13 +33,9 @@
 }
 .title {
   grid-area: title;
-  width: 100%;
+  width: 98%;
   align-self: center;
   justify-self: center;
-
-  @media (max-width: 485px) {
-    width: 98%;
-  }
 }
 
 .notes {
@@ -57,10 +53,11 @@
 
 .additional {
   grid-area: additional;
+  width: 96%;
   display: grid;
-  grid-template-columns: 6.3fr 2.1fr;
+  grid-template-columns: 6fr 4fr;
 
-  @media (max-width: 485px) {
+  @media (max-width: 990px) {
     display: flex;
     flex-direction: column;
     width: 98%;
@@ -68,6 +65,7 @@
 }
 
 .adding {
-  width: 35em;
+  width: 98%;
   margin-right: 1em;
+  height: 3.5em;
 }
