@@ -1,11 +1,30 @@
 .container {
   margin: auto;
+  position: relative;
 }
 
 .title {
   font-family: 'Abhaya Libre', serif;
   font-weight: 200;
   margin-bottom: 2em;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  column-gap: 4em;
+
+  p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span:last-child {
+      text-align: right;
+    }
+  }
 }
 
 .basicInfo {
@@ -21,6 +40,20 @@
   }
 }
 
+.detailedInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 1033px;
+  margin: 0 auto;
+  margin-bottom: 1em;
+
+  > * {
+    flex-basis: calc(20% - 20px);
+    margin: 10px 30px;
+  }
+}
+
 .show {
   display: block;
 }
@@ -29,39 +62,15 @@
   display: none;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #0000003a;
-  transition: opacity 0.2s ease;
-}
-
 .modal {
-  width: 500px;
-  position: relative;
-  margin: 1px auto;
+  position: absolute;
+  width: 90%;
+  z-index: 1;
   padding: 20px;
   background-color: #fff;
-  border-radius: 2px;
+  border: 1px solid black;
+  border-radius: 10px;
   transform: translateY(100%);
   transition: transform 0.2s ease;
-  box-shadow: 0 2px 8px 3px;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.modal button {
-  position: absolute;
-  right: -1rem;
-  top: -1rem;
-  width: 2rem;
-  height: 2rem;
-  padding: 0.5rem;
-  margin: 0 auto;
-  border-radius: 50%;
-  box-shadow: 1px 1px 1px #0000003a;
-  cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.562);
+  box-shadow: 2px 3px lightgreen;
 }
