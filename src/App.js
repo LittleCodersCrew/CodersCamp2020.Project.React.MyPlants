@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import AuthorsPage from './containers/AuthorsPage';
+import useToken from './hooks/useToken/useToken';
+import PlantPage from './containers/PlantPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import ChatPage from './containers/ChatPage';
 import NewPlantsPage from './containers/NewPlantsPage';
@@ -62,6 +64,9 @@ const App = () => {
       <Switch>
         <Route path="/" exact>
           <SearchPlantsPage />
+        </Route>
+        <Route path="/plant/:plantNameFromURL" exact>
+          <PlantPage />
         </Route>
         <Route path="/plant" exact>
           <SearchPlantsPage />
