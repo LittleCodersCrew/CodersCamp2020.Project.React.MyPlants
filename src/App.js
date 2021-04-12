@@ -55,8 +55,6 @@ const App = () => {
           setIfAdmin(json.admin);
         });
     }
-
-    document.title = 'My plants';
   });
 
   return (
