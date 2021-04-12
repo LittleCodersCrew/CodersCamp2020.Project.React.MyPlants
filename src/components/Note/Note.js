@@ -86,7 +86,7 @@ const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture, noteId })
 
 Buttons.propTypes = {
   myProfile: PropTypes.bool.isRequired,
-  getNoteId: PropTypes.number.isRequired
+  getNoteId: PropTypes.string.isRequired
 };
 
 Note.propTypes = {
@@ -95,7 +95,7 @@ Note.propTypes = {
   notePlant: PropTypes.string.isRequired,
   noteTitle: PropTypes.string.isRequired,
   notePicture: PropTypes.string,
-  noteId: PropTypes.number.isRequired
+  noteId: PropTypes.string.isRequired
 };
 
 Note.defaultProps = { notePicture: '' };

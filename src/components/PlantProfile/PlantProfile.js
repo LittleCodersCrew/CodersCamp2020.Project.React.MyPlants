@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import SmallButton from '../SmallButton';
+import Text from '../SmallButton';
 
 import { plant, plantImage } from './PlantProfile.module.scss';
 
@@ -9,16 +9,16 @@ import profileleaf from '../../assets/illustrations/plant-leaf.png';
 
 const PlantProfile = ({ plantName, plantId, plantPhoto }) => (
   <div className={plant}>
-    <Link className={plant} to={`/user/${plantId}`}>
+    <a className={plant} href="/user/garden">
       <img className={plantImage} src={plantPhoto} alt={plantName} height="80rem" width="80rem" />
-      <SmallButton text={plantName} fontsize="1.5em" />
-    </Link>
+      <Text text={plantName} fontsize="1.5em" />
+    </a>
   </div>
 );
 
 PlantProfile.propTypes = {
   plantName: PropTypes.string.isRequired,
-  plantId: PropTypes.number.isRequired,
+  plantId: PropTypes.string.isRequired,
   plantPhoto: PropTypes.string
 };
 
