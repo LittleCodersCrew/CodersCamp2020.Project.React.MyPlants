@@ -5363,6 +5363,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^2.20.1":
+  version: 2.20.1
+  resolution: "date-fns@npm:2.20.1"
+  checksum: d7676077c30bb9ca983fc857acf38286fc6377fc2790ff181b95e2b30dd981a309eb6d7317d4604250a40f4fa3886b4ba02a87d5c1acd96285bcc9da9bad1440
+  languageName: node
+  linkType: hard
+
 "debug@npm:2.6.9, debug@npm:^2.2.0, debug@npm:^2.3.3, debug@npm:^2.6.0, debug@npm:^2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -10389,6 +10396,7 @@ fsevents@^1.2.7:
     "@testing-library/react": ^11.1.0
     "@testing-library/user-event": ^12.1.10
     babel-eslint: ^10.1.0
+    date-fns: ^2.20.1
     eslint: ^7.22.0
     eslint-config-airbnb: ^18.2.1
     eslint-config-react-app: ^6.0.0

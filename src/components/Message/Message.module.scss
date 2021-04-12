@@ -2,6 +2,17 @@
   display: flex;
   gap: 1em;
   align-items: center;
+
+  @media (max-width: 923px) {
+    gap: 0.5em;
+  }
+
+  img {
+    @media (max-width: 923px) {
+      width: 30px;
+      height: 30px;
+    }
+  }
 }
 
 .userInfo {
@@ -30,4 +41,13 @@
   font-size: 1.2rem;
   overflow-y: visible;
   overflow-x: hidden;
+
+  @media (max-width: 923px) {
+    font-size: 1rem;
+    gap: 1.5em;
+  }
+
+  @media (max-width: 485px) {
+    font-size: 0.8rem;
+  }
 }

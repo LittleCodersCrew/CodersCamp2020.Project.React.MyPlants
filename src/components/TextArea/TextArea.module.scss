@@ -21,5 +21,12 @@
 
   @media (max-width: 485px) {
     padding: 2vw;
+
+  @media (max-width: 923px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 485px) {
+    font-size: 0.75rem;
   }
 }

@@ -6,7 +6,7 @@ import Text from '../Text';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
 import { hide, overlay, modal, form, input, button, error } from './ModalEditProfile.module.scss';
-import closeSquare from '../../assets/icons/Close Square.png';
+import closeSquare from '../../assets/icons/CloseSquare.png';
 
 const ModalEditProfile = (props) => {
   const [errorLogin, setErrorLogin] = useState('');
@@ -64,14 +64,12 @@ const ModalEditProfile = (props) => {
   useEffect(() => {
     fetch(`${Database.URL}/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } }, {})
       .then((data) => data.json())
-      .then(
-        (json) => setUser({
-          name: json.name,
-          surname: json.surname,
-          login: json.login,
-          email: json.email
-        })
-      );
+      .then((json) => setUser({
+        name: json.name,
+        surname: json.surname,
+        login: json.login,
+        email: json.email
+      }));
   });
 
   return (

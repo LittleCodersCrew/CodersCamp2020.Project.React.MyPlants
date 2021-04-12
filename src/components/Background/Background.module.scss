@@ -4,8 +4,28 @@
   top: -70px;
   left: -20vw;
   height: calc(100vh + 70px);
-  width: 71vw;
+  width: 72.5vw;
   transform: skew(-20deg);
   box-shadow: 20px 1px 50px 30px rgba(14, 52, 22, 0.4);
   background-color: #7fd291;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .wrapper {
+    min-height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .background {
+    position: absolute;
+    top: 60vh;
+    left: 0;
+    bottom: -10vh;
+    width: 100vw;
+    transform: skew(20deg) rotate(20deg);
+    box-shadow: 20px 1px 50px 30px rgba(14, 52, 22, 0.4);
+    background-color: #7fd291;
+  }
 }

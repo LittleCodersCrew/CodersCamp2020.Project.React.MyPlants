@@ -10,11 +10,12 @@ const LoginPage = () => {
 
   return (
     <>
-      <Background />
-      <div className={wrapper}>
-        <LandingPlant />
-        <Login setToken={setToken} />
-      </div>
+      <Background>
+        <div className={wrapper}>
+          <LandingPlant />
+          <Login setToken={setToken} />
+        </div>
+      </Background>
     </>
   );
 };

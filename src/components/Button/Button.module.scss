@@ -9,10 +9,11 @@
   letter-spacing: 0.08rem;
   min-width: 193px;
   height: 40px;
+  width: 193px;
+  outline: none;
 
   &:hover {
     cursor: pointer;
-    outline: none;
     box-shadow: 0 0 1em #9f9;
   }
 }
