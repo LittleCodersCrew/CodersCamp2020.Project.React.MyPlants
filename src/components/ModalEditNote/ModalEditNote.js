@@ -8,7 +8,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Select from '../Select';
-import Button from '../Button';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
 import closeSquare from '../../assets/icons/Close Square.png';
@@ -116,7 +115,7 @@ const ModalEditNote = (props) => {
         </button>
         <div className={form}>
           <Text text="Edit your note" fontsize="1.8rem" />
-          <form onSubmit={onSubmit} method="PUT" id="editNote">
+          <form onSubmit={onSubmit} id="editNote">
             <div className={tick}>
               <input type="checkbox" id="private" name="private" value="true" onChange={(e) => setNote({ ...note, private: e.target.checked })} />
               <label htmlFor="private"> Private? </label>
@@ -158,7 +157,9 @@ const ModalEditNote = (props) => {
               />
             </div>
             <div>
-              <Button type="submit" text="Save" />
+              <button type="submit" className={button}>
+                Save
+              </button>
             </div>
           </form>
         </div>
