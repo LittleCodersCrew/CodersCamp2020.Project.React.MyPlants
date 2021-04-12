@@ -34,11 +34,11 @@ It is an application for plant lovers. The idea of it is to create a collection 
 
 ## Features
 - User can create their profil and login. And if someone is not logged in, there are a limited number of pages they can see and actions they can take.
-<img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226434/login_wqb2ri.png"  width="550"/><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226475/register_nfg55w.png" width="550" />
+<img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226434/login_wqb2ri.png"  width="430"/><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226475/register_nfg55w.png" width="430" />
 - There is a plant database, where each plant has its own subpage with a description of its growing requirements. There is also a comments section where the user can add a comment and like a comment if he wishes (comments will be displayed according to the numeber of likes).
 <p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226570/plant_zt8ijs.png" width="650" height="350" /></p>
 - The main page is the plant finder, which by default shows 3 example plants in the database. You can search for a plant by its name or set search criteria according to care requirements. If the user does not find the plant he was looking for, he can add it to the database. For this purpose, he has to complete the profile of the plant and send it, and the website administrator will consider its application and approve or delete it (only the administrator has access to the subpage with unapproved plants).
-<img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226558/glowna_vebr5s.png"  width="550"/><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226565/admin_ohrncv.png" width="550"/>
+<img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226558/glowna_vebr5s.png"  width="430"/><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226565/admin_ohrncv.png" width="430"/>
 - Each user has his own profile, which is called 'My garden' and it includes:
 - Garden - user can create profiles for the plants he has at home. He can name his plants, add pictures of them and description.
 - Journal - user can also create public or private (visible only to the owner) notes, which are kind of a journal about taking care of his plants.
