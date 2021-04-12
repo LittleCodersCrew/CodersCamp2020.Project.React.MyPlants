@@ -178,7 +178,7 @@ const UserPage = () => {
   );
 
   const showMyPlants = (p) => (
-    <PlantProfile plantName={p.name} plantId={p._id} plantPhoto={p.image} />
+    <PlantProfile plantName={p.name} plantId={p.plant} plantPhoto={p.image} />
   );
 
   const myProfile = (userId) => (userId === myId);
