@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import BackButton from '../../components/BackButton';

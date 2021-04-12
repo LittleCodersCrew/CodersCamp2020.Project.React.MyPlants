@@ -1,0 +1,12 @@
+.plant {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 8rem;
+  height: 8rem;
+  text-decoration: none;
+}
+
+.plantImage {
+  align-self: center;
+}

@@ -3,10 +3,26 @@
   color: rgb(14, 52, 22);
   border: none;
   font-family: 'Abhaya Libre', serif;
+  color: rgb(14, 52, 22);
+  text-decoration: none;
   letter-spacing: 0.08em;
   outline: none;
 
   &:hover {
     cursor: pointer;
+    outline: none;
+    text-decoration: none;
+  }
+
+  &:active {
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+  }
+
+  &:visited {
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
   }
 }

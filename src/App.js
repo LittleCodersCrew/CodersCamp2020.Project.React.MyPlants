@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
@@ -10,6 +11,7 @@ import PlantPage from './containers/PlantPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import SearchUsersPage from './containers/SearchUsers/SearchUsers';
 import ChatPage from './containers/ChatPage';
+import UserPage from './containers/UserPage';
 import CalendarPage from './containers/CalendarPage';
 import NewPlantsPage from './containers/NewPlantsPage';
 import Footer from './components/Footer';
@@ -17,10 +19,6 @@ import Database from './database';
 
 function Garden() {
   return <h2>Garden</h2>;
-}
-
-function Profile() {
-  return <h2>Profile</h2>;
 }
 
 function Logout() {
@@ -87,7 +85,10 @@ const App = () => {
           <CalendarPage />
         </Route>
         <Route path="/myprofile" exact>
-          <Profile />
+          <UserPage />
+        </Route>
+        <Route path="/user/:id" exact>
+          <UserPage />
         </Route>
         <Route path="/logout" exact>
           <Logout />
