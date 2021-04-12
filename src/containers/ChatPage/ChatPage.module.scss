@@ -2,6 +2,22 @@
   background-color: #7fd291;
   padding: 1rem 2rem;
   margin: 0 2.5rem;
+
+  @media (max-width: 923px) {
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 850px) {
+    padding: 1rem 1rem;
+    margin: 0 1rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 485px) {
+    padding: 1rem 0.5rem;
+    margin: 0;
+    margin-top: 3rem;
+  }
 }
 
 .chat {
@@ -13,6 +29,10 @@
   scroll-snap-type: y proximity;
   height: 68vh;
   padding: 0 1rem;
+
+  @media (max-width: 850px) {
+    padding: 0 0.5rem;
+  }
 }
 
 .canals {
@@ -25,6 +45,18 @@
   position: sticky;
   top: 0;
   margin-bottom: 0.5rem;
+
+  @media (max-width: 923px) {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 731px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 485px) {
+    font-size: 0.7rem;
+  }
 }
 
 .canal {
@@ -45,4 +77,26 @@
 .button {
   text-align: right;
   padding-right: 0.8rem;
+
+  > * {
+
+    @media (max-width: 1530px) {
+      width: 160px;
+      font-size: 1.3rem;
+    }
+
+    @media (max-width: 737px) {
+      width: 130px;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 485px) {
+      width: 100px;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+#newMessage:first-child {
+  font-size: 50px;
 }
