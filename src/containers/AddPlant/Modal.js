@@ -6,13 +6,13 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 const Modal = (props) => {
-  const { show, closeModal, inputs } = props;
-  console.log(inputs);
+  const { show, closeModal, name, latin } = props;
+  console.log(name, latin);
   return (
     <div className={show ? modal : hide}>
-      <Input text={inputs} />
-      <Input text={inputs} />
-      <Button onClick={closeModal}>X</Button>
+      <Input text={name} />
+      <Input text={latin} />
+      <Button onClick={closeModal} text="X" />
     </div>
   );
 };
