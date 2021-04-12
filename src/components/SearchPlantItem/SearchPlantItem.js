@@ -43,7 +43,7 @@ const SearchPlantItem = ({ image, name, latinName, minTemp, maxTemp, sunlight, h
       </ul>
     </div>
     <footer className={itemFooter}>
-      <Text text="Click to find out more" fontsize="20px" />
+      <a href={`/plant/${name}`}><Text text="Click to find out more" fontsize="20px" /></a>
     </footer>
   </div>
 );
