@@ -12,7 +12,7 @@ Our project uses the REST API that we created during the previous project. You c
 -  [The project team](#the-project-team)
 -  [General info](#general-info)
 -  [Features](#features)
--  [Technologies](#technologies--tools)
+-  [Technologies & Tools](#technologies--tools)
 -  [Setup](#setup)
 -  [Organization of work](#organization-of-work)
 
