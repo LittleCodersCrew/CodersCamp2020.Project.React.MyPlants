@@ -30,7 +30,7 @@ const AddPlant = () => {
         </div>
       </form>
       {!show && <Button type="submit" onClick={openModal} text="Add your plant" />}
-      <Modal closeModal={closeModal} show={show} name={inputs.name} latin={inputs.latinName} />
+      <Modal closeModal={closeModal} show={show} name={inputs} latin={inputs} />
     </div>
   );
 };

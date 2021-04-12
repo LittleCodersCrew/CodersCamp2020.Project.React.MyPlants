@@ -1,14 +1,18 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { hide, modal } from './AddPlant.module.scss';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 const Modal = (props) => {
-  const { show, closeModal, name, latin } = props;
+  const { show, closeModal, inputs } = props;
+  console.log(inputs);
   return (
     <div className={show ? modal : hide}>
-      <input type="text" value={name} />
-      <input type="text" value={latin} />
-      <button onClick={closeModal}>X</button>
+      <Input text={inputs} />
+      <Input text={inputs} />
+      <Button onClick={closeModal}>X</Button>
     </div>
   );
 };
