@@ -10,16 +10,13 @@ import PlantPage from './containers/PlantPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import SearchUsersPage from './containers/SearchUsers/SearchUsers';
 import ChatPage from './containers/ChatPage';
+import CalendarPage from './containers/CalendarPage';
 import NewPlantsPage from './containers/NewPlantsPage';
 import Footer from './components/Footer';
 import Database from './database';
 
 function Garden() {
   return <h2>Garden</h2>;
-}
-
-function Calendar() {
-  return <h2>Calendar</h2>;
 }
 
 function Profile() {
@@ -40,12 +37,16 @@ const App = () => {
   useEffect(() => {
     if (token) {
       const userId = JSON.parse(atob(token.split('.')[1])).id;
-      fetch(`${Database.URL}/user/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      }, {})
+      fetch(
+        `${Database.URL}/user/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        },
+        {}
+      )
         .then((data) => data.json())
         .then((json) => {
           setUserName(json.name);
@@ -83,7 +84,7 @@ const App = () => {
           <LoginPage />
         </Route>
         <Route path="/events" exact>
-          <Calendar />
+          <CalendarPage />
         </Route>
         <Route path="/myprofile" exact>
           <Profile />

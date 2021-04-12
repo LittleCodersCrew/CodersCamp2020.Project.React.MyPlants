@@ -14,3 +14,60 @@
     flex-basis: 40%;
   }
 }
+
+@media (max-width: 1400px) and (orientation: landscape) {
+  .wrapper {
+    height: 110vh;
+
+    ~ div {
+      height: calc(125vh + 70px);
+    }
+  }
+}
+
+@media (max-width: 823px) {
+  .wrapper {
+    height: 165vh;
+
+    ~ div {
+      left: -25vw;
+      transform: skew(-15deg);
+      height: calc(165vh + 70px);
+    }
+  }
+}
+
+@media (max-width: 780px) and (orientation: portrait) {
+  .wrapper {
+    flex-direction: column-reverse;
+    height: 120vh;
+
+    > div:first-of-type {
+      flex-basis: 20%;
+    }
+
+    > div:last-of-type {
+      flex-basis: 55%;
+    }
+
+    ~ div {
+      left: 0;
+      top: 80vh;
+      transform: skew(20deg) rotate(20deg);
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    height: 130vh;
+
+    > div:first-of-type {
+      flex-basis: 20%;
+    }
+
+    ~ div {
+      top: 85vh;
+    }
+  }
+}

@@ -24,14 +24,14 @@
       height: 30px;
     }
   }
-};
+}
 
 .container {
   display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
-};
+}
 
 .link {
   color: rgb(14, 52, 22);
@@ -49,7 +49,7 @@
   @media (max-width: 1000px) {
     font-size: 18px;
   }
-};
+}
 
 .copyright {
   color: rgb(14, 52, 22);

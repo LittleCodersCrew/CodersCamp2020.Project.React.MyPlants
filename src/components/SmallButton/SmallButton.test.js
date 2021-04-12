@@ -5,7 +5,7 @@ describe('Button component render', () => {
   it('Should render with type button', () => {
     const test = 'Hello';
 
-    render(<SmallButton text={test} />);
+    render(<SmallButton text={test} onClick={() => null} fontsize="80px" />);
 
     expect(screen.getByText(test)).toHaveAttribute('type', 'button');
   });
@@ -14,7 +14,7 @@ describe('Button component render', () => {
     const type = 'submit';
     const test = 'Hello';
 
-    render(<SmallButton type={type} text={test} />);
+    render(<SmallButton type={type} text={test} onClick={() => null} fontsize="20px" />);
 
     expect(screen.getByText(test)).toHaveAttribute('type', 'submit');
   });
@@ -23,7 +23,7 @@ describe('Button component render', () => {
     const text = 'Hello World';
     const font = '80px';
 
-    render(<SmallButton text={text} fontsize={font} />);
+    render(<SmallButton text={text} fontsize={font} onClick={() => null} />);
 
     expect(screen.getByText(text)).toHaveAttribute('style', 'font-size: 80px;');
   });

@@ -23,10 +23,7 @@
   border-bottom-color: rgb(14, 52, 22);
   margin-bottom: 0.8em;
   padding-bottom: 0.25em;
-
-  &:focus {
-    outline: none;
-  }
+  outline: none;
 }
 
 .btn {
@@ -41,19 +38,10 @@
   font-size: 1.2em;
   border: 1px solid black;
   border-radius: 5px;
+  outline: none;
 
   &:hover {
     cursor: pointer;
-    outline: none;
-    box-shadow: 0 0 1em #9f9;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:active {
-    outline: none;
     box-shadow: 0 0 1em #9f9;
   }
 
@@ -82,5 +70,39 @@
     text-decoration: none;
     color: #6aa877;
     font-weight: 700;
+  }
+}
+
+@media (max-width: 823px) {
+  .login {
+    font-size: 1.3em;
+  }
+
+  .input {
+    width: 250px;
+  }
+
+  .logo img {
+    height: 70px;
+  }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+  .login {
+    font-size: 1em;
+  }
+
+  .input {
+    width: 200px;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 320px) {
+  .login {
+    font-size: 1em;
   }
 }

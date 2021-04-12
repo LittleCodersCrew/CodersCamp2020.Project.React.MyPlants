@@ -4,6 +4,7 @@ import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
 import { wrapper } from './NewPlantsPage.module.scss';
 import NewPlant from '../../components/NewPlant';
+import Text from '../../components/Text';
 
 const NewPlantsPage = () => {
   const [newPlants, setNewPlants] = useState([]);
@@ -41,8 +42,8 @@ const NewPlantsPage = () => {
 
   return (
     <div className={wrapper}>
-      <h1>New plants</h1>
-      {newPlants.length === 0 ? <h2>No new plants yet ...</h2> : newPlants.map((p) => <NewPlant key={p.name} plant={p} />)}
+      <Text text="New plants" fontsize="2rem" />
+      {newPlants.length === 0 ? <Text text="No new plants yet..." fontsize="1.5rem" /> : newPlants.map((p) => <NewPlant key={p.name} plant={p} />)}
     </div>
   );
 };

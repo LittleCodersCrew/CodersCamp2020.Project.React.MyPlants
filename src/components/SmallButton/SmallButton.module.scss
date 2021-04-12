@@ -1,10 +1,12 @@
 .smallButton {
   background-color: transparent;
+  color: rgb(14, 52, 22);
   border: none;
   font-family: 'Abhaya Libre', serif;
+  letter-spacing: 0.08em;
+  outline: none;
 
   &:hover {
     cursor: pointer;
-    outline: none;
   }
-};
+}
