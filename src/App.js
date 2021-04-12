@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
@@ -26,6 +27,7 @@ function Users() {
 
 function Calendar() {
   return <h2>Calendar</h2>;
+}
 
 function Profile() {
   return <h2>Profile</h2>;
@@ -114,5 +116,5 @@ const App = () => {
     </>
   );
 };
-  
+
 export default App;
