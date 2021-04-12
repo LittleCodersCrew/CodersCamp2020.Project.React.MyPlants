@@ -27,6 +27,10 @@ const Calendar = () => {
   const closeModal = () => setShow(false);
 
   const [events, setEvents] = useState([]);
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  });
 
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -70,7 +74,7 @@ const Calendar = () => {
     for (let i = 0; i < 7; i += 1) {
       days.push(
         <div className={styles.daysOfWeek} key={i}>
-          {format(addDays(weekStart, i), 'EEEE')}
+          {width > 812 ? format(addDays(weekStart, i), 'EEEE') : format(addDays(weekStart, i), 'EE')}
         </div>
       );
     }
@@ -126,7 +130,9 @@ const Calendar = () => {
               {events
               && events
                 .filter((event) => isSameDay(addDays(cloneDay, 1), parseISO(event.date)))
-                .map((event) => <span className={styles.title}>{event.title}</span>)}
+                .map((event) => (width > 1024
+                  ? (<span className={styles.title}>{event.title}</span>)
+                  : (<span className={styles.title}>!</span>)))}
             </p>
           </div>
         );

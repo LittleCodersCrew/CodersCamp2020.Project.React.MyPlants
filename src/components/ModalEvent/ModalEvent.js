@@ -150,7 +150,7 @@ const ModalEvent = (props) => {
                 ref={register({
                   required: 'Name of the event is required.',
                   maxLength: {
-                    value: 20,
+                    value: 15,
                     message: 'Name of the event is too long.'
                   }
                 })}
