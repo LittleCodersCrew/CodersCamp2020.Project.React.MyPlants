@@ -11,6 +11,7 @@ import PlantPage from './containers/PlantPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import ChatPage from './containers/ChatPage';
 import Database from './database';
+import AddPlant from './containers/AddPlant';
 
 function Garden() {
   return <h2>Garden</h2>;
@@ -58,7 +59,7 @@ const App = () => {
           <PlantPage />
         </Route>
         <Route path="/plant" exact>
-          <SearchPlantsPage />
+          <AddPlant />
         </Route>
         <Route path="/chat" exact>
           <ChatPage />
