@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import AuthorsPage from './containers/AuthorsPage';
@@ -10,6 +9,8 @@ import useToken from './hooks/useToken/useToken';
 import PlantPage from './containers/PlantPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import ChatPage from './containers/ChatPage';
+import NewPlantsPage from './containers/NewPlantsPage';
+import Footer from './components/Footer';
 import Database from './database';
 import AddPlant from './containers/AddPlant';
 
@@ -37,23 +38,32 @@ function Logout() {
 
 const App = () => {
   const [userName, setUserName] = useState('');
+  const [ifAdmin, setIfAdmin] = useState();
   const { token } = useToken();
 
   useEffect(() => {
     if (token) {
       const userId = JSON.parse(atob(token.split('.')[1])).id;
-      fetch(`${Database.URL}/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } }, {})
+      fetch(`${Database.URL}/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }, {})
         .then((data) => data.json())
-        .then((json) => setUserName(json.name));
+        .then((json) => {
+          setUserName(json.name);
+          setIfAdmin(json.admin);
+        });
     }
   });
 
   return (
     <>
-      <Navbar name={userName} />
+      <Navbar name={userName} admin={ifAdmin} />
       <Switch>
         <Route path="/" exact>
-          <SearchPlantsPage />
+          <Redirect to="/plant" />
         </Route>
         <Route path="/plant/:plantNameFromURL" exact>
           <PlantPage />
@@ -87,6 +97,9 @@ const App = () => {
         </Route>
         <Route path="/authors" exact>
           <AuthorsPage />
+        </Route>
+        <Route path="/options" exact>
+          {ifAdmin ? <NewPlantsPage /> : <p>Such page does not exist</p>}
         </Route>
       </Switch>
       <Footer />
