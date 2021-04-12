@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
 import LoginPage from './containers/LoginPage';
@@ -62,7 +62,7 @@ const App = () => {
       <Navbar name={userName} admin={ifAdmin} />
       <Switch>
         <Route path="/" exact>
-          <SearchPlantsPage />
+          <Redirect to="/plant" />
         </Route>
         <Route path="/plant/:plantNameFromURL" exact>
           <PlantPage />
