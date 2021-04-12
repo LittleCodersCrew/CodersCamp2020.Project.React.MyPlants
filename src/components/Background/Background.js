@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { background, wrapper } from './Background.module.scss';
 
 const Background = ({ children }) => (
@@ -8,5 +8,7 @@ const Background = ({ children }) => (
     <div className={background} />
   </div>
 );
+
+Background.propTypes = { children: PropTypes.node.isRequired };
 
 export default Background;

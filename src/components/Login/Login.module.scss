@@ -72,3 +72,37 @@
     font-weight: 700;
   }
 }
+
+@media (max-width: 823px) {
+  .login {
+    font-size: 1.3em;
+  }
+
+  .input {
+    width: 250px;
+  }
+
+  .logo img {
+    height: 70px;
+  }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+  .login {
+    font-size: 1em;
+  }
+
+  .input {
+    width: 200px;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 320px) {
+  .login {
+    font-size: 1em;
+  }
+}
