@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { hide, modal, summary } from './AddPlant.module.scss';
+import { hide, modal, summary, editDelete } from './AddPlant.module.scss';
 import Button from '../../components/Button';
+import Input from '../../components/Input';
 
 const Modal = (props) => {
   const {
@@ -22,57 +23,33 @@ const Modal = (props) => {
     spraying
   } = props;
 
+  const editHandler = () => {
+
+  };
+
+  const deleteHandler = () => {
+
+  };
+
   return (
     <div className={show ? modal : hide}>
       <div className={summary}>
-        <p>
-          name:
-          {name}
-        </p>
-        <p>
-          latin name:
-          {latin}
-        </p>
-        <p>
-          Min. Temperature:
-          {minTemp}
-        </p>
-        <p>
-          Max. Temperature:
-          {maxTemp}
-        </p>
-        <p>
-          Sunlight:
-          {sunlight}
-        </p>
-        <p>
-          Humidity:
-          {humidity}
-        </p>
-        <p>
-          Watering:
-          {watering}
-        </p>
-        <p>
-          Watering Method:
-          {wateringMethod}
-        </p>
-        <p>
-          Application:
-          {application}
-        </p>
-        <p>
-          Subsoil:
-          {subsoil}
-        </p>
-        <p>
-          Conditioners:
-          {conditioners}
-        </p>
-        <p>
-          Spraying:
-          {spraying}
-        </p>
+        <Input text={name} />
+        <Input text={latin} />
+        <Input text={minTemp} />
+        <Input text={maxTemp} />
+        <Input text={sunlight} />
+        <Input text={humidity} />
+        <Input text={watering} />
+        <Input text={wateringMethod} />
+        <Input text={application} />
+        <Input text={subsoil} />
+        <Input text={conditioners} />
+        <Input text={spraying} />
+      </div>
+      <div className={editDelete}>
+        <Button text="Edit" onClick={editHandler} />
+        <Button text="Delete" onClick={deleteHandler} />
       </div>
       <Button text="Save" onClick={closeModal} />
     </div>

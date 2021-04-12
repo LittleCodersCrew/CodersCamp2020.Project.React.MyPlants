@@ -7,7 +7,7 @@ import Text from '../../components/Text';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
 
-import { container, title, basicInfo, detailedInfo } from './AddPlant.module.scss';
+import { container, title, basicInfo, detailedInfo, submitBtn } from './AddPlant.module.scss';
 
 const AddPlant = () => {
   const { inputs, handleInputChange, handleSubmit } = useSignUpForm();
@@ -109,7 +109,9 @@ const AddPlant = () => {
           <Select title="Animals at home?" />
         </div>
       </form>
-      {!show && <Button type="submit" onClick={openModal} text="Add your plant" />}
+      <div className={submitBtn}>
+        {!show && <Button type="submit" onClick={openModal} text="Add your plant" />}
+      </div>
     </div>
   );
 };
