@@ -46,21 +46,21 @@ It is an application for plant lovers. The idea of it is to create a collection 
     <img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226565/admin_ohrncv.png" width="45%" />
 </p>
 - Each user has his own profile, which is called 'My garden' and it includes:
-- Garden - user can create profiles for the plants he has at home. He can name his plants, add pictures of them and description.
-- Journal - user can also create public or private (visible only to the owner) notes, which are kind of a journal about taking care of his plants.
-- Favorite users - user can add other User's profiles to their favourites, so he can follow their plants.
-- Settings - user can change his account details.
+    - Garden - user can create profiles for the plants he has at home. He can name his plants, add pictures of them and description.
+    - Journal - user can also create public or private (visible only to the owner) notes, which are kind of a journal about taking care of his plants.
+    - Favorite users - user can add other User's profiles to their favourites, so he can follow their plants.
+    - Settings - user can change his account details.
 <img  src="">
 - There is a chat created, where are two channels:
-- **Main chat** - for general discussion about plants, where users can ask questions or share their experience. It opens by default.
-- **Trade your plants** - dedicated for trade. Users can sell or exchange their plants or equipment.
+    - **Main chat** - for general discussion about plants, where users can ask questions or share their experience. It opens by default.
+    - **Trade your plants** - dedicated for trade. Users can sell or exchange their plants or equipment.
 <img  src="">
 - We have created not only a plant search engine, but also a user search engine, which is located on a separate subpage.
 <img  src="">
 - There is also a calendar on our website where users can add events - for example reminders to water their plants.
 <img  src="">
 
-## Technologies
+## Technologies & Tools
 - ReactJS
 - SCSS
 - ESLint
@@ -72,9 +72,6 @@ It is an application for plant lovers. The idea of it is to create a collection 
 - Discord
 
 ## Setup
-#### Demo
-To view a demo click [here]().
-
 #### Getting started
 If you want to run the application on the local machine, follow these steps:
 1. Clone down this repo
@@ -96,4 +93,3 @@ Using Figma, we created our own prototype of a user interface adapted to Desktop
 
 #### Jira
 We used Jira, where we organized all our work. More precisely, we shared responsibilities for each sprint, exchanged comments and approved our tasks.
-To view our board click [here](https://masquerade-inc.atlassian.net/secure/RapidBoard.jspa?rapidView=2&projectKey=MYP&selectedIssue=MYP-67).
