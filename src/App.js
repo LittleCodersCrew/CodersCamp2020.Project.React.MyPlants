@@ -11,7 +11,6 @@ import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
 import ChatPage from './containers/ChatPage';
 import NewPlantsPage from './containers/NewPlantsPage';
 import Footer from './components/Footer';
-import useToken from './hooks/useToken/useToken';
 import Database from './database';
 
 function Garden() {
