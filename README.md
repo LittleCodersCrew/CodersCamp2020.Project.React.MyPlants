@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# CodersCamp 2020 - React.js Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**The project was created as part of the 6th edition of the [CodersCamp](https://coderscamp.pl/) course.**
 
-## Available Scripts
+If you want to see demo of our project [click here]().
 
-In the project directory, you can run:
+Our project uses the REST API that we created during the previous project. You can find it [here](https://github.com/ruljin/CodersCamp2020.Project.NodeJS-Express-TypeScript.MyPlants).
 
-### `yarn start`
+## Table of Contests
+- [The project team](#the-project-team)
+- [General info](#general-info)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Organization of work](#organization-of-work)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## The project team
+Authors of this project are course participants who worked under the supervision of an experienced mentor.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Authors:**
+-   [Dominik Puchała](https://github.com/Suegro24) (Tech Lead)
+-	[Kamila Grusza](https://github.com/kami3la) (Development Manager)
+-	[Weronika Brzeczkowska-Kuzianik](https://github.com/brzeczkowskaw) (Product Owner)
+-	[Adrianna Krupa](https://github.com/adax10/)
+-	[Jędrzej Ratajczak](https://github.com/Mrozelek)
+-	[Konrad Mierzejewski](https://github.com/KonradMierzejewski)
 
-### `yarn test`
+**Mentor:** [Filip Kuca](https://github.com/ruljin) 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## General info
+Our application is called **MyPlants**. 
 
-### `yarn build`
+It is an application for plant lovers. The idea of it is to create a collection of many plant species which can be owned at home with its description and tips how to take care of them. And then users can share their plants as well as experience with taking care of them with other users. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
+-	User can create their profil and login. And if someone is not logged in, there are a limited number of pages they can see and actions they can take.
+-   There is a main plant database, where each plant has its own subpage with a description of its growing requirements. There is also a comments section where the user can add a comment and like a comment if he wishes (comments will be displayed according to the numeber of likes).
+-   The main page is the plant finder, which by default shows 3 example plants in the database. You can search for a plant by its name or set search criteria according to care requirements. If the user does not find the plant he was looking for, he can add it to the database. For this purpose, he has to complete the profile of the plant and send it, and the website administrator will consider its application and approve or delete it (only the administrator has access to the subpage with unapproved plants).
+-   Each user has his own profile, which is called 'My garden' and it includes:
+    - Garden - user can create profiles for the plants he has at home. He can name his plants, add pictures of them and description. 
+    - Journal - user can also create public or private (visible only to the owner) notes, which are kind of a journal about taking care of his plants.
+    - Favorite users - user can add other User's profiles to their favourites, so he can follow their plants.
+    - Settings - user can change his account details.
+-   There is a chat created, where are two channels: 
+    - **Main chat** - for general discussion about plants, where users can ask questions or share their experience. It opens by default.
+    - **Trade your plants** - dedicated for trade. Users can sell or exchange their plants or equipment. 
+-   We have created not only a plant search engine, but also a user search engine, which is located on a separate subpage.
+-   There is also a calendar on our website where users can add events - for example reminders to water their plants.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies
+-   ReactJS
+-   SCSS
+-   ESLint
+-   StyleLint
+-   Jest
+-   Jira
+-   Scrum
+-   Figma
+-   Discord
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setup
+#### Demo
+To view a demo click [here]().
 
-### `yarn eject`
+#### Getting started
+If you want to run the application on the local machine, follow these steps:
+1. Clone down this repo
+2. Install dependencies with the command: `yarn`
+3. Start development server `yarn start` 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The application will be available at `localhost:3000/`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Running tests
+To run the application tests, follow these steps:
+1. Install dependencies with the command: `yarn` (if you haven't already done so before)
+2. Run the tests by running the command: `yarn test`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Organization of work
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Discord
+Most often we communicated using the Discord application, where we created organizational meetings and were in constant contact to establish future plans, exchange opinions and help each other.
 
-## Learn More
+#### Figma
+Using Figma, we created our own prototype of a user interface adapted to Desktop, and also made a version adapted to display on Phones. All designs can be viewed here. [here](https://www.figma.com/file/Mjn1scT6LfnzUi2QyBKMdy/MyPlants?node-id=0%3A1).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Jira
+We used Jira, where we organized all our work. More precisely, we shared responsibilities for each sprint, exchanged comments and approved our tasks.
+To view our board click [here](https://masquerade-inc.atlassian.net/secure/RapidBoard.jspa?rapidView=2&projectKey=MYP&selectedIssue=MYP-67).
