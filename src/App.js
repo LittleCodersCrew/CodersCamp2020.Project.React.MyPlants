@@ -45,6 +45,8 @@ const App = () => {
         .then((data) => data.json())
         .then((json) => setUserName(json.name));
     }
+
+    document.title = 'My plants';
   });
 
   return (
