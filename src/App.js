@@ -8,6 +8,7 @@ import AuthorsPage from './containers/AuthorsPage';
 import useToken from './hooks/useToken/useToken';
 import PlantPage from './containers/PlantPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
+import SearchUsersPage from './containers/SearchUsers/SearchUsers';
 import ChatPage from './containers/ChatPage';
 import NewPlantsPage from './containers/NewPlantsPage';
 import Footer from './components/Footer';
@@ -15,10 +16,6 @@ import Database from './database';
 
 function Garden() {
   return <h2>Garden</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
 
 function Calendar() {
@@ -77,7 +74,7 @@ const App = () => {
           <Garden />
         </Route>
         <Route path="/users" exact>
-          <Users />
+          <SearchUsersPage />
         </Route>
         <Route path="/register" exact>
           <RegisterPage />
