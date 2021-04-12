@@ -14,9 +14,26 @@
   width: 1033px;
   margin: 0 auto;
 
+  @media (max-width: 1033px) {
+    width: 100%;
+    padding: 0 50px;
+  }
+
   > * {
     flex-basis: calc(20% - 20px);
     margin: 5px 10px;
+
+    @media (max-width: 1000px) {
+      flex-basis: calc(25% - 20px);
+    }
+
+    @media (max-width: 800px) {
+      flex-basis: calc(33% - 20px);
+    }
+
+    @media (max-width: 600px) {
+      flex-basis: calc(50% - 20px);
+    }
   }
 
   button {
@@ -28,11 +45,22 @@
 
 .searchPlantsContent {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px 30px;
   width: 1033px;
   margin: 20px auto 0 auto;
   > *:not(.noFoundPlantsContainer) {
-    flex-basis: calc(33% - 30px);
+    flex-basis: calc(33% - 17px);
+  }
+
+  @media (max-width: 1033px) {
+    width: 100%;
+  }
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -41,6 +69,10 @@
   justify-content: center;
   margin: 30px auto 0 auto;
   width: 1033px;
+
+  @media (max-width: 1033px) {
+    width: 100%;
+  }
 
   > * {
     flex-basis: 100%;

@@ -11,7 +11,6 @@ import { input } from '../../components/TextArea/TextArea.module.scss';
 const ChatPage = () => {
   const [openCanal, setOpenCanal] = useState('Main chat');
   const [messages, setMessages] = useState([]);
-  const [lastMess, setLastMess] = useState('');
   const [message, setMessage] = useState({
     chat: '',
     text: '',
@@ -64,7 +63,7 @@ const ChatPage = () => {
     }
 
     fetchMessages();
-  }, [token, openCanal, lastMess]);
+  }, [token, openCanal, messages]);
 
   const showMessage = (mess) => {
     const dateSubstr = mess.date.substr(0, 10);
@@ -102,7 +101,6 @@ const ChatPage = () => {
     await sendMessage(message);
     document.getElementsByClassName(`${input}`)[0].value = '';
     // eslint-disable-next-line max-len
-    setLastMess(message);
     return (message.chat === canalsId['Main chat'] ? setOpenCanal('Main chat') : setOpenCanal('Trade your plants'));
   };
 
