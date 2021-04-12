@@ -11,6 +11,21 @@
   justify-items: center;
   align-items: center;
   border: 1px solid black;
+
+  @media (max-width: 485px) {
+    grid-template-columns: 90vw;
+    grid-template-rows: 10vh 10vh 25vh 5vh 20vh 10vh;
+    grid-template-areas:
+      "text"
+      "title"
+      "note"
+      "tick"
+      "additional"
+      "save";
+    margin-left: 5vw;
+    margin-right: 5vw;
+    width: 90vw;
+  }
 }
 
 .text {
@@ -21,11 +36,15 @@
   width: 100%;
   align-self: center;
   justify-self: center;
+
+  @media (max-width: 485px) {
+    width: 98%;
+  }
 }
 
 .notes {
   grid-area: note;
-  width: 100%;
+  width: 98%;
 }
 
 .tick {
@@ -40,6 +59,12 @@
   grid-area: additional;
   display: grid;
   grid-template-columns: 6.3fr 2.1fr;
+
+  @media (max-width: 485px) {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+  }
 }
 
 .adding {

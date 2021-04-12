@@ -18,4 +18,8 @@
   &:focus {
     outline: none;
   }
+
+  @media (max-width: 485px) {
+    padding: 2vw;
+  }
 }

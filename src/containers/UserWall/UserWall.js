@@ -222,7 +222,6 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 text="Add link to photo..."
                 name="image"
                 height="3.5em"
-                width="45em"
                 value={note.image}
                 onChange={handleChange}
               />
