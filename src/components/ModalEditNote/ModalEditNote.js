@@ -10,7 +10,7 @@ import Text from '../Text';
 import Select from '../Select';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
-import closeSquare from '../../assets/icons/Close Square.png';
+import closeSquare from '../../assets/icons/CloseSquare.png';
 import { hide, overlay, modal, form, input, button, tick } from './ModalEditNote.module.scss';
 
 const ModalEditNote = (props) => {
@@ -38,14 +38,16 @@ const ModalEditNote = (props) => {
     async function fetchMyPlants() {
       let myPlants = [];
 
-      await fetch(`${Database.URL}/user/${myId}/plants`,
+      await fetch(
+        `${Database.URL}/user/${myId}/plants`,
         {
-          headers:
-        {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-        }, {})
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        },
+        {}
+      )
         .then((res) => res.json())
         .then((json) => {
           myPlants = json;
@@ -82,22 +84,24 @@ const ModalEditNote = (props) => {
   };
 
   useEffect(() => {
-    fetch(`${Database.URL}/user/${myId}/notes/${noteId}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    }, {})
+    fetch(
+      `${Database.URL}/user/${myId}/notes/${noteId}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      },
+      {}
+    )
       .then((data) => data.json())
-      .then(
-        (json) => setNote({
-          image: json.image,
-          title: json.title,
-          text: json.text,
-          plant: json.plant,
-          private: json.private
-        })
-      );
+      .then((json) => setNote({
+        image: json.image,
+        title: json.title,
+        text: json.text,
+        plant: json.plant,
+        private: json.private
+      }));
   });
 
   return (
@@ -117,7 +121,13 @@ const ModalEditNote = (props) => {
           <Text text="Edit your note" fontsize="1.8rem" />
           <form onSubmit={onSubmit} id="editNote">
             <div className={tick}>
-              <input type="checkbox" id="private" name="private" value="true" onChange={(e) => setNote({ ...note, private: e.target.checked })} />
+              <input
+                type="checkbox"
+                id="private"
+                name="private"
+                value="true"
+                onChange={(e) => setNote({ ...note, private: e.target.checked })}
+              />
               <label htmlFor="private"> Private? </label>
             </div>
             <div>

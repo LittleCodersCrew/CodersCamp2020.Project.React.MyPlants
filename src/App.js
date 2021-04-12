@@ -20,17 +20,6 @@ function Garden() {
   return <h2>Garden</h2>;
 }
 
-function Users() {
-  return <h2>Users</h2>;
-}
-
-function Calendar() {
-  return <h2>Calendar</h2>;
-
-function Profile() {
-  return <h2>Profile</h2>;
-}
-
 function Logout() {
   localStorage.removeItem('token');
   window.location.replace('/');
@@ -114,5 +103,5 @@ const App = () => {
     </>
   );
 };
-  
+
 export default App;
