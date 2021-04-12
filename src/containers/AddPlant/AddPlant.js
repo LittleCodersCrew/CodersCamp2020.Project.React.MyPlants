@@ -1,20 +1,115 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-console */
+/* eslint-disable react/jsx-tag-spacing */
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import useSignUpForm from '../../hooks/useSignUpForm/useSignUpForm';
-import Modal from './Modal';
 import Input from '../../components/Input';
 import Text from '../../components/Text';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
+import Database from '../../database';
+import useToken from '../../hooks/useToken/useToken';
+import { SearchPlantConstants } from '../../constants/SearchPlantConstants';
 
-import { container, title, basicInfo, detailedInfo, submitBtn } from './AddPlant.module.scss';
+import { container, title, basicInfo, detailedInfo, submitBtn, modal, hide, editDelete } from './AddPlant.module.scss';
+import styles from './plantInfo.module.scss';
+
+const plantSchema = {
+  image: '',
+  name: '',
+  latin_name: '',
+  min_temperature: undefined,
+  max_temperature: undefined,
+  watering: '',
+  watering_method: '',
+  subsoil: '',
+  conditioners: '',
+  spraying: '',
+  sunlight: '',
+  humidity: '',
+  application: '',
+  accepted: false,
+  species: '',
+  comments: [],
+  toxicity: {
+    human: false,
+    animal: false
+  }
+};
+
+const species = [
+  ['climber', '606b8a912574d128306d8bcf'],
+  ['perennial', '606c2b9f0f4fc05c68f6d4a8'],
+  ['succulent', '606c30770f4fc05c68f6d4a9'],
+  ['palm', '606dc394ce347a6090dcd27a'],
+  ['tree', '60704b622326f10e5cfe61f6']
+];
 
 const AddPlant = () => {
-  const { inputs, handleInputChange, handleSubmit } = useSignUpForm();
   const [show, setShow] = useState(false);
+  const [plant, setPlant] = useState(plantSchema);
+  const { token } = useToken();
 
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
+
+  const editHandler = () => {
+  };
+
+  const deleteHandler = () => {
+    setPlant(plantSchema);
+    closeModal();
+  };
+
+  const onChange = (property, value) => {
+    const temp = plant;
+    if (property.toLowerCase() === 'animals at home?') {
+      property = 'animal';
+    } else if (property.toLowerCase() === 'latin name') {
+      property = 'latin_name';
+    } else if (property.toLowerCase() === 'min temperature') {
+      property = 'min_temperature';
+    } else if (property.toLowerCase() === 'max temperature') {
+      property = 'max_temperature';
+    } else if (property.toLowerCase() === 'watering method') {
+      property = 'watering_method';
+    }
+    temp[property.toLowerCase()] = value;
+    setPlant(temp);
+  };
+
+  const savePlant = () => {
+    const findSpecie = species.find((specie) => specie[0] === plant.species);
+    // eslint-disable-next-line prefer-destructuring
+    plant.species = findSpecie[1];
+    console.log(plant);
+
+    if (
+      plant.image !== ''
+      || plant.name !== ''
+      || plant.latin_name !== ''
+      || plant.min_temperature !== undefined
+      || plant.min_temperature !== undefined
+      || plant.watering !== ''
+      || plant.watering_method !== ''
+      || plant.subsoil !== ''
+      || plant.conditioners !== ''
+      || plant.spraying !== ''
+      || plant.sunlight !== ''
+      || plant.humidity !== ''
+      || plant.application !== ''
+    ) {
+      fetch(`${Database.URL}/plant/`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(plant)
+      });
+    }
+    closeModal();
+  };
 
   return (
     <div className={container}>
@@ -22,95 +117,152 @@ const AddPlant = () => {
         <Text text="Help us grow!" fontsize="2em" />
         <Text text="If you did not find your plant in our base, you can add it below" fontsize="2em" />
       </div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className={basicInfo}>
-          <Modal
-            closeModal={closeModal}
-            show={show}
-            name={inputs}
-            latin={inputs}
-            minTemperature={inputs}
-            humidity={inputs}
-            watering={inputs}
-            application={inputs}
-            maxTemperature={inputs}
-            sunlight={inputs}
-            wateringMethod={inputs}
-            subsoil={inputs}
-            conditioners={inputs}
-            spraying={inputs}
+          <Input text="Name" cb={onChange} />
+          <Input text="Latin Name" cb={onChange} />
+          <Select
+            title="Species"
+            values={SearchPlantConstants.species}
+            cb={onChange}
           />
-          <Input text="Name" name="name" onChange={handleInputChange} value={inputs.name} />
-          <Input text="Latin Name" name="latinName" onChange={handleInputChange} value={inputs.latinName} />
-          <Select title="Species" />
         </div>
         <div className={detailedInfo}>
-          <Select
-            title="Min temperature"
-            values={[0, 5, 10]}
-            onChange={handleInputChange}
-            value={inputs.minTemp}
-          />
+          <Input text="Min temperature" cb={onChange} />
           <Select
             title="Humidity"
-            values={['moderately moist soil', 'moist soil', 'dry']}
-            onChange={handleInputChange}
-            value={inputs.humidity}
+            values={SearchPlantConstants.humidity}
+            cb={onChange}
           />
           <Select
             title="Watering"
-            values={['regulary but not intensively', 'often', 'rarely']}
-            onChange={handleInputChange}
-            value={inputs.watering}
+            values={SearchPlantConstants.watering}
+            cb={onChange}
           />
           <Select
             title="Application"
-            values={['decorative', 'edible', 'medical use']}
-            onChange={handleInputChange}
-            value={inputs.application}
+            values={SearchPlantConstants.application}
+            cb={onChange}
           />
-          <Select
-            title="Max Temperature"
-            values={[25, 30, 35]}
-            onChange={handleInputChange}
-            value={inputs.maxTemp}
-          />
+          <Input text="Max Temperature" cb={onChange} />
           <Select
             title="Sunlight"
-            values={['sun, partial shade, shade', 'sun', 'partial shade', 'shade', 'sun, partial shade']}
-            onChange={handleInputChange}
-            value={inputs.sunlight}
+            values={SearchPlantConstants.sunlight}
+            cb={onChange}
           />
           <Select
             title="Watering Method"
-            values={['to the pot', 'on the saucer or under the leaves']}
-            onChange={handleInputChange}
-            value={inputs.wateringMethod}
+            values={SearchPlantConstants.watering_method}
+            cb={onChange}
           />
           <Select
             title="Subsoil"
-            values={['low soil requirements', 'peat, dertile, fresh, well-drained', 'permeable and well-drained substrate']}
-            onChange={handleInputChange}
-            value={inputs.subsoil}
+            values={SearchPlantConstants.subsoil}
+            cb={onChange}
           />
           <Select
             title="Conditioners"
-            values={['Fertilizer for plants with ornamental leaves', 'mineral fertilizer for potted plants', 'fertilizer for cacti and succulents']}
-            onChange={handleInputChange}
-            value={inputs.conditioners}
+            values={SearchPlantConstants.conditioners}
+            cb={onChange}
           />
           <Select
             title="Spraying"
-            values={['often', 'don\'t need', 'no']}
-            onChange={handleInputChange}
-            value={inputs.spraying}
+            values={SearchPlantConstants.spraying}
+            cb={onChange}
           />
-          <Select title="Toxicity" />
-          <Select title="Animals at home?" />
+          <Select
+            title="Toxicity"
+            values={SearchPlantConstants.toxicity}
+            cb={onChange}
+          />
+          <Select
+            title="Animals at home?"
+            values={SearchPlantConstants.animal}
+            cb={onChange}
+          />
+        </div>
+        <div className={submitBtn}>
+          {!show && <Button type="submit" onClick={openModal} text="Add your plant" />}
         </div>
       </form>
-      <div className={submitBtn}>
-        {!show && <Button type="submit" onClick={openModal} text="Add your plant" />}
+
+      <div className={show ? modal : hide}>
+        <div className={styles.info}>
+          <img className={styles.image} src={plant.image} alt="Plant" />
+          <div className={styles.about}>
+            <div>
+              <h2>{plant.name}</h2>
+              <h3>{plant.latin_name}</h3>
+            </div>
+            <div className={styles.details}>
+              <p>
+                <span>Species:</span>
+                <span>{plant.species}</span>
+              </p>
+              <p>
+                <span>Min temperature:</span>
+                <span>
+                  {plant.min_temperature}
+                  {' '}
+                  °C
+                </span>
+              </p>
+              <p>
+                <span>Max temperature:</span>
+                <span>
+                  {plant.max_temperature}
+                  {' '}
+                  °C
+                </span>
+              </p>
+              <p>
+                <span>Sunlight:</span>
+                <span>{plant.sunlight}</span>
+              </p>
+              <p>
+                <span>Humidity:</span>
+                <span>{plant.humidity}</span>
+              </p>
+              <p>
+                <span>Watering:</span>
+                <span>{plant.watering}</span>
+              </p>
+              <p>
+                <span>Watering method:</span>
+                <span>{plant.watering_method}</span>
+              </p>
+              <p>
+                <span>Application:</span>
+                <span>{plant.application}</span>
+              </p>
+              <p>
+                <span>Subsoil: </span>
+                <span>{plant.subsoil}</span>
+              </p>
+              <p>
+                <span>Conditioners: </span>
+                <span>{plant.conditioners}</span>
+              </p>
+              <p>
+                <span>Spraying: </span>
+                <span>{plant.spraying}</span>
+              </p>
+              <p>
+                <span>Toxicity: </span>
+                <span>{plant.toxicity?.human ? 'yes' : 'no'}</span>
+              </p>
+              <p>
+                <span>Safe for domestic animals: </span>
+                <span>{plant.toxicity?.animal ? 'no' : 'yes'}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className={editDelete}>
+          <Button text="Edit" onClick={editHandler} />
+          <Button text="Delete" onClick={deleteHandler} />
+        </div>
+        <Button text="Save" onClick={savePlant} />
       </div>
     </div>
   );

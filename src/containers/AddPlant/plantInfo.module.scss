@@ -1,0 +1,37 @@
+.info {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 2em;
+}
+
+.about {
+  width: 100%;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  color: rgb(14, 52, 22);
+  font-family: 'Abhaya Libre', serif;
+}
+
+.image {
+  width: 250px;
+  height: 250px;
+  margin-right: 4em;
+  object-fit: contain;
+  align-self: center;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  column-gap: 4em;
+
+  > * {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

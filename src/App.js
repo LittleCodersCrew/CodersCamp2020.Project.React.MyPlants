@@ -69,6 +69,9 @@ const App = () => {
           <PlantPage />
         </Route>
         <Route path="/plant" exact>
+          <SearchPlantsPage />
+        </Route>
+        <Route path="/add-plant" exact>
           <AddPlant />
         </Route>
         <Route path="/chat" exact>
