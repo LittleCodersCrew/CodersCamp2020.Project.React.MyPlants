@@ -6,6 +6,7 @@ import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
 import ModalEditProfile from '../../components/ModalEditProfile';
 import SmallButton from '../../components/SmallButton';
+import AddGardenPlant from '../AddGardenPlant';
 
 const GardenPage = () => {
   const [myPlants, setMyPlants] = useState([]);
@@ -61,6 +62,7 @@ const GardenPage = () => {
           {(myPlants.length >= 1) ? myPlants.map((p) => showMyPlants(p)) : <Text text="Garden is empty" fontsize="1em" />}
         </div>
       </div>
+      <AddGardenPlant />
     </div>
   );
 };
