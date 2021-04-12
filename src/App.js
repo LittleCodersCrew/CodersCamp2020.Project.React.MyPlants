@@ -37,7 +37,7 @@ function Logout() {
   return null;
 }
 
-const App = () => {
+export const App = () => {
   const [userName, setUserName] = useState('');
   const [ifAdmin, setIfAdmin] = useState();
   const { token } = useToken();
@@ -114,5 +114,3 @@ const App = () => {
     </>
   );
 };
-
-export default App;
