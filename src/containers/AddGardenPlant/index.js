@@ -3,6 +3,7 @@ import styles from './addGardenPlant.module.scss';
 import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
+import Text from '../../components/Text';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
 
@@ -31,8 +32,10 @@ const AddGardenPlant = () => {
       const plantIdsTemp = {};
 
       response.forEach((plantData) => {
-        plantNamesTemp.push(plantData.name);
-        plantIdsTemp[plantData.name] = plantData._id;
+        if (plantData.accepted) {
+          plantNamesTemp.push(plantData.name);
+          plantIdsTemp[plantData.name] = plantData._id;
+        }
       });
 
       setPlantNames(plantNamesTemp);
@@ -51,6 +54,9 @@ const AddGardenPlant = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (newPlant.image === '') {
+      newPlant.image = 'https://res.cloudinary.com/ded5al291/image/upload/v1614255324/My%20Plants/logo-plant-leaf_bsnbcb.png';
+    }
     await fetch(`${Database.URL}/user/${currentUserId}/plants`, {
       method: 'POST',
       headers: {
@@ -74,9 +80,18 @@ const AddGardenPlant = () => {
   return (
     <div>
       <form id="newComment" method="POST" className={styles.form}>
-        <TextArea maxLength="10" height="3rem" text="Name" name="name" id="name" onChange={updatePlant} clearSignal={clearSignal} />
-        <TextArea className={styles.description} text="Description" name="description" id="description" onChange={updatePlant} clearSignal={clearSignal} />
-        <Select width="98%" title="Plant" values={plantNames} cb={selectPlant} />
+        <div className={styles.container}>
+          <TextArea maxLength="10" height="3rem" text="Name" name="name" id="name" onChange={updatePlant} clearSignal={clearSignal} />
+          <Text text="* required" fontsize="1rem" />
+        </div>
+        <div className={styles.container}>
+          <TextArea className={styles.description} text="Description" name="description" id="description" onChange={updatePlant} clearSignal={clearSignal} />
+          <Text text="* required" fontsize="1rem" />
+        </div>
+        <div className={styles.container}>
+          <Select width="98%" title="Plant" values={plantNames} cb={selectPlant} />
+          <Text text="* required" fontsize="1rem" />
+        </div>
         <TextArea height="3rem" className={styles.picture} text="Add picture link" name="image" id="image" onChange={updatePlant} clearSignal={clearSignal} />
         <Button text="Send" type="submit" onClick={onSubmit} />
       </form>
