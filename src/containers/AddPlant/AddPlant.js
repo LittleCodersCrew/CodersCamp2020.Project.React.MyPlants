@@ -15,14 +15,13 @@ import useToken from '../../hooks/useToken/useToken';
 import { SearchPlantConstants } from '../../constants/SearchPlantConstants';
 
 import plantLeaf from '../../assets/illustrations/plant-leaf.png';
-import noPlant from '../../assets/icons/Paper Fail.png';
+import closeSquare from '../../assets/icons/CloseSquare.png';
 import {
   container,
   title,
   basicInfo,
   detailedInfo,
   submitBtn,
-  plantInfo,
   backgroundWrap,
   background
 } from './AddPlant.module.scss';
@@ -63,6 +62,7 @@ const AddPlant = () => {
   const [show, setShow] = useState(false);
   const [plant, setPlant] = useState(plantSchema);
   const [addP, setAddP] = useState('');
+  const [thankYou, setThankYou] = useState('');
   const { token } = useToken();
 
   const openModal = () => setShow(true);
@@ -73,11 +73,41 @@ const AddPlant = () => {
   };
 
   const deleteHandler = () => {
-    setPlant(plantSchema);
+    setPlant({
+      image: '',
+      name: '',
+      latin_name: '',
+      min_temperature: undefined,
+      max_temperature: undefined,
+      watering: '',
+      watering_method: '',
+      subsoil: '',
+      conditioners: '',
+      spraying: '',
+      sunlight: '',
+      humidity: '',
+      application: '',
+      accepted: false,
+      species: '',
+      comments: [],
+      toxicity: {
+        human: false,
+        animal: false
+      }
+    });
+    [...document.querySelectorAll('input')].map((input) => {
+      input.value = '';
+      return input;
+    });
+    [...document.querySelectorAll('select')].map((select) => {
+      select.value = 'default';
+      return select;
+    });
     closeModal();
   };
 
   const onChange = (property, value) => {
+    setThankYou('');
     setAddP('');
     const temp = plant;
     if (property.toLowerCase() === 'animals at home?') {
@@ -98,7 +128,7 @@ const AddPlant = () => {
     } else if (property.toLowerCase() === 'animal') {
       property = 'toxicity.animal';
       value = value === 'yes' ? true : false;
-    } else if (property.toLowerCase() === 'add picture') {
+    } else if (property.toLowerCase() === 'add link picture') {
       property = 'image';
     }
     temp[property.toLowerCase()] = value;
@@ -137,23 +167,17 @@ const AddPlant = () => {
     } else {
       return setAddP(<p className={styles.valid}>All required fields, check spelling.</p>);
     }
-    return closeModal();
-  };
-
-  useEffect(() => {}, [plant.image]);
-
-  const removePlant = (e) => {
-    e.preventDefault();
-    document.querySelector('#p > input').value = '';
-    setPlant({ ...plant, image: '' });
+    setThankYou('Thank you for adding new plant! You can add more plants, if you like too.');
+    return deleteHandler();
   };
 
   return (
     <div className={container}>
       <div className={title}>
+        <Text text={thankYou} fontsize="2em" />
         <Text text="Help us grow!" fontsize="2em" />
         <Text
-          text="If you did not find your plant in our base, you can add it below"
+          text="If you did not find your plant in our base, you can add it below."
           fontsize="2em"
         />
       </div>
@@ -180,14 +204,9 @@ const AddPlant = () => {
           <Select title="Spraying" values={SearchPlantConstants.spraying} cb={onChange} />
           <Select title="Toxic for humans?" values={SearchPlantConstants.toxicity} cb={onChange} />
           <Select title="Toxic for animals?" values={SearchPlantConstants.animal} cb={onChange} />
-          <div className={plantInfo} id="p">
-            <img src={plant.image === '' ? plantLeaf : plant.image} alt="plant" />
-            <button onClick={removePlant}>
-              <img src={noPlant} alt="no-plant" />
-            </button>
-
-            <Input text="Add picture" cb={onChange} />
-          </div>
+        </div>
+        <div className={basicInfo} id="p">
+          <Input text="Add link picture" cb={onChange} />
         </div>
         <div className={backgroundWrap}>
           <div className={background} />
@@ -197,8 +216,18 @@ const AddPlant = () => {
         </div>
       </form>
 
-      <section className={show ? styles.modal : styles.hide} onClick={closeModal}>
-        <div className={styles.modalShow} onClick={(e) => e.stopPropagation()}>
+      <section>
+        <div
+          className={show ? styles.overlay : styles.hide}
+          onClick={closeModal}
+          onKeyDown={closeModal}
+          role="button"
+          tabIndex="0"
+        />
+        <div className={show ? styles.modal : styles.hide} onClick={(e) => e.stopPropagation()}>
+          <button onClick={closeModal}>
+            <img src={closeSquare} alt="close" />
+          </button>
           <div className={styles.info}>
             <img
               className={styles.image}
@@ -207,8 +236,12 @@ const AddPlant = () => {
             />
             <div className={styles.about}>
               <div>
-                <h2>{plant.name}</h2>
-                <h3>{plant.latin_name}</h3>
+                <h2>
+                  <span>Name:</span> {plant.name}
+                </h2>
+                <h3>
+                  <span>Latin name:</span> {plant.latin_name}
+                </h3>
               </div>
               <div className={styles.details}>
                 <p>
@@ -271,11 +304,12 @@ const AddPlant = () => {
             <Button text="Delete" onClick={deleteHandler} />
           </div>
           <div className={styles.text}>
-            <p>Thank you for your participation!</p>
-            <p>
-              As soon as it is verified by our team, this plant will be available for others in our
-              base.
-            </p>
+            <Text text="Thank you for your participation!" fontsize="2rem" />
+            <Text
+              text="As soon as it is verified by our team, this plant will be available for others in our
+              base."
+              fontsize="2rem"
+            />
           </div>
           <div className={styles.save}>
             {addP}

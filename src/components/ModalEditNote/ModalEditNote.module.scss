@@ -26,13 +26,14 @@
   border-radius: 20px;
 
   > button {
-    background-color: white;
+    background-color: transparent;
     border: none;
     position: absolute;
     cursor: pointer;
     position: absolute;
     top: calc(0% + 10px);
     left: calc(100% - 40px);
+    outline: none;
   }
 
   @media (max-width: 485px) {

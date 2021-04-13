@@ -1,7 +1,13 @@
 .title {
   font-family: 'Abhaya Libre', serif;
   font-weight: 200;
-  margin-bottom: 2em;
+  margin-bottom: 4rem;
+
+  > p:first-of-type {
+    color: #7fd291;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
 }
 
 .container {
@@ -30,56 +36,25 @@
 }
 
 .detailedInfo {
-  margin: 2rem 0 1rem;
+  margin: 3rem 0 3rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  gap: 1rem;
 
   > * {
     text-align: center;
     flex-basis: calc(25% - 30px);
-    margin: 10px 0;
-  }
-
-  > .plantInfo {
-    flex-basis: 70%;
   }
 }
 
 .submitBtn {
+  margin-top: 4rem;
   text-align: center;
+
   > button {
     width: 320px;
-  }
-}
-
-.plantInfo {
-  display: flex;
-  align-items: center;
-  margin: 3rem 0 3rem;
-  gap: 4rem;
-
-  > img:first-of-type {
-    width: 124px;
-    height: 120px;
-    margin-left: 2rem;
-  }
-
-  > button {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-
-    > img {
-      width: 40px;
-      height: 40px;
-    }
-  }
-
-  > input {
-    text-align: center;
   }
 }
 
@@ -90,8 +65,9 @@
   min-width: 500px;
   height: 90%;
   z-index: -1;
-  bottom: -20px;
+  bottom: 0;
   left: -70px;
+  overflow: hidden;
 }
 
 .background {
