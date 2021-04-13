@@ -16,7 +16,7 @@ import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
 import { SearchPlantConstants } from '../../constants/SearchPlantConstants';
 
-import { container, title, basicInfo, detailedInfo, submitBtn, editDelete } from './AddPlant.module.scss';
+import { container, title, basicInfo, detailedInfo, submitBtn } from './AddPlant.module.scss';
 import styles from './plantInfo.module.scss';
 
 const plantSchema = {
@@ -271,11 +271,17 @@ const AddPlant = () => {
               </div>
             </div>
           </div>
-          <div className={editDelete}>
+          <div className={styles.editDelete}>
             <Button text="Edit" onClick={editHandler} />
             <Button text="Delete" onClick={deleteHandler} />
           </div>
-          <Button text="Save" onClick={savePlant} />
+          <div className={styles.text}>
+            <p>Thank yoy for your participation!</p>
+            <p>As soon as it is verified by our team, this plant will be available for others in our base.</p>
+          </div>
+          <div className={styles.save}>
+            <Button text="Save" onClick={savePlant} />
+          </div>
         </div>
       </section>
     </div>
