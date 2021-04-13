@@ -13,7 +13,7 @@ import useToken from '../../hooks/useToken/useToken';
 import { SearchPlantConstants } from '../../constants/SearchPlantConstants';
 
 import { container, title, basicInfo, detailedInfo, submitBtn } from './AddPlant.module.scss';
-import styles from './plantInfo.module.scss';
+import styles from './modal.module.scss';
 
 const plantSchema = {
   image: '',
@@ -65,6 +65,7 @@ const AddPlant = () => {
   };
 
   const onChange = (property, value) => {
+    setAddP('');
     const temp = plant;
     if (property.toLowerCase() === 'animals at home?') {
       property = 'animal';
