@@ -32,12 +32,11 @@
 .info {
   display: flex;
   flex-direction: row;
-  align-items: flex-start; //????
+  align-items: flex-start;
 }
 
 .about {
   width: 100%;
-  margin: auto 0;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -46,8 +45,8 @@
 }
 
 .image {
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 160px;
   margin-right: 4em;
   object-fit: contain;
   align-self: center;
@@ -72,7 +71,7 @@
   > * {
     border: none;
     padding: 0.5rem;
-    font-size: 0.6em;
+    font-size: 1em;
 
     &:hover {
       box-shadow: none;

@@ -59,6 +59,7 @@ const AddPlant = () => {
   const closeModal = () => setShow(false);
 
   const editHandler = () => {
+    closeModal();
   };
 
   const deleteHandler = () => {
@@ -92,25 +93,26 @@ const AddPlant = () => {
   };
 
   const savePlant = () => {
-    const findSpecie = species.find((specie) => specie[0] === plant.species);
-    // eslint-disable-next-line prefer-destructuring
-    plant.species = findSpecie[1];
-
     if (
       plant.image !== ''
-      || plant.name !== ''
-      || plant.latin_name !== ''
-      || plant.min_temperature !== undefined
-      || plant.min_temperature !== undefined
-      || plant.watering !== ''
-      || plant.watering_method !== ''
-      || plant.subsoil !== ''
-      || plant.conditioners !== ''
-      || plant.spraying !== ''
-      || plant.sunlight !== ''
-      || plant.humidity !== ''
-      || plant.application !== ''
+      && plant.name !== ''
+      && plant.latin_name !== ''
+      && plant.min_temperature !== undefined
+      && plant.min_temperature !== undefined
+      && plant.watering !== ''
+      && plant.watering_method !== ''
+      && plant.subsoil !== ''
+      && plant.conditioners !== ''
+      && plant.spraying !== ''
+      && plant.species !== ''
+      && plant.sunlight !== ''
+      && plant.humidity !== ''
+      && plant.application !== ''
     ) {
+      const findSpecie = species.find((specie) => specie[0] === plant.species);
+      // eslint-disable-next-line prefer-destructuring
+      plant.species = findSpecie[1];
+
       fetch(`${Database.URL}/plant/`, {
         method: 'POST',
         headers: {
@@ -119,8 +121,8 @@ const AddPlant = () => {
         },
         body: JSON.stringify(plant)
       });
-    } else { console.log('jakis blad'); }
-    closeModal();
+    } else { console.log('All required fields, check spelling.'); }
+    return closeModal();
   };
 
   return (
@@ -276,7 +278,7 @@ const AddPlant = () => {
             <Button text="Delete" onClick={deleteHandler} />
           </div>
           <div className={styles.text}>
-            <p>Thank yoy for your participation!</p>
+            <p>Thank you for your participation!</p>
             <p>As soon as it is verified by our team, this plant will be available for others in our base.</p>
           </div>
           <div className={styles.save}>
