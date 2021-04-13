@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
+import useToken from '../../hooks/useToken/useToken';
 import { navbar, link, li, clicked, CHamburger } from './Navbar.module.scss';
 import { OHamburger } from './Hamburger.module.scss';
 import Search from '../../assets/icons/Search.png';
@@ -29,6 +30,12 @@ const createItem = (path, location, linkName, src, alt) => {
 };
 
 const Navbar = ({ name, admin }) => {
+  const { token } = useToken();
+
+  let userId;
+
+  if (token) userId = JSON.parse(atob(token.split('.')[1])).id;
+
   const [ifOpen, setIfOpen] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const location = useLocation().pathname;
@@ -58,7 +65,7 @@ const Navbar = ({ name, admin }) => {
     ['/events', location, 'Events', Calendar, 'calendar'],
     ['/plant', location, 'Plants', Search, 'search'],
     ['/chat', location, 'Chat', Chat, 'chat'],
-    ['/myprofile', location, name, Profile, 'profile'],
+    [`/myprofile/${userId}`, location, name, Profile, 'profile'],
     ['/logout', location, 'Logout', Logout, 'logout']
   ] : [
     ['/garden', location, 'My garden', Leaf, 'leaf'],
@@ -67,7 +74,7 @@ const Navbar = ({ name, admin }) => {
     ['/plant', location, 'Plants', Search, 'search'],
     ['/chat', location, 'Chat', Chat, 'chat'],
     ['/options', location, 'Options', Crown, 'crown'],
-    ['/myprofile', location, name, Profile, 'profile'],
+    [`/myprofile/${userId}`, location, name, Profile, 'profile'],
     ['/logout', location, 'Logout', Logout, 'logout']
   ];
 

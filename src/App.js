@@ -84,7 +84,7 @@ const App = () => {
         <Route path="/events" exact>
           <CalendarPage />
         </Route>
-        <Route path="/myprofile" exact>
+        <Route path="/myprofile/:id" exact>
           <UserPage />
         </Route>
         <Route path="/user/:id" exact>
