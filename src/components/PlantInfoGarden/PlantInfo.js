@@ -2,13 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './plantInfo.module.scss';
 import Text from '../SmallButton';
+import Database from '../../database';
+import useToken from '../../hooks/useToken/useToken';
 
-const PlantInfo = ({ photo, name, plantDetails, description }) => {
+const PlantInfo = ({ photo, name, plantDetails, description, userId, plantId }) => {
+  const { token } = useToken();
   if (plantDetails === undefined || !plantDetails.accepted) {
     return <p>No such plant in database</p>;
   }
 
-  const goToEdit = () => undefined;
+  const goToEdit = () => {
+    window.location.reload(false);
+  };
+
+  const deletePlant = () => {
+    fetch(`${Database.URL}/user/${userId}/plants/${plantId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    window.location.reload(false);
+  };
 
   return (
     <div className={styles.info}>
@@ -20,7 +36,7 @@ const PlantInfo = ({ photo, name, plantDetails, description }) => {
             <button onClick={goToEdit}>
               Edit
             </button>
-            <button>
+            <button onClick={deletePlant}>
               Delete
             </button>
           </div>
@@ -119,7 +135,9 @@ PlantInfo.propTypes = {
       animal: PropTypes.bool
     })
   }).isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  plantId: PropTypes.string.isRequired
 };
 
 export default PlantInfo;

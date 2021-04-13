@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Text from '../SmallButton';
@@ -8,14 +7,14 @@ import profileleaf from '../../assets/illustrations/plant-leaf.png';
 import Database from '../../database';
 import closeSquare from '../../assets/icons/CloseSquare.png';
 
-const PlantProfile = ({ plantName, userId, plantId, plantPhoto, description }) => {
+const PlantProfile = ({ plantName, userId, plantId, plantUserId, plantPhoto, description }) => {
   const [plantData, setPlantData] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     let speciesId = '';
     const fetchPlantInfo = async (id) => {
-      const plant = await fetch(`${Database.URL}/plant/${plantId}`)
+      const plant = await fetch(`${Database.URL}/plant/${id}`)
         .then((res) => res.json());
       setPlantData(plant);
       speciesId = plant.species;
@@ -64,6 +63,8 @@ const PlantProfile = ({ plantName, userId, plantId, plantPhoto, description }) =
           photo={plantPhoto}
           name={plantName}
           plantDetails={plantData}
+          plantId={plantUserId}
+          userId={userId}
         />
       </div>
     </>
@@ -74,6 +75,7 @@ PlantProfile.propTypes = {
   plantName: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
   plantId: PropTypes.string.isRequired,
+  plantUserId: PropTypes.string.isRequired,
   plantPhoto: PropTypes.string,
   description: PropTypes.string
 };
