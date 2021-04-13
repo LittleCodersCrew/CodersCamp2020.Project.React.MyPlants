@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Text from '../../components/Text';
-import PlantProfile from '../../components/PlantProfile';
+import PlantProfileGarden from '../../components/PlantProfileGarden';
 import styles from './gardenPage.module.scss';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
@@ -42,11 +42,13 @@ const GardenPage = () => {
   }, [id, token]);
 
   const showMyPlants = (p) => (
-    <PlantProfile
+    <PlantProfileGarden
       key={p._id}
+      userId={id}
       plantName={(p.name.length > 10) ? p.name.slice(0, 10) : p.name}
       plantId={p.plant}
       plantPhoto={p.image}
+      description={p.description}
     />
   );
 
