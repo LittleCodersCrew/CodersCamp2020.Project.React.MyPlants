@@ -1,3 +1,8 @@
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-unneeded-ternary */
+/* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-tag-spacing */
@@ -11,7 +16,7 @@ import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
 import { SearchPlantConstants } from '../../constants/SearchPlantConstants';
 
-import { container, title, basicInfo, detailedInfo, submitBtn, modal, hide, editDelete } from './AddPlant.module.scss';
+import { container, title, basicInfo, detailedInfo, submitBtn, editDelete } from './AddPlant.module.scss';
 import styles from './plantInfo.module.scss';
 
 const plantSchema = {
@@ -69,10 +74,18 @@ const AddPlant = () => {
       property = 'latin_name';
     } else if (property.toLowerCase() === 'min temperature') {
       property = 'min_temperature';
+      value = Math.floor(value);
     } else if (property.toLowerCase() === 'max temperature') {
       property = 'max_temperature';
+      value = Math.floor(value);
     } else if (property.toLowerCase() === 'watering method') {
       property = 'watering_method';
+    } else if (property.toLowerCase() === 'toxicity') {
+      property = 'toxicity.human';
+      value = value === 'yes' ? true : false;
+    } else if (property.toLowerCase() === 'animal') {
+      property = 'toxicity.animal';
+      value = value === 'yes' ? true : false;
     }
     temp[property.toLowerCase()] = value;
     setPlant(temp);
@@ -82,7 +95,6 @@ const AddPlant = () => {
     const findSpecie = species.find((specie) => specie[0] === plant.species);
     // eslint-disable-next-line prefer-destructuring
     plant.species = findSpecie[1];
-    console.log(plant);
 
     if (
       plant.image !== ''
@@ -107,7 +119,7 @@ const AddPlant = () => {
         },
         body: JSON.stringify(plant)
       });
-    }
+    } else { console.log('jakis blad'); }
     closeModal();
   };
 
@@ -171,12 +183,12 @@ const AddPlant = () => {
             cb={onChange}
           />
           <Select
-            title="Toxicity"
+            title="Toxic for humans?"
             values={SearchPlantConstants.toxicity}
             cb={onChange}
           />
           <Select
-            title="Animals at home?"
+            title="Toxic for animals?"
             values={SearchPlantConstants.animal}
             cb={onChange}
           />
@@ -186,84 +198,86 @@ const AddPlant = () => {
         </div>
       </form>
 
-      <div className={show ? modal : hide}>
-        <div className={styles.info}>
-          <img className={styles.image} src={plant.image} alt="Plant" />
-          <div className={styles.about}>
-            <div>
-              <h2>{plant.name}</h2>
-              <h3>{plant.latin_name}</h3>
-            </div>
-            <div className={styles.details}>
-              <p>
-                <span>Species:</span>
-                <span>{plant.species}</span>
-              </p>
-              <p>
-                <span>Min temperature:</span>
-                <span>
-                  {plant.min_temperature}
-                  {' '}
-                  °C
-                </span>
-              </p>
-              <p>
-                <span>Max temperature:</span>
-                <span>
-                  {plant.max_temperature}
-                  {' '}
-                  °C
-                </span>
-              </p>
-              <p>
-                <span>Sunlight:</span>
-                <span>{plant.sunlight}</span>
-              </p>
-              <p>
-                <span>Humidity:</span>
-                <span>{plant.humidity}</span>
-              </p>
-              <p>
-                <span>Watering:</span>
-                <span>{plant.watering}</span>
-              </p>
-              <p>
-                <span>Watering method:</span>
-                <span>{plant.watering_method}</span>
-              </p>
-              <p>
-                <span>Application:</span>
-                <span>{plant.application}</span>
-              </p>
-              <p>
-                <span>Subsoil: </span>
-                <span>{plant.subsoil}</span>
-              </p>
-              <p>
-                <span>Conditioners: </span>
-                <span>{plant.conditioners}</span>
-              </p>
-              <p>
-                <span>Spraying: </span>
-                <span>{plant.spraying}</span>
-              </p>
-              <p>
-                <span>Toxicity: </span>
-                <span>{plant.toxicity?.human ? 'yes' : 'no'}</span>
-              </p>
-              <p>
-                <span>Safe for domestic animals: </span>
-                <span>{plant.toxicity?.animal ? 'no' : 'yes'}</span>
-              </p>
+      <section className={show ? styles.modal : styles.hide} onClick={closeModal}>
+        <div className={styles.modalShow} onClick={(e) => e.stopPropagation()}>
+          <div className={styles.info}>
+            <img className={styles.image} src={plant.image} alt="Plant" />
+            <div className={styles.about}>
+              <div>
+                <h2>{plant.name}</h2>
+                <h3>{plant.latin_name}</h3>
+              </div>
+              <div className={styles.details}>
+                <p>
+                  <span>Species:</span>
+                  <span>{plant.species}</span>
+                </p>
+                <p>
+                  <span>Min temperature:</span>
+                  <span>
+                    {plant.min_temperature}
+                    {' '}
+                    °C
+                  </span>
+                </p>
+                <p>
+                  <span>Max temperature:</span>
+                  <span>
+                    {plant.max_temperature}
+                    {' '}
+                    °C
+                  </span>
+                </p>
+                <p>
+                  <span>Sunlight:</span>
+                  <span>{plant.sunlight}</span>
+                </p>
+                <p>
+                  <span>Humidity:</span>
+                  <span>{plant.humidity}</span>
+                </p>
+                <p>
+                  <span>Watering:</span>
+                  <span>{plant.watering}</span>
+                </p>
+                <p>
+                  <span>Watering method:</span>
+                  <span>{plant.watering_method}</span>
+                </p>
+                <p>
+                  <span>Application:</span>
+                  <span>{plant.application}</span>
+                </p>
+                <p>
+                  <span>Subsoil: </span>
+                  <span>{plant.subsoil}</span>
+                </p>
+                <p>
+                  <span>Conditioners: </span>
+                  <span>{plant.conditioners}</span>
+                </p>
+                <p>
+                  <span>Spraying: </span>
+                  <span>{plant.spraying}</span>
+                </p>
+                <p>
+                  <span>Toxicity: </span>
+                  <span>{plant.toxicity?.human ? 'yes' : 'no'}</span>
+                </p>
+                <p>
+                  <span>Safe for domestic animals: </span>
+                  <span>{plant.toxicity?.animal ? 'no' : 'yes'}</span>
+                </p>
+              </div>
             </div>
           </div>
+          <div className={editDelete}>
+            <Button text="Edit" onClick={editHandler} />
+            <Button text="Delete" onClick={deleteHandler} />
+          </div>
+          <Button text="Save" onClick={savePlant} />
         </div>
-        <div className={editDelete}>
-          <Button text="Edit" onClick={editHandler} />
-          <Button text="Delete" onClick={deleteHandler} />
-        </div>
-        <Button text="Save" onClick={savePlant} />
-      </div>
+      </section>
     </div>
   );
 };
