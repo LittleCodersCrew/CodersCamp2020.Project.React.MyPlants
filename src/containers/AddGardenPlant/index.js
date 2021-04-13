@@ -17,11 +17,29 @@ const AddGardenPlant = () => {
   });
   const currentUserId = JSON.parse(atob(token.split('.')[1])).id;
   const [plantNames, setPlantNames] = useState([]);
-  const [plantIds, setPlantIds] = useState([]);
+  const [plantIds, setPlantIds] = useState({});
 
   useEffect(() => {
-    setPlantNames();
-    setPlantIds();
+    const getPlants = async () => {
+      let response = await fetch(`${Database.URL}/plant`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      response = await response.json();
+
+      const plantNamesTemp = [];
+      const plantIdsTemp = {};
+
+      response.forEach((plantData) => {
+        plantNamesTemp.push(plantData.name);
+        plantIdsTemp[plantData.name] = plantData._id;
+      });
+
+      setPlantNames(plantNamesTemp);
+      setPlantIds(plantIdsTemp);
+    };
+
+    getPlants();
   }, []);
 
   const updatePlant = (e) => {
@@ -42,6 +60,7 @@ const AddGardenPlant = () => {
       body: JSON.stringify(newPlant)
     });
     setClearSignal((prevSignal) => !prevSignal);
+    window.location.reload(false);
   };
 
   const selectPlant = (_title, value) => {

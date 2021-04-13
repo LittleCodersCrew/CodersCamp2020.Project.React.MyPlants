@@ -62,6 +62,7 @@ const GardenPage = () => {
           {(myPlants.length >= 1) ? myPlants.map((p) => showMyPlants(p)) : <Text text="Garden is empty" fontsize="1em" />}
         </div>
       </div>
+      <Text text="Add new plant to your garden" fontsize="2em" />
       <AddGardenPlant />
     </div>
   );
