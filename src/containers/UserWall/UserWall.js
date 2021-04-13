@@ -33,7 +33,9 @@ import {
   notes,
   text,
   additional,
-  adding
+  adding,
+  wrapper,
+  select
 } from './UserWall.module.scss';
 
 const UserWall = ({ isMyProfile, isFavourite }) => {
@@ -181,7 +183,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
 
   if (isMyProfile) {
     return (
-      <div>
+      <div className={wrapper}>
         <Text text={userLogin} fontsize="2em" />
         <Text text={userName} fontsize="1.5em" />
         <div>
@@ -193,7 +195,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
             <Text className={text} text="Add new note" fontsize="1.5em" />
             <div className={title}>
               <TextArea
-                text="Add title.."
+                text="Add title..."
                 name="title"
                 height="3.5em"
                 value={note.title}
@@ -224,11 +226,13 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 onChange={handleChange}
               />
               <Select
-                className={adding}
+                className={select}
                 title="Which plant?"
                 values={myPlantsNames}
                 cb={handleSelectChange}
                 value={note.plant}
+                height="3.5em"
+                fontSize="0.9em"
               />
             </div>
             <div className={save}>

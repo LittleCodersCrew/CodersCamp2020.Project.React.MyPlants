@@ -7,7 +7,7 @@ import { user, userImage } from './UserProfile.module.scss';
 import profile from '../../assets/icons/Profile.png';
 
 const UserProfile = ({ usersId, usersName }) => {
-  const link = `user/${usersId}`;
+  const link = `${usersId}`;
   return (
     <div className={user}>
       <a className={user} href={link}>
