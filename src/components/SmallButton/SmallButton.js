@@ -10,11 +10,11 @@ const SmallButton = ({ type, text, onClick, fontsize }) => (
 
 SmallButton.propTypes = {
   type: PropTypes.oneOf(['button', 'submit']),
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
   fontsize: PropTypes.string.isRequired
 };
 
-SmallButton.defaultProps = { type: 'button' };
+SmallButton.defaultProps = { type: 'button', onClick: () => {} };
 
 export default SmallButton;

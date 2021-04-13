@@ -26,7 +26,7 @@ const TextArea = ({ text, id, name, onChange, clearSignal, width, height }) => {
 
 TextArea.propTypes = {
   text: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   clearSignal: PropTypes.bool,
@@ -34,6 +34,6 @@ TextArea.propTypes = {
   height: PropTypes.string
 };
 
-TextArea.defaultProps = { clearSignal: false, width: '98%', height: '5.5rem' };
+TextArea.defaultProps = { id: '', clearSignal: false, width: '98%', height: '5.5rem' };
 
 export default TextArea;
