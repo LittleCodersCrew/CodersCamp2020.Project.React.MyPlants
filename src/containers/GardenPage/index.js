@@ -56,7 +56,7 @@ const GardenPage = ({ data }) => {
   );
 
   if (Object.keys(data).length !== 0) {
-    console.log(data);
+    return undefined;
   }
 
   return (
