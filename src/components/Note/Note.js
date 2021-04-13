@@ -30,7 +30,7 @@ const Buttons = ({ myProfile, getNoteId }) => {
   }, {})
     .then((data) => {
       if (data.status === 200) {
-        window.location.reload();
+        console.log('note deleted');
       }
       return data.json();
     });

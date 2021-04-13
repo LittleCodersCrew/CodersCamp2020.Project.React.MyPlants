@@ -112,7 +112,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     body: JSON.stringify(n)
   }).then((data) => {
     if (data.status === 200) {
-      window.location.reload();
+      console.log('note added');
     }
     return data.json();
   });

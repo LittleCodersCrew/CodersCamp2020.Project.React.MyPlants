@@ -94,7 +94,7 @@ const UserPage = () => {
       setNotes(notes);
     }
     fetchNotes();
-  }, [id, token]);
+  }, [id, token, notes]);
 
   const showNote = (n) => (
     <Note
