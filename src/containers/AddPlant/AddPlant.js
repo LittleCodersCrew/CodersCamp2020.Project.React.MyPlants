@@ -1,12 +1,8 @@
 /* eslint-disable max-len */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unneeded-ternary */
-/* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
-/* eslint-disable no-console */
-/* eslint-disable react/jsx-tag-spacing */
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import Input from '../../components/Input';
 import Text from '../../components/Text';
@@ -53,6 +49,7 @@ const species = [
 const AddPlant = () => {
   const [show, setShow] = useState(false);
   const [plant, setPlant] = useState(plantSchema);
+  const [addP, setAddP] = useState('');
   const { token } = useToken();
 
   const openModal = () => setShow(true);
@@ -121,7 +118,7 @@ const AddPlant = () => {
         },
         body: JSON.stringify(plant)
       });
-    } else { console.log('All required fields, check spelling.'); }
+    } else { return setAddP(<p className={styles.valid}>All required fields, check spelling.</p>); }
     return closeModal();
   };
 
@@ -282,6 +279,7 @@ const AddPlant = () => {
             <p>As soon as it is verified by our team, this plant will be available for others in our base.</p>
           </div>
           <div className={styles.save}>
+            {addP}
             <Button text="Save" onClick={savePlant} />
           </div>
         </div>
