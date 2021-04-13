@@ -14,3 +14,31 @@
     flex-basis: 40%;
   }
 }
+
+@media (max-width: 823px) {
+  .wrapper {
+    height: 100vh;
+  }
+}
+
+@media (max-width: 780px) and (orientation: portrait) {
+  .wrapper {
+    flex-direction: column-reverse;
+
+    > div:first-of-type {
+      flex-basis: 20%;
+    }
+
+    > div:last-of-type {
+      flex-basis: 55%;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    > div:first-of-type {
+      flex-basis: 20%;
+    }
+  }
+}

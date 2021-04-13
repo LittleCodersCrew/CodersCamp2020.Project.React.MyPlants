@@ -1,6 +1,14 @@
 import React from 'react';
-import { background } from './Background.module.scss';
+import PropTypes from 'prop-types';
+import { background, wrapper } from './Background.module.scss';
 
-const Background = () => <div className={background} />;
+const Background = ({ children }) => (
+  <div className={wrapper}>
+    {children}
+    <div className={background} />
+  </div>
+);
+
+Background.propTypes = { children: PropTypes.node.isRequired };
 
 export default Background;

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
@@ -8,7 +9,10 @@ import AuthorsPage from './containers/AuthorsPage';
 import useToken from './hooks/useToken/useToken';
 import PlantPage from './containers/PlantPage';
 import SearchPlantsPage from './containers/SearchPlants/SearchPlants';
+import SearchUsersPage from './containers/SearchUsers/SearchUsers';
 import ChatPage from './containers/ChatPage';
+import UserPage from './containers/UserPage';
+import CalendarPage from './containers/CalendarPage';
 import NewPlantsPage from './containers/NewPlantsPage';
 import Footer from './components/Footer';
 import Database from './database';
@@ -16,18 +20,6 @@ import AddPlant from './containers/AddPlant';
 
 function Garden() {
   return <h2>Garden</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
-
-function Calendar() {
-  return <h2>Calendar</h2>;
-}
-
-function Profile() {
-  return <h2>Profile</h2>;
 }
 
 function Logout() {
@@ -44,12 +36,16 @@ const App = () => {
   useEffect(() => {
     if (token) {
       const userId = JSON.parse(atob(token.split('.')[1])).id;
-      fetch(`${Database.URL}/user/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      }, {})
+      fetch(
+        `${Database.URL}/user/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        },
+        {}
+      )
         .then((data) => data.json())
         .then((json) => {
           setUserName(json.name);
@@ -81,7 +77,7 @@ const App = () => {
           <Garden />
         </Route>
         <Route path="/users" exact>
-          <Users />
+          <SearchUsersPage />
         </Route>
         <Route path="/register" exact>
           <RegisterPage />
@@ -90,10 +86,13 @@ const App = () => {
           <LoginPage />
         </Route>
         <Route path="/events" exact>
-          <Calendar />
+          <CalendarPage />
         </Route>
         <Route path="/myprofile" exact>
-          <Profile />
+          <UserPage />
+        </Route>
+        <Route path="/user/:id" exact>
+          <UserPage />
         </Route>
         <Route path="/logout" exact>
           <Logout />

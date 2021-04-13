@@ -6,11 +6,12 @@ import { wrapper } from './RegisterPage.module.scss';
 
 const AuthorsPage = () => (
   <>
-    <Background />
-    <div className={wrapper}>
-      <LandingPlant />
-      <Register />
-    </div>
+    <Background>
+      <div className={wrapper}>
+        <LandingPlant />
+        <Register />
+      </div>
+    </Background>
   </>
 );
 

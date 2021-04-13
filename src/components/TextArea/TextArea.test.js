@@ -6,7 +6,7 @@ describe('TextArea component render', () => {
     const testId = 'textArea';
     const testFunc = () => 'test';
 
-    render(<TextArea text="test" id="123" name="test" onChange={testFunc()} />);
+    render(<TextArea text="test" id="123" name="test" onChange={testFunc} />);
 
     const testRender = screen.getByTestId(testId);
 
