@@ -28,13 +28,14 @@
   border-radius: 20px;
 
   > button {
-    background-color: white;
+    background-color: transparent;
     border: none;
     position: absolute;
     cursor: pointer;
     position: absolute;
     top: calc(0% + 10px);
     left: calc(100% - 40px);
+    outline: none;
   }
 
   @media (max-width: 485px) {
@@ -84,7 +85,7 @@
     width: 5.5em;
     height: 1.5em;
     align-content: center;
-    background-color: white;
+    background-color: transparent;
     font-family: 'Abhaya Libre', serif;
     font-size: 1.8rem;
     letter-spacing: 0.08rem;

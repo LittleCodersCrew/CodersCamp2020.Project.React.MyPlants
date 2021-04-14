@@ -29,13 +29,9 @@
   grid-auto-flow: column;
   column-gap: 4em;
 
-  p {
+  > * {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    span:last-child {
-      text-align: right;
-    }
   }
 }

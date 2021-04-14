@@ -14,6 +14,7 @@ import ChatPage from './containers/ChatPage';
 import UserPage from './containers/UserPage';
 import CalendarPage from './containers/CalendarPage';
 import NewPlantsPage from './containers/NewPlantsPage';
+import AddPlant from './containers/AddPlant';
 import Footer from './components/Footer';
 import Database from './database';
 import Garden from './containers/GardenPage';
@@ -62,6 +63,9 @@ const App = () => {
         </Route>
         <Route path="/plant" exact>
           <SearchPlantsPage />
+        </Route>
+        <Route path="/add-plant" exact>
+          <AddPlant />
         </Route>
         <Route path="/chat" exact>
           <ChatPage />

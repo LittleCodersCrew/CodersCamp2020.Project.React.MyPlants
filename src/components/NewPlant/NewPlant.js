@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Database from '../../database';
 import useToken from '../../hooks/useToken/useToken';
-import Button from '../Button';
+import SmallButton from '../SmallButton';
 import styles from './NewPlant.module.scss';
 
 const NewPlant = ({ plant }) => {
@@ -108,8 +108,8 @@ const NewPlant = ({ plant }) => {
         </div>
       </div>
       <div className={styles.buttons}>
-        <Button text="Save" type="submit" onClick={toSave} />
-        <Button text="Delete" type="submit" onClick={toDelete} />
+        <SmallButton text="Save" type="submit" onClick={toSave} fontSize="13em" />
+        <SmallButton text="Delete" type="submit" onClick={toDelete} fontSize="13em" />
       </div>
     </div>
   );
