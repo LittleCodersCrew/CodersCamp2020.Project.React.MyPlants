@@ -16,6 +16,18 @@
   overflow-x: hidden;
 }
 
+@media (max-width: 1024px) {
+  .plants {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 490px) {
+  .plants {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .wrapper {
   margin-top: 2em;
   display: flex;
