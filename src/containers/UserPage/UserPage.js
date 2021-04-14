@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 /* eslint-disable no-unreachable */
 /* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -34,13 +36,24 @@ const UserPage = () => {
   const myId = JSON.parse(atob(token.split('.')[1])).id;
   const [userLogin, setUserLogin] = useState('');
   const [notes, setNotes] = useState([]);
+  const [notesPublic, setNotesPublic] = useState([]);
   const [note, setNote] = useState({
     title: '',
     text: '',
     plant: '',
     image: '',
     timestamp: '',
-    nid: ''
+    nid: '',
+    private: ''
+  });
+  const [notePublic, setNotePublic] = useState({
+    title: '',
+    text: '',
+    plant: '',
+    image: '',
+    timestamp: '',
+    nid: '',
+    private: ''
   });
   const [favourites, setFavourites] = useState([]);
   const [favourite, setFavourite] = useState({ user: '' });
@@ -76,7 +89,6 @@ const UserPage = () => {
         .then((json) => {
           notes = json;
         });
-
       async function fetchPlantName(pid) {
         return fetch(`${Database.URL}/user/${myId}/plants/${pid}`, {
           method: 'GET',
@@ -172,6 +184,12 @@ const UserPage = () => {
     }
     fetchFavourites();
   }, [id, token]);
+
+  const getPublicNotes = () => {
+    const publicNote = notes.sort((note) => note.private === 'false');
+    setNotesPublic(...publicNote);
+  };
+  // console.log(notesPublic);
 
   const showFavourite = (f) => (
     <UserProfile usersId={f.user} usersName={f.username} />

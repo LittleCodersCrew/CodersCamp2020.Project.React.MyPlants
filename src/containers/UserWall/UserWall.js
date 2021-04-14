@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-shadow */
@@ -35,7 +36,8 @@ import {
   additional,
   adding,
   wrapper,
-  select
+  select,
+  input
 } from './UserWall.module.scss';
 
 const UserWall = ({ isMyProfile, isFavourite }) => {
@@ -120,6 +122,14 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
   const onSubmit = () => {
     note.plant = chosenPlant._id;
     sendNote(note);
+    [...document.querySelectorAll('textarea')].map((input) => {
+      input.value = '';
+      return input;
+    });
+    [...document.querySelectorAll('select')].map((select) => {
+      select.value = 'default';
+      return select;
+    });
   };
 
   const handleChange = (e) => {
@@ -218,7 +228,6 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
             </div>
             <div className={additional}>
               <TextArea
-                className={adding}
                 text="Add link to photo..."
                 name="image"
                 height="3.5em"
@@ -226,7 +235,6 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 onChange={handleChange}
               />
               <Select
-                className={select}
                 title="Which plant?"
                 values={myPlantsNames}
                 cb={handleSelectChange}

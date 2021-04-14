@@ -139,34 +139,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .modal {
-    height: 70vh;
-    width: 70vw;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .form {
-    .input {
-      width: 250px;
-    }
-  }
-}
-
-@media (max-width: 736px) and (orientation: landscape) {
-  .modal {
-    position: absolute;
-    height: 160vh;
-    top: 90%;
-  }
-
-  .form {
-    font-size: 1.2em;
-  }
-}
-
 @media (max-width: 450px) {
   .modal {
     height: 85vh;

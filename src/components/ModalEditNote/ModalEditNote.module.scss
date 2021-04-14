@@ -36,7 +36,7 @@
     left: calc(100% - 40px);
   }
 
-  @media (max-width: 485px) {
+  @media (max-width: 990px) {
     width: 80vw;
   }
 }
@@ -72,7 +72,7 @@
     padding-bottom: 0.25em;
     outline: none;
 
-    @media (max-width: 485px) {
+    @media (max-width: 990px) {
       width: 60vw;
     }
   }
