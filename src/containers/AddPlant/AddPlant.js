@@ -1,8 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable operator-linebreak */
-/* eslint-disable max-len */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable no-param-reassign */
 import React, { useEffect, useState } from 'react';
@@ -142,20 +137,20 @@ const AddPlant = () => {
 
   const savePlant = () => {
     if (
-      plant.image !== '' &&
-      plant.name !== '' &&
-      plant.latin_name !== '' &&
-      plant.min_temperature !== undefined &&
-      plant.min_temperature !== undefined &&
-      plant.watering !== '' &&
-      plant.watering_method !== '' &&
-      plant.subsoil !== '' &&
-      plant.conditioners !== '' &&
-      plant.spraying !== '' &&
-      plant.species !== '' &&
-      plant.sunlight !== '' &&
-      plant.humidity !== '' &&
-      plant.application !== ''
+      plant.image !== ''
+      && plant.name !== ''
+      && plant.latin_name !== ''
+      && plant.min_temperature !== undefined
+      && plant.min_temperature !== undefined
+      && plant.watering !== ''
+      && plant.watering_method !== ''
+      && plant.subsoil !== ''
+      && plant.conditioners !== ''
+      && plant.spraying !== ''
+      && plant.species !== ''
+      && plant.sunlight !== ''
+      && plant.humidity !== ''
+      && plant.application !== ''
     ) {
       const findSpecie = species.find((specie) => specie[0] === plant.species);
       // eslint-disable-next-line prefer-destructuring
@@ -230,7 +225,7 @@ const AddPlant = () => {
           role="button"
           tabIndex="0"
         />
-        <div className={show ? styles.modal : styles.hide} onClick={(e) => e.stopPropagation()}>
+        <div className={show ? styles.modal : styles.hide}>
           <button onClick={closeModal}>
             <img src={closeSquare} alt="close" />
           </button>
@@ -243,10 +238,14 @@ const AddPlant = () => {
             <div className={styles.about}>
               <div>
                 <h2>
-                  <span>Name:</span> {plant.name}
+                  <span>Name:</span>
+                  {''}
+                  {plant.name}
                 </h2>
                 <h3>
-                  <span>Latin name:</span> {plant.latin_name}
+                  <span>Latin name:</span>
+                  {''}
+                  {plant.latin_name}
                 </h3>
               </div>
               <div className={styles.details}>
@@ -256,11 +255,17 @@ const AddPlant = () => {
                 </p>
                 <p>
                   <span>Min temperature:</span>
-                  <span className={styles.italic}>{plant.min_temperature} °C</span>
+                  <span className={styles.italic}>
+                    {plant.min_temperature}
+                    °C
+                  </span>
                 </p>
                 <p>
                   <span>Max temperature:</span>
-                  <span className={styles.italic}>{plant.max_temperature} °C</span>
+                  <span className={styles.italic}>
+                    {plant.max_temperature}
+                    °C
+                  </span>
                 </p>
                 <p>
                   <span>Sunlight:</span>
