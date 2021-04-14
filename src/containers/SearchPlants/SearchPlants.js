@@ -1,6 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable guard-for-in */
 import React, { useState, useEffect, useReducer } from 'react';
+import { useHistory } from 'react-router-dom';
 import { searchPlantsContainer, searchPlantsHeader, searchPlantsMenu, searchPlantsContent, noFoundPlantsContainer, background, backgroundWrap, newPlant } from './SearchPlants.module.scss';
 
 import Text from '../../components/Text';
@@ -42,6 +43,8 @@ const SearchPlants = () => {
   );
 
   const { token } = useToken();
+
+  const history = useHistory();
 
   const getRandomPlants = (array, amounth) => {
     if (!array) return undefined;
@@ -136,6 +139,10 @@ const SearchPlants = () => {
     return result;
   };
 
+  const routerChange = () => {
+    history.push('/add-plant');
+  };
+
   const handleSubmit = () => {
     const result = getMatchedPlants(plants, searchedPlant);
     setCurrentPlants([...result]);
@@ -201,7 +208,7 @@ const SearchPlants = () => {
         <Text text="We don’t have your plant yet?" fontsize="33px" />
         <Text text="Help us to grow our plant base. Click below to add your plant." fontsize="33px" />
         <Text text="As soon as it is checked, your plant will be added to base." fontsize="33px" />
-        <Button type="button" role="navigation" text="Add your plant" onClick={() => {}} />
+        <Button type="button" role="navigation" text="Add your plant" onClick={routerChange} />
       </div>
       )}
     </div>

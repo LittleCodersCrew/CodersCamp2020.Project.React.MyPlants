@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { input } from './TextArea.module.scss';
 
-const TextArea = ({ text, id, name, onChange, clearSignal, width, height }) => {
+const TextArea = ({ text, id, name, onChange, clearSignal, width, height, maxLength }) => {
   const inputRef = useRef();
 
   useEffect(() => {
@@ -20,6 +20,7 @@ const TextArea = ({ text, id, name, onChange, clearSignal, width, height }) => {
       onChange={onChange}
       data-testid="textArea"
       style={{ width, height }}
+      maxLength={maxLength}
     />
   );
 };
@@ -31,9 +32,16 @@ TextArea.propTypes = {
   onChange: PropTypes.func.isRequired,
   clearSignal: PropTypes.bool,
   width: PropTypes.string,
-  height: PropTypes.string
+  height: PropTypes.string,
+  maxLength: PropTypes.string
 };
 
-TextArea.defaultProps = { id: '', clearSignal: false, width: '98%', height: '5.5rem' };
+TextArea.defaultProps = {
+  id: '',
+  clearSignal: false,
+  width: '98%',
+  height: '5.5rem',
+  maxLength: '255'
+};
 
 export default TextArea;
