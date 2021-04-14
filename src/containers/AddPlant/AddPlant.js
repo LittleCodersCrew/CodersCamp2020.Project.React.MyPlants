@@ -239,12 +239,12 @@ const AddPlant = () => {
               <div>
                 <h2>
                   <span>Name:</span>
-                  {''}
+                  {' '}
                   {plant.name}
                 </h2>
                 <h3>
                   <span>Latin name:</span>
-                  {''}
+                  {' '}
                   {plant.latin_name}
                 </h3>
               </div>
@@ -317,12 +317,12 @@ const AddPlant = () => {
           <div className={styles.text}>
             <Text
               text="Thank you for your participation!"
-              fontsize={width > 1024 ? '2em' : '1.5em'}
+              fontsize="1.5em"
             />
             <Text
               text="As soon as it is verified by our team, this plant will be available for others in our
               base."
-              fontsize={width > 1024 ? '2em' : '1.5em'}
+              fontsize="1.5em"
             />
           </div>
           <div className={styles.save}>
