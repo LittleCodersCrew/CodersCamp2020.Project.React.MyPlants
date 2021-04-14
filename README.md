@@ -36,18 +36,18 @@ It is an application for plant lovers. The idea of it is to create a collection 
 
 ## Features
 - User can create their profil and login. And if someone is not logged in, there are a limited number of pages they can see and actions they can take.<p align="center"><br><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226434/login_wqb2ri.png"  width="45%" /><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226475/register_nfg55w.png" width="45%" /></p>
-- There is a plant database, where each plant has its own subpage with a description of its growing requirements. There is also a comments section where the user can add a comment and like a comment if he wishes (comments will be displayed according to the number of likes).<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226570/plant_zt8ijs.png" width="500" height="350" /></p>
+- There is a plant database, where each plant has its own subpage with a description of its growing requirements. There is also a comments section where the user can add a comment and like a comment if he wishes (comments will be displayed according to the number of likes).<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226570/plant_zt8ijs.png" width="500" height="300" /></p>
 - The main page is the plant finder, which by default shows 3 example plants in the database. You can search for a plant by its name or set search criteria according to care requirements. If the user does not find the plant he was looking for, he can add it to the database. For this purpose, he has to complete the profile of the plant and send it, and the website administrator will consider its application and approve or delete it (only the administrator has access to the subpage with unapproved plants).<p align="center"><br><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429853/glowna_ibjaic.png"  width="45%" /><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226565/admin_ohrncv.png" width="45%" /></p>
 - Each user has his own profile, which includes:
     - Garden - user can create profiles for the plants he has at home. He can name his plants, add pictures of them and description.
     - Journal - user can also create public or private (visible only to the owner) notes, which are kind of a journal about taking care of his plants.
     - Favorite users - user can add other User's profiles to their favourites, so he can follow their plants.
-    - Settings - user can change his account details.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429857/profil_lhms4u.png" width="500" height="350" /></p>
+    - Settings - user can change his account details.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429857/profil_lhms4u.png" width="500" height="300" /></p>
 - There is a chat created, where are two channels:
     - **Main chat** - for general discussion about plants, where users can ask questions or share their experience. It opens by default.
-    - **Trade your plants** - dedicated for trade. Users can sell or exchange their plants or equipment.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429848/chat_xflecf.png" width="500" height="350" /></p>
-- We have created not only a plant search engine, but also a user search engine, which is located on a separate subpage.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429858/users_uiaspb.png" width="500" height="350" /></p>
-- There is also a calendar on our website where users can add events - for example reminders to water their plants.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429847/calendar_lyhags.png" width="500" height="350" /></p>
+    - **Trade your plants** - dedicated for trade. Users can sell or exchange their plants or equipment.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429848/chat_xflecf.png" width="500" height="300" /></p>
+- We have created not only a plant search engine, but also a user search engine, which is located on a separate subpage.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429858/users_uiaspb.png" width="500" height="300" /></p>
+- There is also a calendar on our website where users can add events - for example reminders to water their plants.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429847/calendar_lyhags.png" width="500" height="300" /></p>
 
 ## Technologies & Tools
 - ReactJS
