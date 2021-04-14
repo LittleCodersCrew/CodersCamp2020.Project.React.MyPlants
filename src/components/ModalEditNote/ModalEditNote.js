@@ -5,6 +5,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Select from '../Select';
@@ -26,6 +27,7 @@ const ModalEditNote = (props) => {
   const [myPlants, setMyPlants] = useState([]);
   const [chosenPlant, setChosenPlant] = useState('');
   const myId = JSON.parse(atob(token.split('.')[1])).id;
+  const { handleSubmit } = useForm();
 
   const updateField = (e) => {
     setNote({
@@ -66,6 +68,7 @@ const ModalEditNote = (props) => {
   }).then((data) => {
     if (data.status === 200) {
       window.location.reload();
+      console.log('note edited');
     }
     return data.json();
   });
@@ -80,7 +83,7 @@ const ModalEditNote = (props) => {
     e.preventDefault();
     note.plant = chosenPlant._id;
     const response = await editNote(note);
-    console.log(response);
+    console.log('note edited');
   };
 
   useEffect(() => {
@@ -91,16 +94,14 @@ const ModalEditNote = (props) => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
         }
-      },
-      {}
+      }, {}
     )
       .then((data) => data.json())
       .then((json) => setNote({
         image: json.image,
         title: json.title,
         text: json.text,
-        plant: json.plant,
-        private: json.private
+        plant: json.plant
       }));
   });
 
@@ -119,17 +120,7 @@ const ModalEditNote = (props) => {
         </button>
         <div className={form}>
           <Text text="Edit your note" fontsize="1.8rem" />
-          <form onSubmit={onSubmit} id="editNote">
-            <div className={tick}>
-              <input
-                type="checkbox"
-                id="private"
-                name="private"
-                value="true"
-                onChange={(e) => setNote({ ...note, private: e.target.checked })}
-              />
-              <label htmlFor="private"> Private? </label>
-            </div>
+          <form onSubmit={handleSubmit(onSubmit)} method="PUT">
             <div>
               <input
                 text="Title"
