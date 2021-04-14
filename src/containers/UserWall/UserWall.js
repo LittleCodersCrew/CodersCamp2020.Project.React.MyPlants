@@ -223,8 +223,8 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 values={myPlantsNames}
                 cb={handleSelectChange}
                 value={note.plant}
-                height="3.5em"
-                fontSize="0.9em"
+                height="3.7em"
+                fontsize="0.9em"
               />
             </div>
             <div className={save}>
