@@ -65,6 +65,11 @@ const AddPlant = () => {
   const [thankYou, setThankYou] = useState('');
   const { token } = useToken();
 
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  });
+
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
 
@@ -128,7 +133,7 @@ const AddPlant = () => {
     } else if (property.toLowerCase() === 'animal') {
       property = 'toxicity.animal';
       value = value === 'yes' ? true : false;
-    } else if (property.toLowerCase() === 'add link picture') {
+    } else if (property.toLowerCase() === 'add picture link') {
       property = 'image';
     }
     temp[property.toLowerCase()] = value;
@@ -173,12 +178,15 @@ const AddPlant = () => {
 
   return (
     <div className={container}>
+      <div className={backgroundWrap}>
+        <div className={background} />
+      </div>
       <div className={title}>
-        <Text text={thankYou} fontsize="2em" />
-        <Text text="Help us grow!" fontsize="2em" />
+        <Text text={thankYou} fontsize={width > 650 ? '2em' : '1.5em'} />
+        <Text text="Help us grow!" fontsize={width > 650 ? '2em' : '1.5em'} />
         <Text
           text="If you did not find your plant in our base, you can add it below."
-          fontsize="2em"
+          fontsize={width > 650 ? '2em' : '1.5em'}
         />
       </div>
       <form>
@@ -206,11 +214,9 @@ const AddPlant = () => {
           <Select title="Toxic for animals?" values={SearchPlantConstants.animal} cb={onChange} />
         </div>
         <div className={basicInfo} id="p">
-          <Input text="Add link picture" cb={onChange} />
+          <Input text="Add picture link" cb={onChange} />
         </div>
-        <div className={backgroundWrap}>
-          <div className={background} />
-        </div>
+
         <div className={submitBtn}>
           {!show && <Button type="submit" onClick={openModal} text="Add your plant" />}
         </div>
