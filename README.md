@@ -3,7 +3,7 @@
 **The project was created as part of the 6th edition of the [CodersCamp](https://coderscamp.pl/) course.**
 
 
-If you want to see demo of our project [click here]().
+If you want to see demo of our project [click here](https://littlecoderscrew.github.io/CodersCamp2020.Project.React.MyPlants/).
 
 
 Our project uses the REST API that we created during the previous project. You can find it [here](https://github.com/ruljin/CodersCamp2020.Project.NodeJS-Express-TypeScript.MyPlants).
