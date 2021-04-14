@@ -1,18 +1,11 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Select from '../Select';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
 import closeSquare from '../../assets/icons/CloseSquare.png';
-import { hide, overlay, modal, form, input, button, tick } from './ModalEditNote.module.scss';
+import { hide, overlay, modal, form, input, button } from './ModalEditNote.module.scss';
 
 const ModalEditNote = (props) => {
   const { show, closeModal, noteId } = props;
@@ -27,7 +20,6 @@ const ModalEditNote = (props) => {
   const [myPlants, setMyPlants] = useState([]);
   const [chosenPlant, setChosenPlant] = useState('');
   const myId = JSON.parse(atob(token.split('.')[1])).id;
-  const { handleSubmit } = useForm();
 
   const [newNote, setNewNote] = useState('');
 
@@ -41,7 +33,7 @@ const ModalEditNote = (props) => {
 
   useEffect(() => {
     async function fetchMyPlants() {
-      let myPlants = [];
+      let myPlantsFetched = [];
 
       await fetch(
         `${Database.URL}/user/${myId}/plants`,
@@ -55,12 +47,12 @@ const ModalEditNote = (props) => {
       )
         .then((res) => res.json())
         .then((json) => {
-          myPlants = json;
+          myPlantsFetched = json;
         });
-      setMyPlants(myPlants);
+      setMyPlants(myPlantsFetched);
     }
     fetchMyPlants();
-  }, []);
+  }, [myId, token]);
 
   const myPlantsNames = myPlants.map((plant) => plant.name);
 
@@ -75,7 +67,7 @@ const ModalEditNote = (props) => {
     return data.json();
   });
 
-  const handleSelectChange = (title, value) => {
+  const handleSelectChange = (_title, value) => {
     const choosenPlant1 = myPlants.filter((plant) => `${plant.name}` === value);
     setChosenPlant(...choosenPlant1);
   };

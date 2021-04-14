@@ -1,12 +1,3 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable consistent-return */
-/* eslint-disable no-unreachable */
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-shadow */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -75,7 +66,7 @@ const UserPage = () => {
 
   useEffect(() => {
     async function fetchNotes() {
-      let notes = [];
+      let notesFetched = [];
 
       await fetch(`${Database.URL}/user/${id}/notes`,
         {
@@ -87,7 +78,7 @@ const UserPage = () => {
         }, {})
         .then((res) => res.json())
         .then((json) => {
-          notes = json;
+          notesFetched = json;
         });
       async function fetchPlantName(pid) {
         return fetch(`${Database.URL}/user/${myId}/plants/${pid}`, {
@@ -99,14 +90,14 @@ const UserPage = () => {
         }).then((res) => res.json())
           .then((json) => json.name);
       }
-      for (const n of notes) {
+      for (const n of notesFetched) {
         const plantName = await fetchPlantName(n.plant);
         n.plant = plantName;
       }
-      setNotes(notes);
+      setNotes(notesFetched);
     }
     fetchNotes();
-  }, [id, token, notes]);
+  }, [id, token, notes, myId]);
 
   const showNote = (n) => (
     <Note
@@ -132,7 +123,7 @@ const UserPage = () => {
       .then((json) => {
         setMyFavourites(json);
       });
-  }, [id, token]);
+  }, [id, myId, token]);
 
   useEffect(() => {
     fetch(`${Database.URL}/user/${id}/plants`,
@@ -147,11 +138,11 @@ const UserPage = () => {
       .then((json) => {
         setMyPlants(json);
       });
-  }, []);
+  }, [id, token]);
 
   useEffect(() => {
     async function fetchFavourites() {
-      let favourites = [];
+      let favouritesFetched = [];
 
       await fetch(`${Database.URL}/user/${id}/favourites`,
         {
@@ -163,7 +154,7 @@ const UserPage = () => {
         }, [])
         .then((res) => res.json())
         .then((json) => {
-          favourites = json;
+          favouritesFetched = json;
         });
 
       async function fetchUserName(uid) {
@@ -176,20 +167,19 @@ const UserPage = () => {
         }).then((res) => res.json())
           .then((json) => json.login);
       }
-      for (const f of favourites) {
+      for (const f of favouritesFetched) {
         const userName = await fetchUserName(f.user);
         f.username = userName;
       }
-      setFavourites(favourites);
+      setFavourites(favouritesFetched);
     }
     fetchFavourites();
   }, [id, token]);
 
   const getPublicNotes = () => {
-    const publicNote = notes.sort((note) => note.private === 'false');
+    const publicNote = notes.sort((noteToSort) => noteToSort.private === 'false');
     setNotesPublic(...publicNote);
   };
-  // console.log(notesPublic);
 
   const showFavourite = (f) => (
     <UserProfile usersId={f.user} usersName={f.username} />

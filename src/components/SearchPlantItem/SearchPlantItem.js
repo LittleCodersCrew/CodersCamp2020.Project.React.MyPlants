@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { searchPlantItemContainer, itemHeader, itemHeaderTitle, itemContent, itemList, itemListItem, itemFooter } from './SearchPlantItem.module.scss';
-
 import Text from '../Text';
-
 import Image from '../../assets/illustrations/plant-leaf.png';
 
-// eslint-disable-next-line max-len
 const SearchPlantItem = ({ image, name, latinName, minTemp, maxTemp, sunlight, humidity, bgcolor }) => (
   <div className={searchPlantItemContainer} style={{ backgroundColor: bgcolor }}>
     <div className={itemHeader}>

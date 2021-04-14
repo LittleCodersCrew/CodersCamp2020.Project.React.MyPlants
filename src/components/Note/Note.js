@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -10,7 +8,6 @@ import SmallButton from '../SmallButton';
 import ModalEditNote from '../ModalEditNote';
 
 const Buttons = ({ myProfile, getNoteId }) => {
-  const { id } = useParams();
   const { token } = useToken();
 
   const [show, setShow] = useState(false);
@@ -28,12 +25,7 @@ const Buttons = ({ myProfile, getNoteId }) => {
           'Content-Type': 'application/json'
         }
   }, {})
-    .then((data) => {
-      if (data.status === 200) {
-        console.log('note deleted');
-      }
-      return data.json();
-    });
+    .then((data) => data.json());
 
   const noteId = getNoteId;
 
@@ -63,8 +55,6 @@ const Note = ({ noteText, noteTitle, noteDate, notePlant, notePicture, noteId })
     }
     return <p />;
   };
-
-  const getNoteId = (n) => n;
 
   return (
     <div className={noteContainer}>

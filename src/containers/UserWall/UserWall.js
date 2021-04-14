@@ -1,14 +1,4 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-shadow */
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-alert */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -80,7 +70,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
 
   useEffect(() => {
     async function fetchMyPlants() {
-      let myPlants = [];
+      let myPlantsFetched = [];
 
       await fetch(`${Database.URL}/user/${myId}/plants`,
         {
@@ -92,12 +82,12 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
         }, {})
         .then((res) => res.json())
         .then((json) => {
-          myPlants = json;
+          myPlantsFetched = json;
         });
-      setMyPlants(myPlants);
+      setMyPlants(myPlantsFetched);
     }
     fetchMyPlants();
-  }, []);
+  }, [myId, token]);
 
   const myPlantsNames = myPlants.map((plant) => plant.name);
 
@@ -112,23 +102,18 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(n)
-  }).then((data) => {
-    if (data.status === 200) {
-      console.log('note added');
-    }
-    return data.json();
-  });
+  }).then((data) => data.json());
 
   const onSubmit = () => {
     note.plant = chosenPlant._id;
     sendNote(note);
-    [...document.querySelectorAll('textarea')].map((input) => {
-      input.value = '';
-      return input;
+    [...document.querySelectorAll('textarea')].map((textareaInput) => {
+      textareaInput.value = '';
+      return textareaInput;
     });
-    [...document.querySelectorAll('select')].map((select) => {
-      select.value = 'default';
-      return select;
+    [...document.querySelectorAll('select')].map((selectInput) => {
+      selectInput.value = 'default';
+      return selectInput;
     });
   };
 
@@ -136,10 +121,9 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
 
-  const handleSelectChange = (title, value) => {
+  const handleSelectChange = (_title, value) => {
     const choosenPlant1 = myPlants.filter((plant) => `${plant.name}` === value);
     setChosenPlant(...choosenPlant1);
-    console.log(chosenPlant._id);
   };
 
   //  Favourites
@@ -157,7 +141,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
       .then((json) => {
         setMyFavourites(json);
       });
-  }, [id, token]);
+  }, [id, myId, token]);
 
   const handleFavourite = () => {
     if (isFavourite) {

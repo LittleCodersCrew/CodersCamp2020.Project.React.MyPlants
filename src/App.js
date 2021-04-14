@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import './App.scss';
 import Navbar from './components/Navbar';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
