@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
-
 import Text from '../../components/Text';
 import Note from '../../components/Note';
 import PlantProfile from '../../components/PlantProfile';
@@ -28,31 +27,9 @@ const UserPage = () => {
   const [userLogin, setUserLogin] = useState('');
   const [notes, setNotes] = useState([]);
   const [notesPublic, setNotesPublic] = useState([]);
-  const [note, setNote] = useState({
-    title: '',
-    text: '',
-    plant: '',
-    image: '',
-    timestamp: '',
-    nid: '',
-    private: ''
-  });
-  const [notePublic, setNotePublic] = useState({
-    title: '',
-    text: '',
-    plant: '',
-    image: '',
-    timestamp: '',
-    nid: '',
-    private: ''
-  });
   const [favourites, setFavourites] = useState([]);
-  const [favourite, setFavourite] = useState({ user: '' });
   const [myPlants, setMyPlants] = useState([]);
-  const [myPlant, setMyPlant] = useState({ name: '' });
   const [myFavourites, setMyFavourites] = useState([]);
-  const [myFavourite, setMyFavourite] = useState({ user: '' });
-  const [getUsersName, setGetUsersName] = useState('');
 
   useEffect(() => {
     if (token) {
@@ -177,9 +154,10 @@ const UserPage = () => {
   }, [id, token]);
 
   const getPublicNotes = () => {
-    const publicNote = notes.sort((noteToSort) => noteToSort.private === 'false');
+    const publicNote = notes.filter((noteToSort) => noteToSort.private === 'false');
     setNotesPublic(...publicNote);
   };
+  console.log(notesPublic);
 
   const showFavourite = (f) => (
     <UserProfile usersId={f.user} usersName={f.username} />

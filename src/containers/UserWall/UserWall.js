@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -19,15 +18,11 @@ import GreenStar from '../../assets/icons/GreenStar.png';
 import {
   addNote,
   title,
-  tick,
   save,
   notes,
   text,
   additional,
-  adding,
-  wrapper,
-  select,
-  input
+  wrapper
 } from './UserWall.module.scss';
 
 const UserWall = ({ isMyProfile, isFavourite }) => {
@@ -46,11 +41,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     private: false
   });
   const [myFavourites, setMyFavourites] = useState([]);
-  const [myFavourite, setMyFavourite] = useState({ user: '' });
   const [myPlants, setMyPlants] = useState([]);
-  const [myPlantsName, setMyPlantsName] = useState('');
-  const [myPlantsId, setMyPlantsId] = useState('');
-  const [myPlantsBaseId, setMyPlantsBaseId] = useState('');
   const [chosenPlant, setChosenPlant] = useState('');
 
   const { id } = useParams();
@@ -93,7 +84,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
 
   // Adding notes
 
-  const { register, handleSubmit, errors } = useForm();
+  const { handleSubmit } = useForm();
 
   const sendNote = (n) => fetch(`${Database.URL}/user/${id}/notes`, {
     method: 'POST',
