@@ -206,10 +206,6 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 onChange={handleChange}
               />
             </div>
-            <div className={tick}>
-              <input type="checkbox" id="private" name="private" value="true" onChange={(e) => setNote({ ...note, private: e.target.checked })} />
-              <label htmlFor="private"> Private? </label>
-            </div>
             <div className={additional}>
               <TextArea
                 text="Add link to photo..."

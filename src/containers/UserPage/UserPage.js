@@ -81,7 +81,7 @@ const UserPage = () => {
           notesFetched = json;
         });
       async function fetchPlantName(pid) {
-        return fetch(`${Database.URL}/user/${myId}/plants/${pid}`, {
+        return fetch(`${Database.URL}/user/${id}/plants/${pid}`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
