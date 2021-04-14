@@ -14,13 +14,10 @@ import ChatPage from './containers/ChatPage';
 import UserPage from './containers/UserPage';
 import CalendarPage from './containers/CalendarPage';
 import NewPlantsPage from './containers/NewPlantsPage';
+import AddPlant from './containers/AddPlant';
 import Footer from './components/Footer';
 import Database from './database';
-import AddPlant from './containers/AddPlant';
-
-function Garden() {
-  return <h2>Garden</h2>;
-}
+import Garden from './containers/GardenPage';
 
 function Logout() {
   localStorage.removeItem('token');
