@@ -4,7 +4,7 @@ import PlantProfile from './PlantProfile';
 
 describe('PlantProfile component render', () => {
   it('Gives the right text in the paragraph', () => {
-    const text = 'Plant name';
+    const text = 'Plant';
     const id = 'id';
     const photo = 'photo';
 
