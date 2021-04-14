@@ -46,14 +46,11 @@ const ChatPage = () => {
       }
 
       if (token) {
-        // eslint-disable-next-line no-restricted-syntax
         for (const mess of messagess) {
-          // eslint-disable-next-line no-await-in-loop
           const username = await fetchUsername(mess.user);
           mess.user = username;
         }
       } else {
-        // eslint-disable-next-line no-restricted-syntax
         for (const mess of messagess) {
           mess.user = 'Anonymous';
         }
@@ -69,7 +66,6 @@ const ChatPage = () => {
     const dateSubstr = mess.date.substr(0, 10);
     if (mess.chat === canalsId[openCanal]) {
       return (
-        // eslint-disable-next-line no-underscore-dangle
         <Message key={mess._id} userName={mess.user} dateTime={dateSubstr} content={mess.text} />
       );
     }

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Text from '../SmallButton';
@@ -15,7 +14,6 @@ const PlantProfile = ({ plantName, plantId, plantPhoto }) => {
         .then((json) => json.name);
       setPlantNameLink(name);
     };
-
     fetchPlantInfo(plantId);
   }, [plantId]);
 
@@ -23,7 +21,7 @@ const PlantProfile = ({ plantName, plantId, plantPhoto }) => {
     <div className={plant}>
       <a className={plant} href={`/plant/${plantNameLink}`}>
         <img className={plantImage} src={plantPhoto} alt={plantName} height="80rem" width="80rem" />
-        <Text text={plantName} fontsize="1.5em" />
+        <Text text={plantName.substring(0, 8)} fontsize="1.5em" />
       </a>
     </div>
   );

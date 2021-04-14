@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import './App.scss';
 import Navbar from './components/Navbar';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
@@ -85,7 +83,7 @@ const App = () => {
         <Route path="/events" exact>
           <CalendarPage />
         </Route>
-        <Route path="/myprofile" exact>
+        <Route path="/myprofile/:id" exact>
           <UserPage />
         </Route>
         <Route path="/user/:id" exact>

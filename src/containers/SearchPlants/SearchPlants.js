@@ -1,5 +1,3 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable guard-for-in */
 import React, { useState, useEffect, useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
 import { searchPlantsContainer, searchPlantsHeader, searchPlantsMenu, searchPlantsContent, noFoundPlantsContainer, background, backgroundWrap, newPlant } from './SearchPlants.module.scss';
@@ -107,17 +105,14 @@ const SearchPlants = () => {
         } else if (property === 'animal' && searchObject.animal !== undefined) {
           if (searchObject[property] === 'yes' && item.toxicity.animal === true) break;
           if (searchObject[property] === 'no' && item.toxicity.animal === false) break;
-        // eslint-disable-next-line max-len
         } else if (property === 'name' && searchObject.name !== undefined) {
           if (item.name.toLowerCase().indexOf(searchObject.name.toLowerCase()) === -1) break;
         } else if (property === 'latinname' && searchObject.latinname !== undefined) {
-          // eslint-disable-next-line max-len
           if (item.latin_name.toLowerCase().indexOf(searchObject.latinname.toLowerCase()) === -1) break;
         } else if (property === 'mintemp' && (searchObject.mintemp !== undefined || searchObject.mintemp !== '')) {
           if (item.min_temperature < searchObject.mintemp) break;
         } else if (property === 'maxtemp' && (searchObject.maxtemp !== undefined || searchObject.maxtemp !== '')) {
           if (item.max_temperature > searchObject.maxtemp) break;
-        // eslint-disable-next-line max-len
         } else if (searchObject[property] !== undefined && searchObject[property] !== item[property]) {
           break;
         }
@@ -176,7 +171,6 @@ const SearchPlants = () => {
         {currentPlants?.length > 0 ? (currentPlants.map((plant, index) => (
           <div>
             <SearchPlantItem
-              // eslint-disable-next-line no-underscore-dangle
               key={plant._id}
               image={plant.image}
               name={plant.name}
@@ -185,7 +179,6 @@ const SearchPlants = () => {
               maxTemp={plant.max_temperature}
               sunlight={plant.sunlight}
               humidity={plant.humidity}
-              // eslint-disable-next-line no-nested-ternary
               bgcolor={index % 3 === 0 ? '#BCD27F' : index % 2 === 0 ? '#7FD2B4' : undefined}
             />
           </div>

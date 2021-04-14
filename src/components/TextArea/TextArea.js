@@ -27,7 +27,7 @@ const TextArea = ({ text, id, name, onChange, clearSignal, width, height, maxLen
 
 TextArea.propTypes = {
   text: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   clearSignal: PropTypes.bool,
@@ -37,6 +37,7 @@ TextArea.propTypes = {
 };
 
 TextArea.defaultProps = {
+  id: '',
   clearSignal: false,
   width: '98%',
   height: '5.5rem',

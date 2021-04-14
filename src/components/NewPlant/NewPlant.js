@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-console */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Database from '../../database';
