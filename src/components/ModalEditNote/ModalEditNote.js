@@ -29,10 +29,13 @@ const ModalEditNote = (props) => {
   const myId = JSON.parse(atob(token.split('.')[1])).id;
   const { handleSubmit } = useForm();
 
+  const [newNote, setNewNote] = useState('');
+
   const updateField = (e) => {
-    setNote({
-      ...note,
-      [e.target.name]: e.target.value
+    setNewNote({
+      ...newNote,
+      [e.target.name]: e.target.value,
+      private: false
     });
   };
 
@@ -68,7 +71,6 @@ const ModalEditNote = (props) => {
   }).then((data) => {
     if (data.status === 200) {
       window.location.reload();
-      console.log('note edited');
     }
     return data.json();
   });
@@ -76,14 +78,12 @@ const ModalEditNote = (props) => {
   const handleSelectChange = (title, value) => {
     const choosenPlant1 = myPlants.filter((plant) => `${plant.name}` === value);
     setChosenPlant(...choosenPlant1);
-    console.log(chosenPlant._id);
   };
 
-  const onSubmit = async (data, e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    note.plant = chosenPlant._id;
-    const response = await editNote(note);
-    console.log('note edited');
+    newNote.plant = chosenPlant._id;
+    editNote(newNote);
   };
 
   useEffect(() => {
@@ -120,11 +120,11 @@ const ModalEditNote = (props) => {
         </button>
         <div className={form}>
           <Text text="Edit your note" fontsize="1.8rem" />
-          <form onSubmit={handleSubmit(onSubmit)} method="PUT">
+          <form method="PUT">
             <div>
               <input
                 text="Title"
-                name="Title"
+                name="title"
                 className={input}
                 placeholder={note.title}
                 onChange={updateField}
@@ -133,7 +133,7 @@ const ModalEditNote = (props) => {
             <div>
               <input
                 title="Text"
-                name="Text"
+                name="text"
                 className={input}
                 placeholder={note.text}
                 onChange={updateField}
@@ -142,7 +142,7 @@ const ModalEditNote = (props) => {
             <div>
               <input
                 title="Image"
-                name="Image"
+                name="image"
                 className={input}
                 placeholder={note.image}
                 onChange={updateField}
@@ -158,7 +158,7 @@ const ModalEditNote = (props) => {
               />
             </div>
             <div>
-              <button type="submit" className={button}>
+              <button type="submit" className={button} onClick={onSubmit}>
                 Save
               </button>
             </div>
