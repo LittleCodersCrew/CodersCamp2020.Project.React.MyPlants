@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useToken from '../../hooks/useToken/useToken';
@@ -26,7 +25,6 @@ const UserPage = () => {
   const myId = JSON.parse(atob(token.split('.')[1])).id;
   const [userLogin, setUserLogin] = useState('');
   const [notes, setNotes] = useState([]);
-  const [notesPublic, setNotesPublic] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const [myPlants, setMyPlants] = useState([]);
   const [myFavourites, setMyFavourites] = useState([]);
@@ -152,12 +150,6 @@ const UserPage = () => {
     }
     fetchFavourites();
   }, [id, token]);
-
-  const getPublicNotes = () => {
-    const publicNote = notes.filter((noteToSort) => noteToSort.private === 'false');
-    setNotesPublic(...publicNote);
-  };
-  console.log(notesPublic);
 
   const showFavourite = (f) => (
     <UserProfile usersId={f.user} usersName={f.username} />
