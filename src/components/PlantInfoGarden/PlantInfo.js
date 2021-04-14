@@ -11,12 +11,8 @@ const PlantInfo = ({ photo, name, plantDetails, description, userId, plantId }) 
     return <p>No such plant in database</p>;
   }
 
-  const goToEdit = () => {
-    window.location.reload(false);
-  };
-
-  const deletePlant = () => {
-    fetch(`${Database.URL}/user/${userId}/plants/${plantId}`, {
+  const deletePlant = async () => {
+    await fetch(`${Database.URL}/user/${userId}/plants/${plantId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -33,9 +29,6 @@ const PlantInfo = ({ photo, name, plantDetails, description, userId, plantId }) 
         <div className={styles.headerText}>
           <Text text={name.charAt(0).toUpperCase() + name.slice(1)} fontsize="1.5em" />
           <div className={styles.buttons}>
-            <button onClick={goToEdit}>
-              Edit
-            </button>
             <button onClick={deletePlant}>
               Delete
             </button>

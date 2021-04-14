@@ -1,6 +1,4 @@
-/* eslint-disable react/forbid-prop-types */
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Text from '../../components/Text';
 import PlantProfileGarden from '../../components/PlantProfileGarden';
 import styles from './gardenPage.module.scss';
@@ -10,7 +8,7 @@ import ModalEditProfile from '../../components/ModalEditProfile';
 import SmallButton from '../../components/SmallButton';
 import AddGardenPlant from '../AddGardenPlant';
 
-const GardenPage = ({ data }) => {
+const GardenPage = () => {
   const [myPlants, setMyPlants] = useState([]);
   const [userLogin, setUserLogin] = useState('');
   const [userName, setUserName] = useState('');
@@ -55,10 +53,6 @@ const GardenPage = ({ data }) => {
     />
   );
 
-  if (Object.keys(data).length !== 0) {
-    return undefined;
-  }
-
   return (
     <div className={styles.wrapper}>
       <Text text={userLogin} fontsize="2em" />
@@ -76,8 +70,5 @@ const GardenPage = ({ data }) => {
     </div>
   );
 };
-
-GardenPage.propTypes = { data: PropTypes.object };
-GardenPage.defaultProps = { data: {} };
 
 export default GardenPage;
