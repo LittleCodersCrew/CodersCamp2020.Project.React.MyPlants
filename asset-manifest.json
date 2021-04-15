@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/CodersCamp2020.Project.React.MyPlants/static/css/main.5c1dc67d.chunk.css",
-    "main.js": "/CodersCamp2020.Project.React.MyPlants/static/js/main.82892b93.chunk.js",
-    "main.js.map": "/CodersCamp2020.Project.React.MyPlants/static/js/main.82892b93.chunk.js.map",
+    "main.js": "/CodersCamp2020.Project.React.MyPlants/static/js/main.c27b18f7.chunk.js",
+    "main.js.map": "/CodersCamp2020.Project.React.MyPlants/static/js/main.c27b18f7.chunk.js.map",
     "runtime-main.js": "/CodersCamp2020.Project.React.MyPlants/static/js/runtime-main.bbdc073d.js",
     "runtime-main.js.map": "/CodersCamp2020.Project.React.MyPlants/static/js/runtime-main.bbdc073d.js.map",
     "static/js/2.e3822939.chunk.js": "/CodersCamp2020.Project.React.MyPlants/static/js/2.e3822939.chunk.js",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.bbdc073d.js",
     "static/js/2.e3822939.chunk.js",
     "static/css/main.5c1dc67d.chunk.css",
-    "static/js/main.82892b93.chunk.js"
+    "static/js/main.c27b18f7.chunk.js"
   ]
 }
