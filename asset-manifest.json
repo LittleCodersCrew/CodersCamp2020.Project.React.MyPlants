@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/CodersCamp2020.Project.React.MyPlants/static/css/main.5c1dc67d.chunk.css",
-    "main.js": "/CodersCamp2020.Project.React.MyPlants/static/js/main.88beb389.chunk.js",
-    "main.js.map": "/CodersCamp2020.Project.React.MyPlants/static/js/main.88beb389.chunk.js.map",
+    "main.js": "/CodersCamp2020.Project.React.MyPlants/static/js/main.79976ae5.chunk.js",
+    "main.js.map": "/CodersCamp2020.Project.React.MyPlants/static/js/main.79976ae5.chunk.js.map",
     "runtime-main.js": "/CodersCamp2020.Project.React.MyPlants/static/js/runtime-main.bbdc073d.js",
     "runtime-main.js.map": "/CodersCamp2020.Project.React.MyPlants/static/js/runtime-main.bbdc073d.js.map",
-    "static/js/2.e3822939.chunk.js": "/CodersCamp2020.Project.React.MyPlants/static/js/2.e3822939.chunk.js",
-    "static/js/2.e3822939.chunk.js.map": "/CodersCamp2020.Project.React.MyPlants/static/js/2.e3822939.chunk.js.map",
+    "static/js/2.b89f3c2f.chunk.js": "/CodersCamp2020.Project.React.MyPlants/static/js/2.b89f3c2f.chunk.js",
+    "static/js/2.b89f3c2f.chunk.js.map": "/CodersCamp2020.Project.React.MyPlants/static/js/2.b89f3c2f.chunk.js.map",
     "index.html": "/CodersCamp2020.Project.React.MyPlants/index.html",
     "static/css/main.5c1dc67d.chunk.css.map": "/CodersCamp2020.Project.React.MyPlants/static/css/main.5c1dc67d.chunk.css.map",
-    "static/js/2.e3822939.chunk.js.LICENSE.txt": "/CodersCamp2020.Project.React.MyPlants/static/js/2.e3822939.chunk.js.LICENSE.txt",
+    "static/js/2.b89f3c2f.chunk.js.LICENSE.txt": "/CodersCamp2020.Project.React.MyPlants/static/js/2.b89f3c2f.chunk.js.LICENSE.txt",
     "static/media/cactus.3488f599.png": "/CodersCamp2020.Project.React.MyPlants/static/media/cactus.3488f599.png",
     "static/media/icon - no search.e1aaf4bc.png": "/CodersCamp2020.Project.React.MyPlants/static/media/icon - no search.e1aaf4bc.png",
     "static/media/logo.c2e5d696.png": "/CodersCamp2020.Project.React.MyPlants/static/media/logo.c2e5d696.png",
@@ -18,8 +18,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.bbdc073d.js",
-    "static/js/2.e3822939.chunk.js",
+    "static/js/2.b89f3c2f.chunk.js",
     "static/css/main.5c1dc67d.chunk.css",
-    "static/js/main.88beb389.chunk.js"
+    "static/js/main.79976ae5.chunk.js"
   ]
 }
