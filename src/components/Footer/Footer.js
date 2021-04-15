@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { link, clicked, footer, container, copyright } from './Footer.module.scss';
 import Heart from '../../assets/icons/Heart.png';
+import URL from '../../constants/URL';
 
 const Footer = () => {
   const location = useLocation().pathname;
@@ -9,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer className={footer}>
-      <Link className={container} to="/authors">
+      <Link className={container} to={`${URL}/authors`}>
         <img src={Heart} alt="heart" height="40px" width="40px" />
         <p className={classes.join(' ')}>Authors</p>
       </Link>

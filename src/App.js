@@ -16,6 +16,7 @@ import AddPlant from './containers/AddPlant';
 import Footer from './components/Footer';
 import Database from './database';
 import Garden from './containers/GardenPage';
+import URL from './constants/URL';
 
 function Logout() {
   localStorage.removeItem('token');
@@ -53,49 +54,49 @@ const App = () => {
     <>
       <Navbar name={userName} admin={ifAdmin} />
       <Switch>
-        <Route path="/" exact>
-          <Redirect to="/plant" />
+        <Route path={`${URL}/`} exact>
+          <Redirect to={`${URL}/plant`} />
         </Route>
-        <Route path="/plant/:plantNameFromURL" exact>
+        <Route path={`${URL}/plant/:plantNameFromURL`} exact>
           <PlantPage />
         </Route>
-        <Route path="/plant" exact>
+        <Route path={`${URL}/plant`} exact>
           <SearchPlantsPage />
         </Route>
-        <Route path="/add-plant" exact>
+        <Route path={`${URL}/add-plant`} exact>
           <AddPlant />
         </Route>
-        <Route path="/chat" exact>
+        <Route path={`${URL}/chat`} exact>
           <ChatPage />
         </Route>
-        <Route path="/garden" exact>
+        <Route path={`${URL}/garden`} exact>
           <Garden />
         </Route>
-        <Route path="/users" exact>
+        <Route path={`${URL}/users`} exact>
           <SearchUsersPage />
         </Route>
-        <Route path="/register" exact>
+        <Route path={`${URL}/register`} exact>
           <RegisterPage />
         </Route>
-        <Route path="/login" exact>
+        <Route path={`${URL}/login`} exact>
           <LoginPage />
         </Route>
-        <Route path="/events" exact>
+        <Route path={`${URL}/events`} exact>
           <CalendarPage />
         </Route>
-        <Route path="/myprofile/:id" exact>
+        <Route path={`${URL}/myprofile/:id`} exact>
           <UserPage />
         </Route>
-        <Route path="/user/:id" exact>
+        <Route path={`${URL}/user/:id`} exact>
           <UserPage />
         </Route>
-        <Route path="/logout" exact>
+        <Route path={`${URL}/logout`} exact>
           <Logout />
         </Route>
-        <Route path="/authors" exact>
+        <Route path={`${URL}/authors`} exact>
           <AuthorsPage />
         </Route>
-        <Route path="/options" exact>
+        <Route path={`${URL}/options`} exact>
           {ifAdmin ? <NewPlantsPage /> : <p>Such page does not exist</p>}
         </Route>
       </Switch>

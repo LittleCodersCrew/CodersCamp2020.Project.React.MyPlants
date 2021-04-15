@@ -4,6 +4,7 @@ import Text from '../SmallButton';
 import { plant, plantImage } from './PlantProfile.module.scss';
 import profileleaf from '../../assets/illustrations/plant-leaf.png';
 import Database from '../../database';
+import URL from '../../constants/URL';
 
 const PlantProfile = ({ plantName, plantId, plantPhoto }) => {
   const [plantNameLink, setPlantNameLink] = useState('');
@@ -19,7 +20,7 @@ const PlantProfile = ({ plantName, plantId, plantPhoto }) => {
 
   return (
     <div className={plant}>
-      <a className={plant} href={`/plant/${plantNameLink}`}>
+      <a className={plant} href={`${URL}/plant/${plantNameLink}`}>
         <img className={plantImage} src={plantPhoto} alt={plantName} height="80rem" width="80rem" />
         <Text text={plantName.substring(0, 8)} fontsize="1.5em" />
       </a>
