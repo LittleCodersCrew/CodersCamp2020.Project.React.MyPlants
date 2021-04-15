@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import styles, { error } from './Register.module.scss';
 import Logo from '../../assets/logo.png';
@@ -11,6 +11,7 @@ function Register() {
   const { register, errors, handleSubmit, watch } = useForm();
   const password = useRef();
   password.current = watch('password', '');
+  const history = useHistory();
 
   const registerUser = async (user) => fetch(`${Database.URL}/user`, {
     method: 'POST',
@@ -18,7 +19,7 @@ function Register() {
     body: JSON.stringify(user)
   }).then((data) => {
     if (data.status === 200) {
-      window.location.replace('/login');
+      history.push('/login');
     }
     return data.json();
   });

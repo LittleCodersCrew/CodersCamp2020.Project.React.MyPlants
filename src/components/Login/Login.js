@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import styles, { error } from './Login.module.scss';
@@ -9,6 +9,7 @@ import Database from '../../database';
 function Login({ setToken }) {
   const [errorFromResponse, setErrorsFromResponse] = useState('');
   const { register, handleSubmit, errors } = useForm();
+  const history = useHistory();
 
   const loginUser = async (email, password) => fetch(`${Database.URL}/user/login`, {
     method: 'POST',
@@ -25,7 +26,8 @@ function Login({ setToken }) {
       setErrorsFromResponse(response.error);
     } else {
       setToken(token);
-      window.location.replace('/');
+      history.push('/');
+      window.location.reload();
     }
   };
 
