@@ -70,7 +70,7 @@ const SearchPlants = () => {
       response = await response.json();
       const acceptedPlants = checkAcceptedPlants(response);
       setPlants(acceptedPlants);
-      const randomPlants = getRandomPlants(response, AMOUNTHOFPLANTSTOSHOW);
+      const randomPlants = getRandomPlants([...acceptedPlants], AMOUNTHOFPLANTSTOSHOW);
       setCurrentPlants(randomPlants);
     };
 
