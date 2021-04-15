@@ -1,13 +1,10 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
-
 import Image from '../../assets/icons/Profile2.png';
 import ImagePlant from '../../assets/illustrations/plant-leaf.png';
-
 import Text from '../Text/Text';
-
 import { searchUserItemContainer, searchUserItemContent, searchUserItemList, searchUserItemLeft, searchUserItemListItem, searchUserPlants, searchUserFooter } from './SearchUserItem.module.scss';
+import URL from '../../constants/URL';
 
 const SearchUserItem = ({ id, name, login, plants, notes, bgcolor }) => (
   <div className={searchUserItemContainer} style={{ backgroundColor: bgcolor }}>
@@ -40,7 +37,7 @@ const SearchUserItem = ({ id, name, login, plants, notes, bgcolor }) => (
       </div>
     </div>
     <div className={searchUserFooter}>
-      <a href={`/user/${id}`}>
+      <a href={`${URL}/user/${id}`}>
         <Text text="Click to find out more!" fontsize="20px" />
       </a>
     </div>
