@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# CodersCamp 2020 - React.js Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**The project was created as part of the 6th edition of the [CodersCamp](https://coderscamp.pl/) course.**
 
-## Available Scripts
 
-In the project directory, you can run:
+If you want to see demo of our project [click here](https://littlecoderscrew.github.io/CodersCamp2020.Project.React.MyPlants/).
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Our project uses the REST API that we created during the previous project. You can find it [here](https://github.com/ruljin/CodersCamp2020.Project.NodeJS-Express-TypeScript.MyPlants).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Table of Contests
+-  [The project team](#the-project-team)
+-  [General info](#general-info)
+-  [Features](#features)
+-  [Technologies & Tools](#technologies--tools)
+-  [Setup](#setup)
+-  [Organization of work](#organization-of-work)
 
-### `yarn test`
+## The project team
+Authors of this project are course participants who worked under the supervision of an experienced mentor.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Authors:**
+-  [Dominik Puchała](https://github.com/Suegro24) (Tech Lead)
+-  [Kamila Grusza](https://github.com/kami3la) (Development Manager)
+-  [Weronika Brzeczkowska-Kuzianik](https://github.com/brzeczkowskaw) (Product Owner)
+-  [Adrianna Krupa](https://github.com/adax10/)
+-  [Jędrzej Ratajczak](https://github.com/Mrozelek)
+-  [Konrad Mierzejewski](https://github.com/KonradMierzejewski)
 
-### `yarn build`
+**Mentor:**  [Filip Kuca](https://github.com/ruljin)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## General info
+Our application is called **MyPlants**.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+It is an application for plant lovers. The idea of it is to create a collection of many plant species which can be owned at home with its description and tips how to take care of them. And then users can share their plants as well as experience with taking care of them with other users.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Features
+- User can create their profil and login. And if someone is not logged in, there are a limited number of pages they can see and actions they can take.<p align="center"><br><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226434/login_wqb2ri.png"  width="45%" /><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226475/register_nfg55w.png" width="45%" /></p>
+- There is a plant database, where each plant has its own subpage with a description of its growing requirements. There is also a comments section where the user can add a comment and like a comment if he wishes (comments will be displayed according to the number of likes).<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226570/plant_zt8ijs.png" width="500" height="300" /></p>
+- The main page is the plant finder, which by default shows 3 example plants in the database. You can search for a plant by its name or set search criteria according to care requirements. If the user does not find the plant he was looking for, he can add it to the database. For this purpose, he has to complete the profile of the plant and send it, and the website administrator will consider its application and approve or delete it (only the administrator has access to the subpage with unapproved plants).<p align="center"><br><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429853/glowna_ibjaic.png"  width="45%" /><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618226565/admin_ohrncv.png" width="45%" /></p>
+- Each user has his own profile, which includes:
+    - Garden - user can create profiles for the plants he has at home. He can name his plants, add pictures of them and description.
+    - Journal - user can also create public or private (visible only to the owner) notes, which are kind of a journal about taking care of his plants.
+    - Favorite users - user can add other User's profiles to their favourites, so he can follow their plants.
+    - Settings - user can change his account details.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429857/profil_lhms4u.png" width="500" height="300" /></p>
+- There is a chat created, where are two channels:
+    - **Main chat** - for general discussion about plants, where users can ask questions or share their experience. It opens by default.
+    - **Trade your plants** - dedicated for trade. Users can sell or exchange their plants or equipment.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429848/chat_xflecf.png" width="500" height="300" /></p>
+- We have created not only a plant search engine, but also a user search engine, which is located on a separate subpage.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429858/users_uiaspb.png" width="500" height="300" /></p>
+- There is also a calendar on our website where users can add events - for example reminders to water their plants.<br><p align="center"><img  src="https://res.cloudinary.com/dyj4k9tr0/image/upload/v1618429847/calendar_lyhags.png" width="500" height="300" /></p>
 
-### `yarn eject`
+## Technologies & Tools
+- ReactJS
+- SCSS
+- ESLint
+- StyleLint
+- Jest
+- Jira
+- Scrum
+- Figma
+- Discord
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Setup
+#### Getting started
+If you want to run the application on the local machine, follow these steps:
+1. Clone down this repo
+2. Install dependencies with the command: `yarn`
+3. Start development server `yarn start`
+The application will be available at `localhost:3000/`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Running tests
+To run the application tests, follow these steps:
+1. Install dependencies with the command: `yarn` (if you haven't already done so before)
+2. Run the tests by running the command: `yarn test`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Organization of work
+#### Discord
+Most often we communicated using the Discord application, where we created organizational meetings and were in constant contact to establish future plans, exchange opinions and help each other.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Figma
+Using Figma, we created our own prototype of a user interface adapted to Desktop, and also made a version adapted to display on Phones. All designs can be viewed here. [here](https://www.figma.com/file/Mjn1scT6LfnzUi2QyBKMdy/MyPlants?node-id=0%3A1).
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Jira
+We used Jira, where we organized all our work. More precisely, we shared responsibilities for each sprint, exchanged comments and approved our tasks.
