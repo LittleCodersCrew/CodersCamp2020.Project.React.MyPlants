@@ -12,7 +12,6 @@ import { SearchPlantConstants, SearchPlantKeys } from '../../constants/SearchPla
 
 import Database from '../../database';
 import iconNoSearch from '../../assets/illustrations/icon - no search.png';
-import URL from '../../constants/URL';
 
 import useToken from '../../hooks/useToken/useToken';
 
@@ -136,7 +135,7 @@ const SearchPlants = () => {
   };
 
   const routerChange = () => {
-    history.push(`${URL}/add-plant`);
+    history.push('/add-plant');
   };
 
   const handleSubmit = () => {

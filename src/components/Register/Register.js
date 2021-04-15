@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import styles, { error } from './Register.module.scss';
 import Logo from '../../assets/logo.png';
 import Database from '../../database';
-import URL from '../../constants/URL';
 
 function Register() {
   const [errorLogin, setErrorLogin] = useState('');
@@ -151,7 +150,7 @@ function Register() {
 
           <p className={styles.link}>
             You have an account?
-            <Link to={`${URL}/login`} className={styles.redirect}>
+            <Link to="/login" className={styles.redirect}>
               {' '}
               Log in.
             </Link>

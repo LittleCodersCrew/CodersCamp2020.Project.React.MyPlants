@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import styles, { error } from './Login.module.scss';
 import Logo from '../../assets/logo.png';
 import Database from '../../database';
-import URL from '../../constants/URL';
 
 function Login({ setToken }) {
   const [errorFromResponse, setErrorsFromResponse] = useState('');
@@ -72,7 +71,7 @@ function Login({ setToken }) {
 
           <p className={styles.link}>
             New user?
-            <Link to={`${URL}/register`} className={styles.redirect}>
+            <Link to="/register" className={styles.redirect}>
               {' '}
               Create an account.
             </Link>
