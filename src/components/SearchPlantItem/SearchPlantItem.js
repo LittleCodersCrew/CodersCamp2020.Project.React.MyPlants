@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { searchPlantItemContainer, itemHeader, itemHeaderTitle, itemContent, itemList, itemListItem, itemFooter } from './SearchPlantItem.module.scss';
 import Text from '../Text';
 import Image from '../../assets/illustrations/plant-leaf.png';
@@ -40,7 +41,7 @@ const SearchPlantItem = ({ image, name, latinName, minTemp, maxTemp, sunlight, h
       </ul>
     </div>
     <footer className={itemFooter}>
-      <a href={`/plant/${name}`}><Text text="Click to find out more" fontsize="20px" /></a>
+      <Link to={`/plant/${name}`}><Text text="Click to find out more" fontsize="20px" /></Link>
     </footer>
   </div>
 );
