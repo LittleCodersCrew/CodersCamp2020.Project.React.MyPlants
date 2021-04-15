@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { searchPlantItemContainer, itemHeader, itemHeaderTitle, itemContent, itemList, itemListItem, itemFooter } from './SearchPlantItem.module.scss';
 import Text from '../Text';
 import Image from '../../assets/illustrations/plant-leaf.png';
-import URL from '../../constants/URL';
 
 const SearchPlantItem = ({ image, name, latinName, minTemp, maxTemp, sunlight, humidity, bgcolor }) => (
   <div className={searchPlantItemContainer} style={{ backgroundColor: bgcolor }}>
@@ -41,7 +40,7 @@ const SearchPlantItem = ({ image, name, latinName, minTemp, maxTemp, sunlight, h
       </ul>
     </div>
     <footer className={itemFooter}>
-      <a href={`${URL}/plant/${name}`}><Text text="Click to find out more" fontsize="20px" /></a>
+      <a href={`/plant/${name}`}><Text text="Click to find out more" fontsize="20px" /></a>
     </footer>
   </div>
 );

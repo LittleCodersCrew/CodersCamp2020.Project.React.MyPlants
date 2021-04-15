@@ -13,14 +13,13 @@ import Leaf from '../../assets/icons/Leaf.png';
 import Logout from '../../assets/icons/Logout.png';
 import Crown from '../../assets/icons/Crown.png';
 import Menu from '../../assets/icons/Menu.png';
-import URL from '../../constants/URL';
 
 const createItem = (path, location, linkName, src, alt) => {
   const classes = [link, location === path ? clicked : ''];
 
   return (
     <li key={path} className={li}>
-      <Link className={classes.join(' ')} to={`${URL}${path}`}>
+      <Link className={classes.join(' ')} to={path}>
         <p>{linkName}</p>
         <img src={src} alt={alt} height="40px" width="40px" />
       </Link>
