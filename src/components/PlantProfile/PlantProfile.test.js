@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import PlantProfile from './PlantProfile';
 
 describe('PlantProfile component render', () => {
@@ -8,7 +9,11 @@ describe('PlantProfile component render', () => {
     const id = 'id';
     const photo = 'photo';
 
-    render(<PlantProfile plantName={text} plantId={id} plantPhoto={photo} />);
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <PlantProfile plantName={text} plantId={id} plantPhoto={photo} />
+      </MemoryRouter>
+    );
 
     expect(screen.getByText(text)).toBeInTheDocument();
   });
