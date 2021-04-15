@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
@@ -18,8 +18,10 @@ import Database from './database';
 import Garden from './containers/GardenPage';
 
 function Logout() {
+  const history = useHistory();
   localStorage.removeItem('token');
-  window.location.replace('/');
+  history.push('/');
+  window.location.reload();
   return null;
 }
 
