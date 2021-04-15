@@ -1,0 +1,53 @@
+.user {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  padding: 1em;
+  margin: 1em 0 0 0;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: #fff;
+  color: rgb(14, 52, 22);
+  font-family: 'Abhaya Libre', serif;
+}
+
+.content {
+  font-size: 1.2rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: rgb(14, 52, 22);
+  font-family: 'Abhaya Libre', serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.star {
+  width: 20px;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}

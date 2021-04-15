@@ -1,0 +1,148 @@
+.hide {
+  display: none;
+}
+
+.overlay {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  display: block;
+  width: 40vw;
+  height: 70vh;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #0e3416;
+  box-shadow: 5px 5px 4px rgba(13, 244, 106, 0.51);
+  border-radius: 20px;
+
+  > button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    cursor: pointer;
+    position: absolute;
+    top: calc(0% + 10px);
+    left: calc(100% - 40px);
+    outline: none;
+  }
+
+  @media (max-width: 485px) {
+    width: 80vw;
+    height: 80vh;
+  }
+}
+
+.form {
+  height: 100%;
+  align-content: center;
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 1.6em;
+  justify-content: center;
+  text-align: center;
+
+  > p:first-of-type {
+    margin-bottom: 20px;
+  }
+
+  .input {
+    background-color: transparent;
+    text-align: center;
+    width: 350px;
+    font-size: 1.5rem;
+    font-family: 'Pompiere', 'serif';
+    letter-spacing: 0.08em;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: 3px solid;
+    border-bottom-color: rgb(14, 52, 22);
+    margin-bottom: 0.8em;
+    padding-bottom: 0.25em;
+    outline: none;
+
+    @media (max-width: 485px) {
+      width: 65vw;
+    }
+  }
+
+  .button {
+    margin-top: 20px;
+    width: 5.5em;
+    height: 1.5em;
+    align-content: center;
+    background-color: transparent;
+    font-family: 'Abhaya Libre', serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: #0e3416;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 1em #9f9;
+    }
+  }
+}
+
+.error {
+  margin-top: -0.6em;
+  padding-bottom: 10px;
+  color: red;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 1rem;
+  letter-spacing: 0.08rem;
+}
+
+@media (max-width: 1400px) {
+  .modal {
+    height: 95vh;
+    width: 50vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .modal {
+    height: 85vh;
+    width: 70vw;
+  }
+}
+
+@media (max-width: 812px) and (orientation: landscape) {
+  .modal {
+    position: absolute;
+    height: 160vh;
+    top: 100%;
+  }
+
+  .form {
+    font-size: 1.2em;
+
+    .input {
+      width: 250px;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .modal {
+    height: 85vh;
+    width: 90vw;
+  }
+}

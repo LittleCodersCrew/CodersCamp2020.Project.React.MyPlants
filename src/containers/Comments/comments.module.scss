@@ -1,0 +1,25 @@
+.wrapper {
+  padding: 1em 1.5em;
+  border: 2px solid #000;
+  background-color: #7fd291;
+  color: rgb(14, 52, 22);
+  font-family: 'Abhaya Libre', serif;
+}
+
+.header {
+  font-size: 1.5rem;
+}
+
+.unlogged {
+  margin: 0.5em 0;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.form {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1em;
+}

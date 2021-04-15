@@ -1,0 +1,108 @@
+.login {
+  align-content: center;
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 1.6em;
+  justify-content: center;
+  text-align: center;
+}
+
+.input {
+  background-color: transparent;
+  text-align: center;
+  width: 350px;
+  font-size: 1.1em;
+  font-family: 'Pompiere', 'serif';
+  letter-spacing: 0.08em;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: 3px solid;
+  border-bottom-color: rgb(14, 52, 22);
+  margin-bottom: 0.8em;
+  padding-bottom: 0.25em;
+  outline: none;
+}
+
+.btn {
+  margin-top: 0.5em;
+  width: 5.5em;
+  height: 1.5em;
+  align-content: center;
+  color: #0e3416;
+  background-color: white;
+  font-family: 'Abhaya Libre', serif;
+  letter-spacing: 0.08rem;
+  font-size: 1.2em;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 1em #9f9;
+  }
+
+  > a {
+    text-decoration: none;
+    color: #0e3416;
+  }
+}
+
+.error {
+  margin-top: -0.6em;
+  padding-bottom: 0.7em;
+  color: red;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 0.7em;
+  letter-spacing: 0.08rem;
+}
+
+.link {
+  margin-top: 2em;
+  font-family: 'Abhaya Libre', serif;
+  letter-spacing: 0.08rem;
+  font-size: 0.9em;
+
+  > .redirect {
+    text-decoration: none;
+    color: #6aa877;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 823px) {
+  .login {
+    font-size: 1.3em;
+  }
+
+  .input {
+    width: 250px;
+  }
+
+  .logo img {
+    height: 70px;
+  }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+  .login {
+    font-size: 1em;
+  }
+
+  .input {
+    width: 200px;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 320px) {
+  .login {
+    font-size: 1em;
+  }
+}

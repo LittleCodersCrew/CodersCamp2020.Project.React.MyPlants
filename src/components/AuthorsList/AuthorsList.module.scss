@@ -1,0 +1,55 @@
+.authors {
+  align-content: center;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 1.8em;
+  letter-spacing: 0.08em;
+  line-height: 1.8em;
+  text-align: center;
+}
+
+.link {
+  color: #000;
+  text-decoration: none;
+}
+
+.mentor {
+  padding-top: 2rem;
+}
+
+@media (max-width: 1400px) {
+  .authors {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 823px) and (orientation: landscape) {
+  .authors {
+    font-size: 1em;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 766px) {
+  .authors {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+  .authors {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 450px) {
+  .logo img {
+    height: 70px;
+  }
+}

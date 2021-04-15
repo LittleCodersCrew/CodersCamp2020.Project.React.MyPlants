@@ -1,0 +1,70 @@
+.searchUserItemContainer {
+  background-color: #7fd291;
+  width: 100%;
+  height: 228px;
+  border: 1px solid #0e3416;
+  border-radius: 16px;
+  padding: 20px 40px;
+  margin-top: 20px;
+
+  @media (max-width: 850px) {
+    height: unset;
+  }
+}
+
+.searchUserItemContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    gap: 40px 0;
+  }
+}
+
+.searchUserItemLeft {
+  display: flex;
+  align-items: center;
+}
+
+.searchUserItemList {
+  list-style: none;
+  margin-left: 20px;
+  height: calc(228px - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 850px) {
+    height: unset;
+  }
+}
+
+.searchUserItemListItem {
+  font-size: 25px;
+
+  &:first-of-type {
+    font-size: 30px;
+  }
+}
+
+.searchUserPlants {
+  width: 280px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 20px;
+  > * {
+    flex-basis: calc(33% - 20px);
+  }
+}
+
+.searchUserFooter {
+  a {
+    text-decoration: none;
+  }
+
+  @media (max-width: 850px) {
+    margin-top: 30px;
+  }
+}
