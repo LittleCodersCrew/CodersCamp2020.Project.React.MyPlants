@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
 import { authors, link, mentor, logo } from './AuthorsList.module.scss';
 
@@ -7,9 +6,9 @@ const createItem = (webpage, text, isMentor = false) => {
   const classes = [link, isMentor ? mentor : ''];
 
   return (
-    <Link key={webpage} className={classes.join(' ')} to={webpage} target="_blank" rel="noreferrer">
+    <a key={webpage} className={classes.join(' ')} href={webpage} target="_blank" rel="noreferrer">
       {text}
-    </Link>
+    </a>
   );
 };
 
