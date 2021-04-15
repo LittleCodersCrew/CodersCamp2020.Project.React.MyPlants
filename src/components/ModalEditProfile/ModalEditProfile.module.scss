@@ -18,7 +18,7 @@
   width: 40vw;
   height: 70vh;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -28,13 +28,14 @@
   border-radius: 20px;
 
   > button {
-    background-color: white;
+    background-color: transparent;
     border: none;
     position: absolute;
     cursor: pointer;
     position: absolute;
     top: calc(0% + 10px);
     left: calc(100% - 40px);
+    outline: none;
   }
 
   @media (max-width: 485px) {
@@ -84,7 +85,7 @@
     width: 5.5em;
     height: 1.5em;
     align-content: center;
-    background-color: white;
+    background-color: transparent;
     font-family: 'Abhaya Libre', serif;
     font-size: 1.8rem;
     letter-spacing: 0.08rem;
@@ -136,34 +137,6 @@
     .input {
       width: 250px;
     }
-  }
-}
-
-@media (max-width: 768px) {
-  .modal {
-    height: 70vh;
-    width: 70vw;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .form {
-    .input {
-      width: 250px;
-    }
-  }
-}
-
-@media (max-width: 736px) and (orientation: landscape) {
-  .modal {
-    position: absolute;
-    height: 160vh;
-    top: 90%;
-  }
-
-  .form {
-    font-size: 1.2em;
   }
 }
 

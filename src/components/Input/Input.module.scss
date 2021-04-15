@@ -1,7 +1,9 @@
 .input {
+  height: 40px;
+  padding: 10px;
   color: #0e3416;
   border: 2px solid #0e3416;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 1.125rem;
   cursor: text;
   appearance: none;
@@ -10,6 +12,7 @@
   font-family: 'Abhaya Libre', serif;
   letter-spacing: 1.5px;
   width: 100%;
+  padding-left: 1vw;
 
   &:focus {
     outline: none;

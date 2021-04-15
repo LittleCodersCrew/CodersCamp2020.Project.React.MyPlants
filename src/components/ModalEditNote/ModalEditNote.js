@@ -1,9 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Text from '../Text';
@@ -11,7 +5,7 @@ import Select from '../Select';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
 import closeSquare from '../../assets/icons/CloseSquare.png';
-import { hide, overlay, modal, form, input, button, tick } from './ModalEditNote.module.scss';
+import { hide, overlay, modal, form, input, button } from './ModalEditNote.module.scss';
 
 const ModalEditNote = (props) => {
   const { show, closeModal, noteId } = props;
@@ -27,16 +21,19 @@ const ModalEditNote = (props) => {
   const [chosenPlant, setChosenPlant] = useState('');
   const myId = JSON.parse(atob(token.split('.')[1])).id;
 
+  const [newNote, setNewNote] = useState('');
+
   const updateField = (e) => {
-    setNote({
-      ...note,
-      [e.target.name]: e.target.value
+    setNewNote({
+      ...newNote,
+      [e.target.name]: e.target.value,
+      private: false
     });
   };
 
   useEffect(() => {
     async function fetchMyPlants() {
-      let myPlants = [];
+      let myPlantsFetched = [];
 
       await fetch(
         `${Database.URL}/user/${myId}/plants`,
@@ -50,12 +47,12 @@ const ModalEditNote = (props) => {
       )
         .then((res) => res.json())
         .then((json) => {
-          myPlants = json;
+          myPlantsFetched = json;
         });
-      setMyPlants(myPlants);
+      setMyPlants(myPlantsFetched);
     }
     fetchMyPlants();
-  }, []);
+  }, [myId, token]);
 
   const myPlantsNames = myPlants.map((plant) => plant.name);
 
@@ -70,17 +67,15 @@ const ModalEditNote = (props) => {
     return data.json();
   });
 
-  const handleSelectChange = (title, value) => {
+  const handleSelectChange = (_title, value) => {
     const choosenPlant1 = myPlants.filter((plant) => `${plant.name}` === value);
     setChosenPlant(...choosenPlant1);
-    console.log(chosenPlant._id);
   };
 
-  const onSubmit = async (data, e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    note.plant = chosenPlant._id;
-    const response = await editNote(note);
-    console.log(response);
+    newNote.plant = chosenPlant._id;
+    editNote(newNote);
   };
 
   useEffect(() => {
@@ -91,16 +86,14 @@ const ModalEditNote = (props) => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
         }
-      },
-      {}
+      }, {}
     )
       .then((data) => data.json())
       .then((json) => setNote({
         image: json.image,
         title: json.title,
         text: json.text,
-        plant: json.plant,
-        private: json.private
+        plant: json.plant
       }));
   });
 
@@ -119,21 +112,11 @@ const ModalEditNote = (props) => {
         </button>
         <div className={form}>
           <Text text="Edit your note" fontsize="1.8rem" />
-          <form onSubmit={onSubmit} id="editNote">
-            <div className={tick}>
-              <input
-                type="checkbox"
-                id="private"
-                name="private"
-                value="true"
-                onChange={(e) => setNote({ ...note, private: e.target.checked })}
-              />
-              <label htmlFor="private"> Private? </label>
-            </div>
+          <form method="PUT">
             <div>
               <input
                 text="Title"
-                name="Title"
+                name="title"
                 className={input}
                 placeholder={note.title}
                 onChange={updateField}
@@ -142,7 +125,7 @@ const ModalEditNote = (props) => {
             <div>
               <input
                 title="Text"
-                name="Text"
+                name="text"
                 className={input}
                 placeholder={note.text}
                 onChange={updateField}
@@ -151,7 +134,7 @@ const ModalEditNote = (props) => {
             <div>
               <input
                 title="Image"
-                name="Image"
+                name="image"
                 className={input}
                 placeholder={note.image}
                 onChange={updateField}
@@ -167,7 +150,7 @@ const ModalEditNote = (props) => {
               />
             </div>
             <div>
-              <button type="submit" className={button}>
+              <button type="submit" className={button} onClick={onSubmit}>
                 Save
               </button>
             </div>

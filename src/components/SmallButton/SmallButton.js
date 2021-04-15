@@ -15,6 +15,6 @@ SmallButton.propTypes = {
   fontsize: PropTypes.string.isRequired
 };
 
-SmallButton.defaultProps = { type: 'button', onClick: () => undefined };
+SmallButton.defaultProps = { type: 'button', onClick: () => {} };
 
 export default SmallButton;

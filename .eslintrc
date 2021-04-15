@@ -16,6 +16,15 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/react-in-jsx-scope": "off",
     "react/button-has-type": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "jsx-a11y/no-onchange": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "max-len": "off",
+    "no-restricted-syntax": "off",
+    "no-await-in-loop": "off",
+    "no-param-reassign": "off",
+    "no-nested-ternary": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   }
 }

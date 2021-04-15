@@ -150,18 +150,30 @@
 
   > * {
     margin-left: 1rem;
+    background-color: #fff;
+    border: 1px solid #0e3416;
+    border-radius: 8px;
+    padding: 0.5rem 3rem;
+    font-size: 1.2em;
+    margin-top: 1rem;
 
-    @media (max-width: 1530px) {
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 1em #9f9;
+    }
+
+    @media (max-width: 1520px) {
       width: 160px;
-      font-size: 1.3rem;
-      margin-top: 1rem;
+      font-size: 1em;
+      padding: 0.3rem 0;
     }
 
     @media (max-width: 737px) {
       width: 130px;
-      font-size: 1rem;
+      font-size: 0.9em;
       margin-top: 1.5rem;
       margin-right: 1rem;
+      padding: 0.15rem 0;
     }
   }
 }

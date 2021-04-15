@@ -1,16 +1,7 @@
-/* eslint-disable no-unreachable */
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-shadow */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useToken from '../../hooks/useToken/useToken';
 import Database from '../../database';
-
 import Text from '../../components/Text';
 import Note from '../../components/Note';
 import PlantProfile from '../../components/PlantProfile';
@@ -34,21 +25,9 @@ const UserPage = () => {
   const myId = JSON.parse(atob(token.split('.')[1])).id;
   const [userLogin, setUserLogin] = useState('');
   const [notes, setNotes] = useState([]);
-  const [note, setNote] = useState({
-    title: '',
-    text: '',
-    plant: '',
-    image: '',
-    timestamp: '',
-    nid: ''
-  });
   const [favourites, setFavourites] = useState([]);
-  const [favourite, setFavourite] = useState({ user: '' });
   const [myPlants, setMyPlants] = useState([]);
-  const [myPlant, setMyPlant] = useState({ name: '' });
   const [myFavourites, setMyFavourites] = useState([]);
-  const [myFavourite, setMyFavourite] = useState({ user: '' });
-  const [getUsersName, setGetUsersName] = useState('');
 
   useEffect(() => {
     if (token) {
@@ -62,7 +41,7 @@ const UserPage = () => {
 
   useEffect(() => {
     async function fetchNotes() {
-      let notes = [];
+      let notesFetched = [];
 
       await fetch(`${Database.URL}/user/${id}/notes`,
         {
@@ -74,11 +53,10 @@ const UserPage = () => {
         }, {})
         .then((res) => res.json())
         .then((json) => {
-          notes = json;
+          notesFetched = json;
         });
-
       async function fetchPlantName(pid) {
-        return fetch(`${Database.URL}/user/${myId}/plants/${pid}`, {
+        return fetch(`${Database.URL}/user/${id}/plants/${pid}`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -87,14 +65,14 @@ const UserPage = () => {
         }).then((res) => res.json())
           .then((json) => json.name);
       }
-      for (const n of notes) {
+      for (const n of notesFetched) {
         const plantName = await fetchPlantName(n.plant);
         n.plant = plantName;
       }
-      setNotes(notes);
+      setNotes(notesFetched);
     }
     fetchNotes();
-  }, [id, token]);
+  }, [id, token, notes, myId]);
 
   const showNote = (n) => (
     <Note
@@ -120,7 +98,7 @@ const UserPage = () => {
       .then((json) => {
         setMyFavourites(json);
       });
-  }, [id, token]);
+  }, [id, myId, token]);
 
   useEffect(() => {
     fetch(`${Database.URL}/user/${id}/plants`,
@@ -135,11 +113,11 @@ const UserPage = () => {
       .then((json) => {
         setMyPlants(json);
       });
-  }, []);
+  }, [id, token]);
 
   useEffect(() => {
     async function fetchFavourites() {
-      let favourites = [];
+      let favouritesFetched = [];
 
       await fetch(`${Database.URL}/user/${id}/favourites`,
         {
@@ -151,7 +129,7 @@ const UserPage = () => {
         }, [])
         .then((res) => res.json())
         .then((json) => {
-          favourites = json;
+          favouritesFetched = json;
         });
 
       async function fetchUserName(uid) {
@@ -164,11 +142,11 @@ const UserPage = () => {
         }).then((res) => res.json())
           .then((json) => json.login);
       }
-      for (const f of favourites) {
+      for (const f of favouritesFetched) {
         const userName = await fetchUserName(f.user);
         f.username = userName;
       }
-      setFavourites(favourites);
+      setFavourites(favouritesFetched);
     }
     fetchFavourites();
   }, [id, token]);

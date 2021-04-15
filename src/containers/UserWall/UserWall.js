@@ -1,13 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-shadow */
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-alert */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -28,12 +18,11 @@ import GreenStar from '../../assets/icons/GreenStar.png';
 import {
   addNote,
   title,
-  tick,
   save,
   notes,
   text,
   additional,
-  adding
+  wrapper
 } from './UserWall.module.scss';
 
 const UserWall = ({ isMyProfile, isFavourite }) => {
@@ -52,11 +41,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
     private: false
   });
   const [myFavourites, setMyFavourites] = useState([]);
-  const [myFavourite, setMyFavourite] = useState({ user: '' });
   const [myPlants, setMyPlants] = useState([]);
-  const [myPlantsName, setMyPlantsName] = useState('');
-  const [myPlantsId, setMyPlantsId] = useState('');
-  const [myPlantsBaseId, setMyPlantsBaseId] = useState('');
   const [chosenPlant, setChosenPlant] = useState('');
 
   const { id } = useParams();
@@ -76,7 +61,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
 
   useEffect(() => {
     async function fetchMyPlants() {
-      let myPlants = [];
+      let myPlantsFetched = [];
 
       await fetch(`${Database.URL}/user/${myId}/plants`,
         {
@@ -88,18 +73,18 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
         }, {})
         .then((res) => res.json())
         .then((json) => {
-          myPlants = json;
+          myPlantsFetched = json;
         });
-      setMyPlants(myPlants);
+      setMyPlants(myPlantsFetched);
     }
     fetchMyPlants();
-  }, []);
+  }, [myId, token]);
 
   const myPlantsNames = myPlants.map((plant) => plant.name);
 
   // Adding notes
 
-  const { register, handleSubmit, errors } = useForm();
+  const { handleSubmit } = useForm();
 
   const sendNote = (n) => fetch(`${Database.URL}/user/${id}/notes`, {
     method: 'POST',
@@ -108,26 +93,28 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(n)
-  }).then((data) => {
-    if (data.status === 200) {
-      window.location.reload();
-    }
-    return data.json();
-  });
+  }).then((data) => data.json());
 
   const onSubmit = () => {
     note.plant = chosenPlant._id;
     sendNote(note);
+    [...document.querySelectorAll('textarea')].map((textareaInput) => {
+      textareaInput.value = '';
+      return textareaInput;
+    });
+    [...document.querySelectorAll('select')].map((selectInput) => {
+      selectInput.value = 'default';
+      return selectInput;
+    });
   };
 
   const handleChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
 
-  const handleSelectChange = (title, value) => {
+  const handleSelectChange = (_title, value) => {
     const choosenPlant1 = myPlants.filter((plant) => `${plant.name}` === value);
     setChosenPlant(...choosenPlant1);
-    console.log(chosenPlant._id);
   };
 
   //  Favourites
@@ -145,7 +132,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
       .then((json) => {
         setMyFavourites(json);
       });
-  }, [id, token]);
+  }, [id, myId, token]);
 
   const handleFavourite = () => {
     if (isFavourite) {
@@ -181,7 +168,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
 
   if (isMyProfile) {
     return (
-      <div>
+      <div className={wrapper}>
         <Text text={userLogin} fontsize="2em" />
         <Text text={userName} fontsize="1.5em" />
         <div>
@@ -193,7 +180,7 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
             <Text className={text} text="Add new note" fontsize="1.5em" />
             <div className={title}>
               <TextArea
-                text="Add title.."
+                text="Add title..."
                 name="title"
                 height="3.5em"
                 value={note.title}
@@ -210,13 +197,8 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 onChange={handleChange}
               />
             </div>
-            <div className={tick}>
-              <input type="checkbox" id="private" name="private" value="true" onChange={(e) => setNote({ ...note, private: e.target.checked })} />
-              <label htmlFor="private"> Private? </label>
-            </div>
             <div className={additional}>
               <TextArea
-                className={adding}
                 text="Add link to photo..."
                 name="image"
                 height="3.5em"
@@ -224,11 +206,12 @@ const UserWall = ({ isMyProfile, isFavourite }) => {
                 onChange={handleChange}
               />
               <Select
-                className={adding}
                 title="Which plant?"
                 values={myPlantsNames}
                 cb={handleSelectChange}
                 value={note.plant}
+                height="3.7em"
+                fontsize="0.9em"
               />
             </div>
             <div className={save}>
